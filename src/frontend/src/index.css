@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        --background: 0.98 0.01 40;
+        --foreground: 0.25 0.02 320;
+        --card: 1 0 0;
+        --card-foreground: 0.25 0.02 320;
+        --popover: 1 0 0;
+        --popover-foreground: 0.25 0.02 320;
+        --primary: 0.45 0.12 300;
+        --primary-foreground: 0.98 0.01 40;
+        --secondary: 0.95 0.02 40;
+        --secondary-foreground: 0.25 0.02 320;
+        --muted: 0.95 0.02 40;
+        --muted-foreground: 0.55 0.03 320;
+        --accent: 0.92 0.03 50;
+        --accent-foreground: 0.25 0.02 320;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.985 0 0;
+        --border: 0.90 0.02 320;
+        --input: 0.90 0.02 320;
+        --ring: 0.45 0.12 300;
+        --chart-1: 0.646 0.222 41.116;
+        --chart-2: 0.6 0.118 184.704;
+        --chart-3: 0.398 0.07 227.392;
+        --chart-4: 0.828 0.189 84.429;
+        --chart-5: 0.769 0.188 70.08;
+        --sidebar: 0.985 0 0;
+        --sidebar-foreground: 0.145 0 0;
+        --sidebar-primary: 0.205 0 0;
+        --sidebar-primary-foreground: 0.985 0 0;
+        --sidebar-accent: 0.97 0 0;
+        --sidebar-accent-foreground: 0.205 0 0;
+        --sidebar-border: 0.922 0 0;
+        --sidebar-ring: 0.708 0 0;
+        
+        /* Custom mystical color palette */
+        --mystic-purple: 0.45 0.12 300;
+        --mystic-rose: 0.70 0.15 350;
+        --mystic-gold: 0.75 0.15 70;
+        --mystic-cream: 0.95 0.02 50;
+    }
+
+    .dark {
+        --background: 0.20 0.02 300;
+        --foreground: 0.95 0.01 40;
+        --card: 0.25 0.02 300;
+        --card-foreground: 0.95 0.01 40;
+        --popover: 0.22 0.02 300;
+        --popover-foreground: 0.95 0.01 40;
+        --primary: 0.70 0.15 300;
+        --primary-foreground: 0.20 0.02 300;
+        --secondary: 0.30 0.03 300;
+        --secondary-foreground: 0.95 0.01 40;
+        --muted: 0.30 0.03 300;
+        --muted-foreground: 0.65 0.05 320;
+        --accent: 0.35 0.05 320;
+        --accent-foreground: 0.95 0.01 40;
+        --destructive: 0.704 0.191 22.216;
+        --destructive-foreground: 0.20 0.02 300;
+        --border: 0.35 0.03 300;
+        --input: 0.35 0.03 300;
+        --ring: 0.65 0.10 300;
+        --chart-1: 0.488 0.243 264.376;
+        --chart-2: 0.696 0.17 162.48;
+        --chart-3: 0.769 0.188 70.08;
+        --chart-4: 0.627 0.265 303.9;
+        --chart-5: 0.645 0.246 16.439;
+        --sidebar: 0.25 0.02 300;
+        --sidebar-foreground: 0.95 0.01 40;
+        --sidebar-primary: 0.70 0.15 300;
+        --sidebar-primary-foreground: 0.95 0.01 40;
+        --sidebar-accent: 0.30 0.03 300;
+        --sidebar-accent-foreground: 0.95 0.01 40;
+        --sidebar-border: 0.35 0.03 300;
+        --sidebar-ring: 0.65 0.10 300;
+        
+        /* Custom mystical colors for dark mode */
+        --mystic-purple: 0.65 0.15 300;
+        --mystic-rose: 0.75 0.18 350;
+        --mystic-gold: 0.80 0.18 70;
+        --mystic-cream: 0.30 0.03 50;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    }
+    
+    .font-mystical {
+        font-family: 'Cinzel', 'Georgia', serif;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+    
+    .font-elegant {
+        font-family: 'Cormorant Garamond', 'Georgia', serif;
+        font-weight: 500;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');

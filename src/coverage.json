@@ -1,0 +1,94 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-23T12:44:12.914Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-10",
+        "summary": "If the external website contains additional products, services, or business information not present in the current site, integrate them into the appropriate sections (product catalog, services list, or about section)",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/data/products.ts",
+          "frontend/src/components/ProductCatalog.tsx",
+          "frontend/src/components/Footer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/products.ts",
+          "frontend/src/components/ProductCatalog.tsx",
+          "frontend/src/components/Footer.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Ensure the merged website presents a unified, professional business identity under the name MysticMoonWithIshita.com with consistent branding, messaging, and user experience throughout",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/index.html",
+          "frontend/src/components/Hero.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/Reviews.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/index.html",
+          "frontend/src/components/Hero.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Analyze the content and features from https://mysticmoonwithishita-2kv.caffeine.xyz/ and identify components, sections, or functionality that are not present in the current Mystic Moon with Ishita website",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/data/externalContent.ts"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Integrate any unique sections, features, or content from the external Mystic Moon website into the current site while maintaining the existing mystical visual theme with warm earth tones and celestial accents",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/Services.tsx",
+          "frontend/src/components/About.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/Services.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Hero.tsx",
+    "frontend/src/components/ProductCard.tsx",
+    "frontend/src/components/ProductCatalog.tsx",
+    "frontend/src/components/Services.tsx",
+    "frontend/src/data/products.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

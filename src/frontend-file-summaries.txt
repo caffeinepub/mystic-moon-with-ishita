@@ -1,0 +1,17 @@
+{
+  "frontend/src/App.tsx": "Main application component rendering the complete single-page layout with Hero, About, Services, Reviews, ProductCatalog, and Footer sections using default imports.",
+  "frontend/src/components/Hero.tsx": "Enhanced hero banner with unified \"Mystic Moon with Ishita\" branding, featuring animated mystical effects, dual CTAs for services and products, and fallback icon display.",
+  "frontend/src/components/About.tsx": "About section component showcasing Ishita's profile with healer portrait, highlighting her 4 years of experience, strong intuition, and authentic tarot reading expertise with mystical card styling.",
+  "frontend/src/components/Reviews.tsx": "Reviews section component displaying all 35 customer testimonials in a responsive grid layout with star ratings, dates, and category badges for tarot sessions and crystal purchases.",
+  "frontend/src/components/ProductCatalog.tsx": "Product catalog with four-tab filtering system (All/Crystals/Bracelets/Pendulums) displaying products in a responsive grid layout with mystical theme.",
+  "frontend/src/components/ProductCard.tsx": "Reusable product card component displaying individual products (crystals, bracelets, or pendulums) with image, name, description, type badge, and calculated final price using the pricing utility.",
+  "frontend/src/components/Footer.tsx": "Comprehensive footer with business information, services list, shop categories, Instagram link, copyright for MysticMoonWithIshita.com, and caffeine.ai attribution.",
+  "frontend/src/data/products.ts": "Product data file containing 15 crystal and bracelet products with support for pendulum type in the Product interface, maintaining ₹500 base pricing structure.",
+  "frontend/src/data/reviews.ts": "Reviews data file containing exactly 35 unique customer testimonials spanning January to February 2026, mixing tarot session and crystal purchase reviews with authentic varied feedback.",
+  "frontend/src/utils/pricing.ts": "Pricing utility module with calculateFinalPrice function (basePrice + ₹400) and formatPrice function for displaying prices with Indian Rupee symbol.",
+  "frontend/src/index.css": "Global styles with OKLCH color system defining mystical theme colors (purple, rose, gold, cream) for both light and dark modes, plus custom font families (Cinzel, Cormorant Garamond) for mystical typography.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom mystical color tokens (mystic-purple, mystic-rose, mystic-gold, mystic-cream) mapped to CSS variables for consistent spiritual aesthetic throughout the application.",
+  "frontend/src/components/Services.tsx": "Services section component that fetches and displays spiritual service offerings from the backend with pricing, descriptions, mystical styling, and Instagram booking CTA.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks module managing all backend interactions including product CRUD operations, service queries, trending products, and proper cache invalidation.",
+  "frontend/index.html": "HTML entry point with updated meta tags and page title reflecting the unified \"Mystic Moon with Ishita\" business identity and SEO-optimized description."
+}

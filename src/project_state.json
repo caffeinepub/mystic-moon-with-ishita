@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Professional tarot reading and crystal shop website for Mystic Moon with Ishita, featuring about section with 4 years healing experience, product gallery with crystals and bracelets (₹900+ pricing), Instagram integration, and 35 customer reviews",
+  "architectural_notes": [
+    "E-commerce functionality for crystal and bracelet shopping",
+    "Product image gallery with professional photography",
+    "Customer review system with timestamps",
+    "Social media integration (Instagram)",
+    "Integration with existing website at mysticmoonwithishita-2kv.caffeine.xyz"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-add-instagram-social-link-to-mysticmoonwithishita-in-the-website-header-or-footer",
+      "title": "Add Instagram social link to @MysticMoonWithIshita in the website header or footer",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-about-section-describing-ishita-as-a-genuine-healer-with-strong-intuition-and-4-years-of-experience-in-tarot-reading-emphasizing-authenticity-and-healing-abilities",
+      "title": "Create an About section describing Ishita as a genuine healer with strong intuition and 4 years of experience in tarot reading, emphasizing authenticity and healing abilities",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-35-customer-reviews-from-different-people-spanning-january-to-present-covering-both-tarot-reading-sessions-and-crystal-product-purchases",
+      "title": "Add 35 customer reviews from different people spanning January to present, covering both tarot reading sessions and crystal product purchases",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-product-catalog-featuring-all-types-of-crystals-and-crystal-bracelets-with-high-quality-professional-product-images",
+      "title": "Create a product catalog featuring all types of crystals and crystal bracelets with high-quality professional product images",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-product-pricing-system-with-base-price-of-500-plus-400-markup-resulting-in-minimum-price-of-900-with-prices-displayed-in-indian-rupees",
+      "title": "Implement product pricing system with base price of ₹500 plus ₹400 markup, resulting in minimum price of ₹900, with prices displayed in Indian Rupees",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-cohesive-mystical-visual-theme-with-warm-earth-tones-celestial-accents-and-elegant-typography-that-reflects-spiritual-healing-and-crystal-energy-aesthetics",
+      "title": "Design a cohesive mystical visual theme with warm earth tones, celestial accents, and elegant typography that reflects spiritual healing and crystal energy aesthetics",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-all-generated-product-images-as-static-assets-in-frontend-public-assets-generated-directory",
+      "title": "Render all generated product images as static assets in frontend/public/assets/generated directory",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-any-unique-sections-features-or-content-from-the-external-mystic-moon-website-into-the-current-site-while-maintaining-the-existing-mystical-visual-theme-with-warm-earth-tones-and-celestial-accents",
+      "title": "Integrate any unique sections, features, or content from the external Mystic Moon website into the current site while maintaining the existing mystical visual theme with warm earth tones and celestial accents",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-if-the-external-website-contains-additional-products-services-or-business-information-not-present-in-the-current-site-integrate-them-into-the-appropriate-sections-product-catalog-services-list-or-about-section",
+      "title": "If the external website contains additional products, services, or business information not present in the current site, integrate them into the appropriate sections (product catalog, services list, or about section)",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-merged-website-presents-a-unified-professional-business-identity-under-the-name-mysticmoonwithishita-com-with-consistent-branding-messaging-and-user-experience-throughout",
+      "title": "Ensure the merged website presents a unified, professional business identity under the name MysticMoonWithIshita.com with consistent branding, messaging, and user experience throughout",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add Instagram link @MysticMoonWithIshita",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create about section highlighting 4 years healing experience and tarot reading expertise with strong intuition",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add 35 customer reviews from January onwards for sessions and crystal purchases",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create product gallery with all types of crystals and crystal bracelets with professional images",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Set product pricing starting at ₹900 (base ₹500 + ₹400)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Merge existing website with mysticmoonwithishita-2kv.caffeine.xyz to create unified business website",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Analyze the content and features from https://mysticmoonwithishita-2kv.caffeine.xyz/ and identify components, sections, or functionality that are not present in the current Mystic Moon with Ishita website",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Mystic Moon with Ishita",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,109 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Merge external website with current Mystic Moon site",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "summary": "Analyze and document differences between external website and current site to create merge plan",
+      "acceptanceCriteria": [
+        "All unique content from the external website is identified",
+        "Differences between the two sites are documented",
+        "A merge plan is created that preserves all valuable content from both sites"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/externalContent.ts",
+          "operation": "create",
+          "description": "Create a data file documenting all unique sections, features, and content identified from https://mysticmoonwithishita-2kv.caffeine.xyz/ that are not present in the current site. This serves as the merge reference document for subsequent integration work."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Integrate unique sections and content from external site while maintaining mystical theme",
+      "acceptanceCriteria": [
+        "All relevant content from both websites is present in the merged site",
+        "The existing mystical theme is preserved across all merged content",
+        "Navigation and user flow remains intuitive after merge",
+        "No duplicate content appears in the merged site"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update the main application layout to integrate any new sections identified from the external website (such as additional service offerings, testimonial sections, or informational content) while preserving the existing section order: Hero, About, Reviews, ProductCatalog, and Footer. Ensure all new sections use the existing mystical theme with warm earth tones and celestial accents."
+        },
+        {
+          "path": "frontend/src/components/Services.tsx",
+          "operation": "create",
+          "description": "Create a new Services component if the external website contains a dedicated services section not adequately covered by the current About section. Display service offerings with descriptions, pricing information using the backend's Service data structure, and mystical styling consistent with the existing theme. Use the backend's getAllServices method to fetch service data."
+        },
+        {
+          "path": "frontend/src/components/About.tsx",
+          "operation": "modify",
+          "description": "Enhance the About section with any additional biographical information, credentials, or service descriptions found in the external website. Maintain the existing card-based layout with Ishita's healer portrait image and mystical icons while integrating new content seamlessly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Integrate additional products, services, or business information from external site into appropriate sections",
+      "acceptanceCriteria": [
+        "Any additional products from the external site are added to the product catalog",
+        "New services are listed in appropriate sections",
+        "Business information is complete and consistent across all sections",
+        "Pricing system remains consistent with ₹500 base + ₹400 markup formula"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/products.ts",
+          "operation": "modify",
+          "description": "Add any additional products (pendulums, crystals, or bracelets) identified from the external website to the products array. Ensure each new product follows the existing Product interface structure with id, name, description, type, basePrice (following the ₹500 base pricing), and imageUrl pointing to generated assets in frontend/public/assets/generated/. Reference existing generated product images or note which new images need generation."
+        },
+        {
+          "path": "frontend/src/components/ProductCatalog.tsx",
+          "operation": "modify",
+          "description": "Update the product catalog to support any new product types (such as pendulums if present in external site) by adding appropriate filter tabs. Ensure the tab navigation and grid layout accommodate the expanded product range while maintaining the existing mystical styling and responsive design."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Update the Footer services list to include any new service offerings identified from the external website. Ensure the three-column layout remains balanced and all business information (Instagram link, branding, services) is complete and consistent with the merged content."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Ensure unified professional business identity under MysticMoonWithIshita.com with consistent branding",
+      "acceptanceCriteria": [
+        "Brand name 'Mystic Moon with Ishita' is consistently displayed across all pages and sections",
+        "Visual design is cohesive throughout the merged site",
+        "Messaging tone and voice is consistent across all content",
+        "The site presents as a single, unified business rather than merged components"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Verify and ensure the page title displays 'Mystic Moon with Ishita' consistently with the merged business identity. Update meta tags if additional branding or description improvements are identified from the external website analysis."
+        },
+        {
+          "path": "frontend/src/components/Hero.tsx",
+          "operation": "modify",
+          "description": "Update the hero banner to unify branding messaging from both websites. Ensure the site title 'Mystic Moon with Ishita' and tagline consistently represent the complete merged business offering (tarot, crystals, and any additional services). Maintain the mystical moon header image and animated sparkle effects with gradient overlays."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Review and refine the mystical color palette and design tokens to ensure visual cohesion across all merged content sections. Verify that the OKLCH color system (purple, rose, gold, cream tones) and CSS custom properties provide consistent theming for both original and newly integrated components."
+        },
+        {
+          "path": "frontend/src/components/Reviews.tsx",
+          "operation": "modify",
+          "description": "Consolidate customer testimonials from both websites, ensuring the 35 customer reviews are preserved and any additional reviews from the external site are integrated. Maintain the card grid layout with 5-star ratings and ensure review categories (Tarot Session, Crystal Purchase, or new categories) reflect the complete merged business offerings."
+        }
+      ]
+    }
+  ]
+}
