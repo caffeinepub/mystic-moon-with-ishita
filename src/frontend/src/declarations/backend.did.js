@@ -14,7 +14,13 @@ export const ProductType = IDL.Variant({
   'bracelet' : IDL.Null,
   'crystal' : IDL.Null,
 });
-export const ServiceId = IDL.Nat;
+export const ServiceCategory = IDL.Variant({
+  'careerMoneyLife' : IDL.Null,
+  'premiumExclusive' : IDL.Null,
+  'miniReading' : IDL.Null,
+  'deepDetailed' : IDL.Null,
+  'loveRelationship' : IDL.Null,
+});
 export const Product = IDL.Record({
   'id' : ProductId,
   'name' : IDL.Text,
@@ -24,11 +30,14 @@ export const Product = IDL.Record({
   'price' : IDL.Nat,
   'isTrending' : IDL.Bool,
 });
-export const Service = IDL.Record({
-  'id' : ServiceId,
+export const TarotService = IDL.Record({
+  'id' : IDL.Nat,
+  'isUrgent' : IDL.Bool,
   'name' : IDL.Text,
   'description' : IDL.Text,
+  'category' : ServiceCategory,
   'price' : IDL.Nat,
+  'isVoiceNote' : IDL.Bool,
 });
 
 export const idlService = IDL.Service({
@@ -37,11 +46,15 @@ export const idlService = IDL.Service({
       [],
       [],
     ),
-  'addService' : IDL.Func([IDL.Text, IDL.Text, IDL.Nat], [], []),
+  'addTarotService' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Nat, ServiceCategory, IDL.Bool, IDL.Bool],
+      [],
+      [],
+    ),
   'deleteProduct' : IDL.Func([ProductId], [], []),
-  'deleteService' : IDL.Func([ServiceId], [], []),
+  'deleteTarotService' : IDL.Func([IDL.Nat], [], []),
   'getAllProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
-  'getAllServices' : IDL.Func([], [IDL.Vec(Service)], ['query']),
+  'getAllTarotServices' : IDL.Func([], [IDL.Vec(TarotService)], ['query']),
   'getProduct' : IDL.Func([ProductId], [Product], ['query']),
   'getProductsByCategory' : IDL.Func(
       [ProductType],
@@ -49,14 +62,44 @@ export const idlService = IDL.Service({
       ['query'],
     ),
   'getProductsByType' : IDL.Func([ProductType], [IDL.Vec(Product)], ['query']),
-  'getService' : IDL.Func([ServiceId], [Service], ['query']),
+  'getTarotService' : IDL.Func([IDL.Nat], [TarotService], ['query']),
+  'getTarotServiceCatalog' : IDL.Func(
+      [],
+      [
+        IDL.Record({
+          'careerMoneyLife' : IDL.Vec(TarotService),
+          'premiumExclusive' : IDL.Vec(TarotService),
+          'miniReadings' : IDL.Vec(TarotService),
+          'deepDetailed' : IDL.Vec(TarotService),
+          'loveRelationship' : IDL.Vec(TarotService),
+        }),
+      ],
+      ['query'],
+    ),
+  'getTarotServicesByCategory' : IDL.Func(
+      [ServiceCategory],
+      [IDL.Vec(TarotService)],
+      ['query'],
+    ),
   'getTrendingProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
   'updateProduct' : IDL.Func(
       [ProductId, IDL.Text, IDL.Text, IDL.Text, ProductType, IDL.Nat, IDL.Bool],
       [],
       [],
     ),
-  'updateService' : IDL.Func([ServiceId, IDL.Text, IDL.Text, IDL.Nat], [], []),
+  'updateTarotService' : IDL.Func(
+      [
+        IDL.Nat,
+        IDL.Text,
+        IDL.Text,
+        IDL.Nat,
+        ServiceCategory,
+        IDL.Bool,
+        IDL.Bool,
+      ],
+      [],
+      [],
+    ),
 });
 
 export const idlInitArgs = [];
@@ -68,7 +111,13 @@ export const idlFactory = ({ IDL }) => {
     'bracelet' : IDL.Null,
     'crystal' : IDL.Null,
   });
-  const ServiceId = IDL.Nat;
+  const ServiceCategory = IDL.Variant({
+    'careerMoneyLife' : IDL.Null,
+    'premiumExclusive' : IDL.Null,
+    'miniReading' : IDL.Null,
+    'deepDetailed' : IDL.Null,
+    'loveRelationship' : IDL.Null,
+  });
   const Product = IDL.Record({
     'id' : ProductId,
     'name' : IDL.Text,
@@ -78,11 +127,14 @@ export const idlFactory = ({ IDL }) => {
     'price' : IDL.Nat,
     'isTrending' : IDL.Bool,
   });
-  const Service = IDL.Record({
-    'id' : ServiceId,
+  const TarotService = IDL.Record({
+    'id' : IDL.Nat,
+    'isUrgent' : IDL.Bool,
     'name' : IDL.Text,
     'description' : IDL.Text,
+    'category' : ServiceCategory,
     'price' : IDL.Nat,
+    'isVoiceNote' : IDL.Bool,
   });
   
   return IDL.Service({
@@ -91,11 +143,15 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
-    'addService' : IDL.Func([IDL.Text, IDL.Text, IDL.Nat], [], []),
+    'addTarotService' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Nat, ServiceCategory, IDL.Bool, IDL.Bool],
+        [],
+        [],
+      ),
     'deleteProduct' : IDL.Func([ProductId], [], []),
-    'deleteService' : IDL.Func([ServiceId], [], []),
+    'deleteTarotService' : IDL.Func([IDL.Nat], [], []),
     'getAllProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
-    'getAllServices' : IDL.Func([], [IDL.Vec(Service)], ['query']),
+    'getAllTarotServices' : IDL.Func([], [IDL.Vec(TarotService)], ['query']),
     'getProduct' : IDL.Func([ProductId], [Product], ['query']),
     'getProductsByCategory' : IDL.Func(
         [ProductType],
@@ -107,7 +163,25 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Vec(Product)],
         ['query'],
       ),
-    'getService' : IDL.Func([ServiceId], [Service], ['query']),
+    'getTarotService' : IDL.Func([IDL.Nat], [TarotService], ['query']),
+    'getTarotServiceCatalog' : IDL.Func(
+        [],
+        [
+          IDL.Record({
+            'careerMoneyLife' : IDL.Vec(TarotService),
+            'premiumExclusive' : IDL.Vec(TarotService),
+            'miniReadings' : IDL.Vec(TarotService),
+            'deepDetailed' : IDL.Vec(TarotService),
+            'loveRelationship' : IDL.Vec(TarotService),
+          }),
+        ],
+        ['query'],
+      ),
+    'getTarotServicesByCategory' : IDL.Func(
+        [ServiceCategory],
+        [IDL.Vec(TarotService)],
+        ['query'],
+      ),
     'getTrendingProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
     'updateProduct' : IDL.Func(
         [
@@ -122,8 +196,16 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
-    'updateService' : IDL.Func(
-        [ServiceId, IDL.Text, IDL.Text, IDL.Nat],
+    'updateTarotService' : IDL.Func(
+        [
+          IDL.Nat,
+          IDL.Text,
+          IDL.Text,
+          IDL.Nat,
+          ServiceCategory,
+          IDL.Bool,
+          IDL.Bool,
+        ],
         [],
         [],
       ),

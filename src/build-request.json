@@ -1,97 +1,71 @@
 {
   "kind": "build_request",
-  "title": "Merge external website with current Mystic Moon site",
-  "projectName": "Mystic Moon With Ishita",
+  "title": "Replace service gallery images with uploaded Instagram screenshots in order",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-8",
-      "text": "Analyze the content and features from https://mysticmoonwithishita-2kv.caffeine.xyz/ and identify components, sections, or functionality that are not present in the current Mystic Moon with Ishita website",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Merge this website and the website you created for me to make a business website with the name MysticMoonWithIshita.com"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All unique content from the external website is identified",
-        "Differences between the two sites are documented",
-        "A merge plan is created that preserves all valuable content from both sites"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Integrate any unique sections, features, or content from the external Mystic Moon website into the current site while maintaining the existing mystical visual theme with warm earth tones and celestial accents",
+      "id": "REQ-28",
+      "text": "Replace the existing service gallery images in the ServicesGallery component with the 8 uploaded Instagram screenshots in the following order: Screenshot_20260223-202001_Instagram-2.jpg (Career/Money/Life section header), Screenshot_20260223-202059_Instagram-2.jpg (Love & Relationship services), Screenshot_20260223-202107_Instagram-2.jpg (Future of This Connection and Deep & Detailed header), Screenshot_20260223-202112_Instagram-2.jpg (1 Month Forecast and 3 Month Forecast with Schedule Your Reading button), Screenshot_20260223-202008_Instagram-2.jpg (Money & Abundance Reading and Life Purpose/Direction Reading), Screenshot_20260223-202048_Instagram-2.jpg (Personalized Voice Note Reading and Emergency Same-Day Reading with Love & Relationship header), Screenshot_20260223-202025_Instagram-2.jpg (Mini Readings with 1 Question Reading and 3 Card Reading), Screenshot_20260223-202043_Instagram-2.jpg (Premium/Exclusive with Soulmate/Twin Flame Reading and Personalized Voice Note Reading)",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-latest"
         ],
         "quotes": [
-          "Merge this website and the website you created for me to make a business website with the name MysticMoonWithIshita.com"
+          "Replace service images with given images on types of reading in order"
         ]
       },
       "acceptanceCriteria": [
-        "All relevant content from both websites is present in the merged site",
-        "The existing mystical theme is preserved across all merged content",
-        "Navigation and user flow remains intuitive after merge",
-        "No duplicate content appears in the merged site"
+        "All 8 uploaded Instagram screenshots are displayed in the Services Gallery section",
+        "Images appear in the exact order specified matching the tarot service categories",
+        "Each image maintains its original quality and aspect ratio",
+        "The gallery layout remains responsive and visually consistent with the mystical theme"
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "If the external website contains additional products, services, or business information not present in the current site, integrate them into the appropriate sections (product catalog, services list, or about section)",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "make a business website with the name MysticMoonWithIshita.com"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Any additional products from the external site are added to the product catalog",
-        "New services are listed in appropriate sections",
-        "Business information is complete and consistent across all sections",
-        "Pricing system remains consistent with ₹500 base + ₹400 markup formula"
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "text": "Ensure the merged website presents a unified, professional business identity under the name MysticMoonWithIshita.com with consistent branding, messaging, and user experience throughout",
+      "id": "REQ-29",
+      "text": "Update the serviceGalleryImages data array in frontend/src/data/serviceGalleryImages.ts to reference the 8 new uploaded screenshot filenames instead of the current service category image paths",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "make a business website with the name MysticMoonWithIshita.com"
+          "msg-latest"
         ]
       },
       "acceptanceCriteria": [
-        "Brand name 'Mystic Moon with Ishita' is consistently displayed across all pages and sections",
-        "Visual design is cohesive throughout the merged site",
-        "Messaging tone and voice is consistent across all content",
-        "The site presents as a single, unified business rather than merged components"
+        "The serviceGalleryImages array contains exactly 8 entries",
+        "Each entry maps to the correct uploaded screenshot filename",
+        "The order matches the sequence: Career/Money/Life section, Love & Relationship, Future/Deep sections, Forecasts with CTA, Money/Life Purpose, Premium services, Mini Readings, Premium/Exclusive details",
+        "All image paths correctly point to the generated assets directory"
+      ]
+    },
+    {
+      "id": "REQ-30",
+      "text": "Render all 8 uploaded Instagram screenshot images as static assets in the frontend/public/assets/generated directory with appropriate filenames that maintain clarity about their content (e.g., career-money-life-header.jpg, love-relationship-services.jpg, etc.)",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All 8 screenshots are saved in frontend/public/assets/generated/",
+        "Filenames are descriptive and indicate the service category or section they represent",
+        "Images maintain their original quality and format",
+        "File paths are correctly referenced in the serviceGalleryImages data"
       ]
     }
   ],
   "constraints": [
-    "Preserve all existing features: Instagram link, About section, 35 customer reviews, product catalog, pricing system, and mystical visual theme",
-    "Maintain the existing single-actor backend architecture in backend/main.mo",
-    "Keep pricing calculation formula (₹500 base + ₹400 markup) consistent for all products",
-    "Do not modify immutable frontend paths: useInternetIdentity.ts, useActor.ts, main.tsx, and components/ui directory",
-    "Render all product images as static assets in frontend/public/assets/generated directory"
+    "Do not modify the ServicesGallery component structure or layout",
+    "Maintain the existing mystical visual theme and styling",
+    "Preserve the responsive grid layout for service images",
+    "Do not alter the 'Schedule Your Reading' CTA button functionality"
   ],
   "nonGoals": [
-    "Changing the core technology stack (React, Motoko, Tailwind)",
-    "Implementing booking or appointment scheduling systems",
-    "Adding payment processing or e-commerce checkout functionality",
-    "Changing the established mystical visual theme colors and design"
+    "Creating new service categories or changing service pricing",
+    "Modifying the Services section component",
+    "Changing the order or content of other website sections",
+    "Adding new filtering or sorting functionality to the gallery"
   ],
   "imageRequirements": {
     "required": [],

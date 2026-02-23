@@ -23,33 +23,60 @@ export type ProductId = string;
 export type ProductType = { 'pendulum' : null } |
   { 'bracelet' : null } |
   { 'crystal' : null };
-export interface Service {
-  'id' : ServiceId,
+export type ServiceCategory = { 'careerMoneyLife' : null } |
+  { 'premiumExclusive' : null } |
+  { 'miniReading' : null } |
+  { 'deepDetailed' : null } |
+  { 'loveRelationship' : null };
+export interface TarotService {
+  'id' : bigint,
+  'isUrgent' : boolean,
   'name' : string,
   'description' : string,
+  'category' : ServiceCategory,
   'price' : bigint,
+  'isVoiceNote' : boolean,
 }
-export type ServiceId = bigint;
 export interface _SERVICE {
   'addProduct' : ActorMethod<
     [ProductId, string, string, string, ProductType, boolean],
     undefined
   >,
-  'addService' : ActorMethod<[string, string, bigint], undefined>,
+  'addTarotService' : ActorMethod<
+    [string, string, bigint, ServiceCategory, boolean, boolean],
+    undefined
+  >,
   'deleteProduct' : ActorMethod<[ProductId], undefined>,
-  'deleteService' : ActorMethod<[ServiceId], undefined>,
+  'deleteTarotService' : ActorMethod<[bigint], undefined>,
   'getAllProducts' : ActorMethod<[], Array<Product>>,
-  'getAllServices' : ActorMethod<[], Array<Service>>,
+  'getAllTarotServices' : ActorMethod<[], Array<TarotService>>,
   'getProduct' : ActorMethod<[ProductId], Product>,
   'getProductsByCategory' : ActorMethod<[ProductType], Array<Product>>,
   'getProductsByType' : ActorMethod<[ProductType], Array<Product>>,
-  'getService' : ActorMethod<[ServiceId], Service>,
+  'getTarotService' : ActorMethod<[bigint], TarotService>,
+  'getTarotServiceCatalog' : ActorMethod<
+    [],
+    {
+      'careerMoneyLife' : Array<TarotService>,
+      'premiumExclusive' : Array<TarotService>,
+      'miniReadings' : Array<TarotService>,
+      'deepDetailed' : Array<TarotService>,
+      'loveRelationship' : Array<TarotService>,
+    }
+  >,
+  'getTarotServicesByCategory' : ActorMethod<
+    [ServiceCategory],
+    Array<TarotService>
+  >,
   'getTrendingProducts' : ActorMethod<[], Array<Product>>,
   'updateProduct' : ActorMethod<
     [ProductId, string, string, string, ProductType, bigint, boolean],
     undefined
   >,
-  'updateService' : ActorMethod<[ServiceId, string, string, bigint], undefined>,
+  'updateTarotService' : ActorMethod<
+    [bigint, string, string, bigint, ServiceCategory, boolean, boolean],
+    undefined
+  >,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

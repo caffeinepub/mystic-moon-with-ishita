@@ -5,9 +5,10 @@ import Runtime "mo:core/Runtime";
 import Text "mo:core/Text";
 import Nat "mo:core/Nat";
 import Order "mo:core/Order";
-import Migration "migration";
+import List "mo:core/List";
 
-(with migration = Migration.run)
+
+
 actor {
   type ProductId = Text;
   type ServiceId = Nat;
@@ -34,16 +35,27 @@ actor {
     };
   };
 
-  type Service = {
-    id : ServiceId;
+  type TarotService = {
+    id : Nat;
     name : Text;
     description : Text;
     price : Nat;
+    category : ServiceCategory;
+    isVoiceNote : Bool;
+    isUrgent : Bool;
+  };
+
+  type ServiceCategory = {
+    #miniReading;
+    #loveRelationship;
+    #careerMoneyLife;
+    #deepDetailed;
+    #premiumExclusive;
   };
 
   let products = Map.empty<ProductId, Product>();
-  let services = Map.empty<ServiceId, Service>();
-  var nextServiceId = 0;
+  let tarotServices = Map.empty<Nat, TarotService>();
+  var nextServiceId = 1;
 
   let basePrice = 500;
   let markup = 400;
@@ -135,48 +147,77 @@ actor {
     ).toArray();
   };
 
-  public shared ({ caller }) func addService(name : Text, description : Text, price : Nat) : async () {
-    let service : Service = {
+  public shared ({ caller }) func addTarotService(
+    name : Text,
+    description : Text,
+    price : Nat,
+    category : ServiceCategory,
+    isVoiceNote : Bool,
+    isUrgent : Bool,
+  ) : async () {
+    let service : TarotService = {
       id = nextServiceId;
       name;
       description;
       price;
+      category;
+      isVoiceNote;
+      isUrgent;
     };
-    services.add(nextServiceId, service);
+    tarotServices.add(nextServiceId, service);
     nextServiceId += 1;
   };
 
-  public shared ({ caller }) func updateService(id : ServiceId, name : Text, description : Text, price : Nat) : async () {
-    switch (services.get(id)) {
+  public shared ({ caller }) func updateTarotService(
+    id : Nat,
+    name : Text,
+    description : Text,
+    price : Nat,
+    category : ServiceCategory,
+    isVoiceNote : Bool,
+    isUrgent : Bool,
+  ) : async () {
+    switch (tarotServices.get(id)) {
       case (null) { Runtime.trap("Service not found") };
       case (?_) {
-        let updatedService : Service = {
+        let updatedService : TarotService = {
           id;
           name;
           description;
           price;
+          category;
+          isVoiceNote;
+          isUrgent;
         };
-        services.add(id, updatedService);
+        tarotServices.add(id, updatedService);
       };
     };
   };
 
-  public shared ({ caller }) func deleteService(id : ServiceId) : async () {
-    if (not services.containsKey(id)) {
+  public shared ({ caller }) func deleteTarotService(id : Nat) : async () {
+    if (not tarotServices.containsKey(id)) {
       Runtime.trap("Service not found");
     };
-    services.remove(id);
+    tarotServices.remove(id);
   };
 
-  public query ({ caller }) func getService(id : ServiceId) : async Service {
-    switch (services.get(id)) {
+  public query ({ caller }) func getTarotService(id : Nat) : async TarotService {
+    switch (tarotServices.get(id)) {
       case (null) { Runtime.trap("Service not found") };
       case (?service) { service };
     };
   };
 
-  public query ({ caller }) func getAllServices() : async [Service] {
-    services.values().toArray();
+  public query ({ caller }) func getAllTarotServices() : async [TarotService] {
+    tarotServices.values().toArray();
+  };
+
+  public query ({ caller }) func getTarotServicesByCategory(category : ServiceCategory) : async [TarotService] {
+    tarotServices.values().filter(
+      func(service) {
+        service.category == category;
+      }
+    ).toArray();
   };
 
   public query ({ caller }) func getProductsByCategory(category : ProductType) : async [Product] {
@@ -185,5 +226,37 @@ actor {
         product.productType == category;
       }
     ).toArray().sort();
+  };
+
+  public query ({ caller }) func getTarotServiceCatalog() : async {
+    miniReadings : [TarotService];
+    loveRelationship : [TarotService];
+    careerMoneyLife : [TarotService];
+    deepDetailed : [TarotService];
+    premiumExclusive : [TarotService];
+  } {
+    let miniReadings = List.empty<TarotService>();
+    let loveRelationship = List.empty<TarotService>();
+    let careerMoneyLife = List.empty<TarotService>();
+    let deepDetailed = List.empty<TarotService>();
+    let premiumExclusive = List.empty<TarotService>();
+
+    for (service in tarotServices.values()) {
+      switch (service.category) {
+        case (#miniReading) { miniReadings.add(service) };
+        case (#loveRelationship) { loveRelationship.add(service) };
+        case (#careerMoneyLife) { careerMoneyLife.add(service) };
+        case (#deepDetailed) { deepDetailed.add(service) };
+        case (#premiumExclusive) { premiumExclusive.add(service) };
+      };
+    };
+
+    {
+      miniReadings = miniReadings.toArray();
+      loveRelationship = loveRelationship.toArray();
+      careerMoneyLife = careerMoneyLife.toArray();
+      deepDetailed = deepDetailed.toArray();
+      premiumExclusive = premiumExclusive.toArray();
+    };
   };
 };

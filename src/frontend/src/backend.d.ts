@@ -7,14 +7,6 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
-export type ServiceId = bigint;
-export interface Service {
-    id: ServiceId;
-    name: string;
-    description: string;
-    price: bigint;
-}
-export type ProductId = string;
 export interface Product {
     id: ProductId;
     name: string;
@@ -24,23 +16,48 @@ export interface Product {
     price: bigint;
     isTrending: boolean;
 }
+export interface TarotService {
+    id: bigint;
+    isUrgent: boolean;
+    name: string;
+    description: string;
+    category: ServiceCategory;
+    price: bigint;
+    isVoiceNote: boolean;
+}
+export type ProductId = string;
 export enum ProductType {
     pendulum = "pendulum",
     bracelet = "bracelet",
     crystal = "crystal"
 }
+export enum ServiceCategory {
+    careerMoneyLife = "careerMoneyLife",
+    premiumExclusive = "premiumExclusive",
+    miniReading = "miniReading",
+    deepDetailed = "deepDetailed",
+    loveRelationship = "loveRelationship"
+}
 export interface backendInterface {
     addProduct(id: ProductId, name: string, description: string, imageUrl: string, productType: ProductType, isTrending: boolean): Promise<void>;
-    addService(name: string, description: string, price: bigint): Promise<void>;
+    addTarotService(name: string, description: string, price: bigint, category: ServiceCategory, isVoiceNote: boolean, isUrgent: boolean): Promise<void>;
     deleteProduct(id: ProductId): Promise<void>;
-    deleteService(id: ServiceId): Promise<void>;
+    deleteTarotService(id: bigint): Promise<void>;
     getAllProducts(): Promise<Array<Product>>;
-    getAllServices(): Promise<Array<Service>>;
+    getAllTarotServices(): Promise<Array<TarotService>>;
     getProduct(id: ProductId): Promise<Product>;
     getProductsByCategory(category: ProductType): Promise<Array<Product>>;
     getProductsByType(productType: ProductType): Promise<Array<Product>>;
-    getService(id: ServiceId): Promise<Service>;
+    getTarotService(id: bigint): Promise<TarotService>;
+    getTarotServiceCatalog(): Promise<{
+        careerMoneyLife: Array<TarotService>;
+        premiumExclusive: Array<TarotService>;
+        miniReadings: Array<TarotService>;
+        deepDetailed: Array<TarotService>;
+        loveRelationship: Array<TarotService>;
+    }>;
+    getTarotServicesByCategory(category: ServiceCategory): Promise<Array<TarotService>>;
     getTrendingProducts(): Promise<Array<Product>>;
     updateProduct(id: ProductId, name: string, description: string, imageUrl: string, productType: ProductType, price: bigint, isTrending: boolean): Promise<void>;
-    updateService(id: ServiceId, name: string, description: string, price: bigint): Promise<void>;
+    updateTarotService(id: bigint, name: string, description: string, price: bigint, category: ServiceCategory, isVoiceNote: boolean, isUrgent: boolean): Promise<void>;
 }

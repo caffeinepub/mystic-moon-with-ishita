@@ -1,13 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Merge content and features from the external Mystic Moon website (https://mysticmoonwithishita-2kv.caffeine.xyz/) with the current site to create a unified business website under MysticMoonWithIshita.com.
+**Goal:** Replace existing service gallery images with 8 uploaded Instagram screenshots showing tarot reading service categories.
 
 **Planned changes:**
-- Analyze the external website to identify unique content, sections, and features not present in the current site
-- Integrate any unique sections, features, or content from the external site while maintaining the existing mystical visual theme
-- Add any additional products, services, or business information from the external site to appropriate sections
-- Ensure consistent branding with "Mystic Moon with Ishita" displayed throughout
-- Present a unified, professional business identity with cohesive design and messaging
+- Replace all current service gallery images with the 8 uploaded Instagram screenshots in the specified order
+- Update the serviceGalleryImages data array to reference the new screenshot filenames
+- Save all 8 screenshots as static assets in the frontend/public/assets/generated directory with descriptive filenames
 
-**User-visible outcome:** Users will see a comprehensive business website that combines the best content from both sites, presenting a single unified brand experience with all products, services, and business information in one place while maintaining the mystical aesthetic.
+**User-visible outcome:** The Services Gallery section displays the tarot reading service categories using the Instagram screenshots in the exact order specified, maintaining responsive layout and mystical theme.

@@ -1,91 +1,59 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T12:44:12.914Z",
+  "generatedAt": "2026-02-23T15:29:10.251Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 3,
+    "total": 3,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "If the external website contains additional products, services, or business information not present in the current site, integrate them into the appropriate sections (product catalog, services list, or about section)",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/data/products.ts",
-          "frontend/src/components/ProductCatalog.tsx",
-          "frontend/src/components/Footer.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/data/products.ts",
-          "frontend/src/components/ProductCatalog.tsx",
-          "frontend/src/components/Footer.tsx"
-        ]
-      },
-      {
-        "id": "REQ-11",
-        "summary": "Ensure the merged website presents a unified, professional business identity under the name MysticMoonWithIshita.com with consistent branding, messaging, and user experience throughout",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/index.html",
-          "frontend/src/components/Hero.tsx",
-          "frontend/src/index.css",
-          "frontend/src/components/Reviews.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/index.html",
-          "frontend/src/components/Hero.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Analyze the content and features from https://mysticmoonwithishita-2kv.caffeine.xyz/ and identify components, sections, or functionality that are not present in the current Mystic Moon with Ishita website",
+        "id": "REQ-28",
+        "summary": "Replace the existing service gallery images in the ServicesGallery component with the 8 uploaded Instagram screenshots in the following order: Screenshot_20260223-202001_Instagram-2.jpg (Career/Money/Life section header), Screenshot_20260223-202059_Instagram-2.jpg (Love & Relationship services), Screenshot_20260223-202107_Instagram-2.jpg (Future of This Connection and Deep & Detailed header), Screenshot_20260223-202112_Instagram-2.jpg (1 Month Forecast and 3 Month Forecast with Schedule Your Reading button), Screenshot_20260223-202008_Instagram-2.jpg (Money & Abundance Reading and Life Purpose/Direction Reading), Screenshot_20260223-202048_Instagram-2.jpg (Personalized Voice Note Reading and Emergency Same-Day Reading with Love & Relationship header), Screenshot_20260223-202025_Instagram-2.jpg (Mini Readings with 1 Question Reading and 3 Card Reading), Screenshot_20260223-202043_Instagram-2.jpg (Premium/Exclusive with Soulmate/Twin Flame Reading and Personalized Voice Note Reading)",
         "status": "missing",
         "plannedFiles": [
-          "frontend/src/data/externalContent.ts"
+          "frontend/src/components/ServicesGallery.tsx"
         ],
         "matchedFiles": []
       },
       {
-        "id": "REQ-9",
-        "summary": "Integrate any unique sections, features, or content from the external Mystic Moon website into the current site while maintaining the existing mystical visual theme with warm earth tones and celestial accents",
+        "id": "REQ-29",
+        "summary": "Update the serviceGalleryImages data array in frontend/src/data/serviceGalleryImages.ts to reference the 8 new uploaded screenshot filenames instead of the current service category image paths",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/components/Services.tsx",
-          "frontend/src/components/About.tsx"
+          "frontend/src/data/serviceGalleryImages.ts"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/components/Services.tsx"
+          "frontend/src/data/serviceGalleryImages.ts"
         ]
+      },
+      {
+        "id": "REQ-30",
+        "summary": "Render all 8 uploaded Instagram screenshot images as static assets in the frontend/public/assets/generated directory with appropriate filenames that maintain clarity about their content (e.g., career-money-life-header.jpg, love-relationship-services.jpg, etc.)",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/public/assets/Screenshot_20260223-202001_Instagram-2.jpg",
+          "frontend/public/assets/Screenshot_20260223-202059_Instagram-2.jpg",
+          "frontend/public/assets/Screenshot_20260223-202107_Instagram-2.jpg",
+          "frontend/public/assets/Screenshot_20260223-202112_Instagram-2.jpg",
+          "frontend/public/assets/Screenshot_20260223-202008_Instagram-2.jpg",
+          "frontend/public/assets/Screenshot_20260223-202048_Instagram-2.jpg",
+          "frontend/public/assets/Screenshot_20260223-202025_Instagram-2.jpg",
+          "frontend/public/assets/Screenshot_20260223-202043_Instagram-2.jpg"
+        ],
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
-    "backend/migration.mo",
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/components/Footer.tsx",
-    "frontend/src/components/Hero.tsx",
-    "frontend/src/components/ProductCard.tsx",
-    "frontend/src/components/ProductCatalog.tsx",
-    "frontend/src/components/Services.tsx",
-    "frontend/src/data/products.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/data/serviceGalleryImages.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

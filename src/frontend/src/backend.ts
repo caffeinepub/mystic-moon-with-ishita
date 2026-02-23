@@ -89,14 +89,6 @@ export class ExternalBlob {
         return this;
     }
 }
-export type ServiceId = bigint;
-export interface Service {
-    id: ServiceId;
-    name: string;
-    description: string;
-    price: bigint;
-}
-export type ProductId = string;
 export interface Product {
     id: ProductId;
     name: string;
@@ -106,27 +98,52 @@ export interface Product {
     price: bigint;
     isTrending: boolean;
 }
+export interface TarotService {
+    id: bigint;
+    isUrgent: boolean;
+    name: string;
+    description: string;
+    category: ServiceCategory;
+    price: bigint;
+    isVoiceNote: boolean;
+}
+export type ProductId = string;
 export enum ProductType {
     pendulum = "pendulum",
     bracelet = "bracelet",
     crystal = "crystal"
 }
+export enum ServiceCategory {
+    careerMoneyLife = "careerMoneyLife",
+    premiumExclusive = "premiumExclusive",
+    miniReading = "miniReading",
+    deepDetailed = "deepDetailed",
+    loveRelationship = "loveRelationship"
+}
 export interface backendInterface {
     addProduct(id: ProductId, name: string, description: string, imageUrl: string, productType: ProductType, isTrending: boolean): Promise<void>;
-    addService(name: string, description: string, price: bigint): Promise<void>;
+    addTarotService(name: string, description: string, price: bigint, category: ServiceCategory, isVoiceNote: boolean, isUrgent: boolean): Promise<void>;
     deleteProduct(id: ProductId): Promise<void>;
-    deleteService(id: ServiceId): Promise<void>;
+    deleteTarotService(id: bigint): Promise<void>;
     getAllProducts(): Promise<Array<Product>>;
-    getAllServices(): Promise<Array<Service>>;
+    getAllTarotServices(): Promise<Array<TarotService>>;
     getProduct(id: ProductId): Promise<Product>;
     getProductsByCategory(category: ProductType): Promise<Array<Product>>;
     getProductsByType(productType: ProductType): Promise<Array<Product>>;
-    getService(id: ServiceId): Promise<Service>;
+    getTarotService(id: bigint): Promise<TarotService>;
+    getTarotServiceCatalog(): Promise<{
+        careerMoneyLife: Array<TarotService>;
+        premiumExclusive: Array<TarotService>;
+        miniReadings: Array<TarotService>;
+        deepDetailed: Array<TarotService>;
+        loveRelationship: Array<TarotService>;
+    }>;
+    getTarotServicesByCategory(category: ServiceCategory): Promise<Array<TarotService>>;
     getTrendingProducts(): Promise<Array<Product>>;
     updateProduct(id: ProductId, name: string, description: string, imageUrl: string, productType: ProductType, price: bigint, isTrending: boolean): Promise<void>;
-    updateService(id: ServiceId, name: string, description: string, price: bigint): Promise<void>;
+    updateTarotService(id: bigint, name: string, description: string, price: bigint, category: ServiceCategory, isVoiceNote: boolean, isUrgent: boolean): Promise<void>;
 }
-import type { Product as _Product, ProductId as _ProductId, ProductType as _ProductType } from "./declarations/backend.did.d.ts";
+import type { Product as _Product, ProductId as _ProductId, ProductType as _ProductType, ServiceCategory as _ServiceCategory, TarotService as _TarotService } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async addProduct(arg0: ProductId, arg1: string, arg2: string, arg3: string, arg4: ProductType, arg5: boolean): Promise<void> {
@@ -143,17 +160,17 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async addService(arg0: string, arg1: string, arg2: bigint): Promise<void> {
+    async addTarotService(arg0: string, arg1: string, arg2: bigint, arg3: ServiceCategory, arg4: boolean, arg5: boolean): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.addService(arg0, arg1, arg2);
+                const result = await this.actor.addTarotService(arg0, arg1, arg2, to_candid_ServiceCategory_n3(this._uploadFile, this._downloadFile, arg3), arg4, arg5);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.addService(arg0, arg1, arg2);
+            const result = await this.actor.addTarotService(arg0, arg1, arg2, to_candid_ServiceCategory_n3(this._uploadFile, this._downloadFile, arg3), arg4, arg5);
             return result;
         }
     }
@@ -171,17 +188,17 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async deleteService(arg0: ServiceId): Promise<void> {
+    async deleteTarotService(arg0: bigint): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.deleteService(arg0);
+                const result = await this.actor.deleteTarotService(arg0);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.deleteService(arg0);
+            const result = await this.actor.deleteTarotService(arg0);
             return result;
         }
     }
@@ -189,98 +206,132 @@ export class Backend implements backendInterface {
         if (this.processError) {
             try {
                 const result = await this.actor.getAllProducts();
-                return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getAllProducts();
-            return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getAllServices(): Promise<Array<Service>> {
+    async getAllTarotServices(): Promise<Array<TarotService>> {
         if (this.processError) {
             try {
-                const result = await this.actor.getAllServices();
-                return result;
+                const result = await this.actor.getAllTarotServices();
+                return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.getAllServices();
-            return result;
+            const result = await this.actor.getAllTarotServices();
+            return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
         }
     }
     async getProduct(arg0: ProductId): Promise<Product> {
         if (this.processError) {
             try {
                 const result = await this.actor.getProduct(arg0);
-                return from_candid_Product_n4(this._uploadFile, this._downloadFile, result);
+                return from_candid_Product_n6(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getProduct(arg0);
-            return from_candid_Product_n4(this._uploadFile, this._downloadFile, result);
+            return from_candid_Product_n6(this._uploadFile, this._downloadFile, result);
         }
     }
     async getProductsByCategory(arg0: ProductType): Promise<Array<Product>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getProductsByCategory(to_candid_ProductType_n1(this._uploadFile, this._downloadFile, arg0));
-                return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getProductsByCategory(to_candid_ProductType_n1(this._uploadFile, this._downloadFile, arg0));
-            return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
         }
     }
     async getProductsByType(arg0: ProductType): Promise<Array<Product>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getProductsByType(to_candid_ProductType_n1(this._uploadFile, this._downloadFile, arg0));
-                return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getProductsByType(to_candid_ProductType_n1(this._uploadFile, this._downloadFile, arg0));
-            return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getService(arg0: ServiceId): Promise<Service> {
+    async getTarotService(arg0: bigint): Promise<TarotService> {
         if (this.processError) {
             try {
-                const result = await this.actor.getService(arg0);
-                return result;
+                const result = await this.actor.getTarotService(arg0);
+                return from_candid_TarotService_n11(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.getService(arg0);
-            return result;
+            const result = await this.actor.getTarotService(arg0);
+            return from_candid_TarotService_n11(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getTarotServiceCatalog(): Promise<{
+        careerMoneyLife: Array<TarotService>;
+        premiumExclusive: Array<TarotService>;
+        miniReadings: Array<TarotService>;
+        deepDetailed: Array<TarotService>;
+        loveRelationship: Array<TarotService>;
+    }> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getTarotServiceCatalog();
+                return from_candid_record_n15(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getTarotServiceCatalog();
+            return from_candid_record_n15(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getTarotServicesByCategory(arg0: ServiceCategory): Promise<Array<TarotService>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getTarotServicesByCategory(to_candid_ServiceCategory_n3(this._uploadFile, this._downloadFile, arg0));
+                return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getTarotServicesByCategory(to_candid_ServiceCategory_n3(this._uploadFile, this._downloadFile, arg0));
+            return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
         }
     }
     async getTrendingProducts(): Promise<Array<Product>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getTrendingProducts();
-                return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getTrendingProducts();
-            return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
         }
     }
     async updateProduct(arg0: ProductId, arg1: string, arg2: string, arg3: string, arg4: ProductType, arg5: bigint, arg6: boolean): Promise<void> {
@@ -297,28 +348,82 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async updateService(arg0: ServiceId, arg1: string, arg2: string, arg3: bigint): Promise<void> {
+    async updateTarotService(arg0: bigint, arg1: string, arg2: string, arg3: bigint, arg4: ServiceCategory, arg5: boolean, arg6: boolean): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.updateService(arg0, arg1, arg2, arg3);
+                const result = await this.actor.updateTarotService(arg0, arg1, arg2, arg3, to_candid_ServiceCategory_n3(this._uploadFile, this._downloadFile, arg4), arg5, arg6);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.updateService(arg0, arg1, arg2, arg3);
+            const result = await this.actor.updateTarotService(arg0, arg1, arg2, arg3, to_candid_ServiceCategory_n3(this._uploadFile, this._downloadFile, arg4), arg5, arg6);
             return result;
         }
     }
 }
-function from_candid_ProductType_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ProductType): ProductType {
-    return from_candid_variant_n7(_uploadFile, _downloadFile, value);
+function from_candid_ProductType_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ProductType): ProductType {
+    return from_candid_variant_n9(_uploadFile, _downloadFile, value);
 }
-function from_candid_Product_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Product): Product {
-    return from_candid_record_n5(_uploadFile, _downloadFile, value);
+function from_candid_Product_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Product): Product {
+    return from_candid_record_n7(_uploadFile, _downloadFile, value);
 }
-function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_ServiceCategory_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ServiceCategory): ServiceCategory {
+    return from_candid_variant_n14(_uploadFile, _downloadFile, value);
+}
+function from_candid_TarotService_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _TarotService): TarotService {
+    return from_candid_record_n12(_uploadFile, _downloadFile, value);
+}
+function from_candid_record_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    id: bigint;
+    isUrgent: boolean;
+    name: string;
+    description: string;
+    category: _ServiceCategory;
+    price: bigint;
+    isVoiceNote: boolean;
+}): {
+    id: bigint;
+    isUrgent: boolean;
+    name: string;
+    description: string;
+    category: ServiceCategory;
+    price: bigint;
+    isVoiceNote: boolean;
+} {
+    return {
+        id: value.id,
+        isUrgent: value.isUrgent,
+        name: value.name,
+        description: value.description,
+        category: from_candid_ServiceCategory_n13(_uploadFile, _downloadFile, value.category),
+        price: value.price,
+        isVoiceNote: value.isVoiceNote
+    };
+}
+function from_candid_record_n15(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    careerMoneyLife: Array<_TarotService>;
+    premiumExclusive: Array<_TarotService>;
+    miniReadings: Array<_TarotService>;
+    deepDetailed: Array<_TarotService>;
+    loveRelationship: Array<_TarotService>;
+}): {
+    careerMoneyLife: Array<TarotService>;
+    premiumExclusive: Array<TarotService>;
+    miniReadings: Array<TarotService>;
+    deepDetailed: Array<TarotService>;
+    loveRelationship: Array<TarotService>;
+} {
+    return {
+        careerMoneyLife: from_candid_vec_n10(_uploadFile, _downloadFile, value.careerMoneyLife),
+        premiumExclusive: from_candid_vec_n10(_uploadFile, _downloadFile, value.premiumExclusive),
+        miniReadings: from_candid_vec_n10(_uploadFile, _downloadFile, value.miniReadings),
+        deepDetailed: from_candid_vec_n10(_uploadFile, _downloadFile, value.deepDetailed),
+        loveRelationship: from_candid_vec_n10(_uploadFile, _downloadFile, value.loveRelationship)
+    };
+}
+function from_candid_record_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     id: _ProductId;
     name: string;
     description: string;
@@ -339,13 +444,26 @@ function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint
         id: value.id,
         name: value.name,
         description: value.description,
-        productType: from_candid_ProductType_n6(_uploadFile, _downloadFile, value.productType),
+        productType: from_candid_ProductType_n8(_uploadFile, _downloadFile, value.productType),
         imageUrl: value.imageUrl,
         price: value.price,
         isTrending: value.isTrending
     };
 }
-function from_candid_variant_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_variant_n14(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    careerMoneyLife: null;
+} | {
+    premiumExclusive: null;
+} | {
+    miniReading: null;
+} | {
+    deepDetailed: null;
+} | {
+    loveRelationship: null;
+}): ServiceCategory {
+    return "careerMoneyLife" in value ? ServiceCategory.careerMoneyLife : "premiumExclusive" in value ? ServiceCategory.premiumExclusive : "miniReading" in value ? ServiceCategory.miniReading : "deepDetailed" in value ? ServiceCategory.deepDetailed : "loveRelationship" in value ? ServiceCategory.loveRelationship : value;
+}
+function from_candid_variant_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     pendulum: null;
 } | {
     bracelet: null;
@@ -354,11 +472,17 @@ function from_candid_variant_n7(_uploadFile: (file: ExternalBlob) => Promise<Uin
 }): ProductType {
     return "pendulum" in value ? ProductType.pendulum : "bracelet" in value ? ProductType.bracelet : "crystal" in value ? ProductType.crystal : value;
 }
-function from_candid_vec_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Product>): Array<Product> {
-    return value.map((x)=>from_candid_Product_n4(_uploadFile, _downloadFile, x));
+function from_candid_vec_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_TarotService>): Array<TarotService> {
+    return value.map((x)=>from_candid_TarotService_n11(_uploadFile, _downloadFile, x));
+}
+function from_candid_vec_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Product>): Array<Product> {
+    return value.map((x)=>from_candid_Product_n6(_uploadFile, _downloadFile, x));
 }
 function to_candid_ProductType_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: ProductType): _ProductType {
     return to_candid_variant_n2(_uploadFile, _downloadFile, value);
+}
+function to_candid_ServiceCategory_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: ServiceCategory): _ServiceCategory {
+    return to_candid_variant_n4(_uploadFile, _downloadFile, value);
 }
 function to_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: ProductType): {
     pendulum: null;
@@ -373,6 +497,29 @@ function to_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8
         bracelet: null
     } : value == ProductType.crystal ? {
         crystal: null
+    } : value;
+}
+function to_candid_variant_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: ServiceCategory): {
+    careerMoneyLife: null;
+} | {
+    premiumExclusive: null;
+} | {
+    miniReading: null;
+} | {
+    deepDetailed: null;
+} | {
+    loveRelationship: null;
+} {
+    return value == ServiceCategory.careerMoneyLife ? {
+        careerMoneyLife: null
+    } : value == ServiceCategory.premiumExclusive ? {
+        premiumExclusive: null
+    } : value == ServiceCategory.miniReading ? {
+        miniReading: null
+    } : value == ServiceCategory.deepDetailed ? {
+        deepDetailed: null
+    } : value == ServiceCategory.loveRelationship ? {
+        loveRelationship: null
     } : value;
 }
 export interface CreateActorOptions {
