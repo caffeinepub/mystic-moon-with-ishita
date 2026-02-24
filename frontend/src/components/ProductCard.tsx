@@ -1,91 +1,91 @@
-import { Badge } from '@/components/ui/badge';
-import { Product, ProductType } from '@/backend';
-import { formatPrice, calculateFinalPrice } from '@/utils/pricing';
+import React, { useState } from 'react';
+import { LocalProduct } from '../data/products';
+import { ProductType } from '../backend';
 
 interface ProductCardProps {
-  product: Product;
+  product: LocalProduct;
 }
 
-const TYPE_CONFIG: Record<ProductType, { label: string; emoji: string }> = {
-  [ProductType.crystal]: { label: 'Crystal', emoji: '💎' },
-  [ProductType.bracelet]: { label: 'Bracelet', emoji: '📿' },
-  [ProductType.pendulum]: { label: 'Pendulum', emoji: '🔮' },
+const TYPE_LABELS: Record<ProductType, string> = {
+  [ProductType.crystal]: 'Raw Crystal',
+  [ProductType.bracelet]: 'Bracelet',
+  [ProductType.pendulum]: 'Pendulum',
+};
+
+const TYPE_COLORS: Record<ProductType, string> = {
+  [ProductType.crystal]: 'bg-primary/10 text-primary border-primary/20',
+  [ProductType.bracelet]: 'bg-accent/10 text-accent-foreground border-accent/20',
+  [ProductType.pendulum]: 'bg-secondary/10 text-secondary-foreground border-secondary/20',
 };
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const typeConfig = TYPE_CONFIG[product.productType] ?? { label: 'Item', emoji: '✨' };
-  const finalPrice = calculateFinalPrice(Number(product.price));
+  const [imgError, setImgError] = useState(false);
+
+  const displayPrice = product.price;
 
   return (
-    <div className="group rounded-2xl overflow-hidden crystal-card transition-all duration-300 hover:-translate-y-1">
+    <div className="crystal-card group flex flex-col overflow-hidden rounded-xl border border-border bg-card hover:shadow-crystal transition-all duration-300 hover:-translate-y-1">
       {/* Image */}
-      <div className="relative overflow-hidden" style={{ aspectRatio: '1/1' }}>
-        <img
-          src={product.imageUrl}
-          alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          onError={(e) => {
-            const target = e.currentTarget;
-            target.style.display = 'none';
-            const fallback = target.nextElementSibling as HTMLElement;
-            if (fallback) fallback.style.display = 'flex';
-          }}
-        />
-        {/* Fallback */}
-        <div className="hidden w-full h-full items-center justify-center text-5xl"
-          style={{ background: 'oklch(93% 0.02 220)', display: 'none' }}>
-          {typeConfig.emoji}
-        </div>
+      <div className="relative aspect-square overflow-hidden bg-muted">
+        {!imgError ? (
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5">
+            <span className="text-4xl mb-2">
+              {product.productType === ProductType.crystal
+                ? '💎'
+                : product.productType === ProductType.bracelet
+                ? '📿'
+                : '🔮'}
+            </span>
+            <span className="text-xs text-muted-foreground text-center px-2">{product.name}</span>
+          </div>
+        )}
 
         {/* Trending badge */}
         {product.isTrending && (
-          <div className="absolute top-3 left-3">
-            <span className="text-xs px-2.5 py-1 rounded-full font-display font-semibold"
-              style={{
-                background: 'oklch(78% 0.08 30)',
-                color: 'oklch(25% 0.06 240)',
-              }}>
-              ✦ Trending
-            </span>
+          <div className="absolute top-2 left-2 bg-accent text-accent-foreground text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm">
+            🔥 Trending
           </div>
         )}
 
         {/* Type badge */}
-        <div className="absolute top-3 right-3">
-          <span className="text-xs px-2.5 py-1 rounded-full font-display"
-            style={{
-              background: 'oklch(52% 0.12 230 / 0.9)',
-              color: 'oklch(99% 0.005 80)',
-            }}>
-            {typeConfig.emoji} {typeConfig.label}
-          </span>
+        <div
+          className={`absolute top-2 right-2 text-xs font-medium px-2 py-0.5 rounded-full border ${TYPE_COLORS[product.productType]}`}
+        >
+          {TYPE_LABELS[product.productType]}
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-4">
-        <h3 className="font-display text-sm font-bold mb-1 line-clamp-1" style={{ color: 'oklch(25% 0.06 240)' }}>
+      <div className="flex flex-col flex-1 p-3">
+        <h3 className="font-display text-sm font-semibold text-foreground leading-tight mb-1 line-clamp-2">
           {product.name}
         </h3>
-        <p className="font-body text-sm leading-relaxed mb-3 line-clamp-2" style={{ color: 'oklch(45% 0.06 240)' }}>
+        <p className="text-xs text-muted-foreground font-body leading-relaxed line-clamp-2 flex-1 mb-3">
           {product.description}
         </p>
-        <div className="flex items-center justify-between">
-          <span className="font-display text-base font-bold" style={{ color: 'oklch(52% 0.12 230)' }}>
-            {formatPrice(finalPrice)}
-          </span>
+
+        {/* Price + Order */}
+        <div className="flex items-center justify-between mt-auto">
+          <div>
+            <span className="text-base font-bold text-primary font-display">
+              ₹{displayPrice}
+            </span>
+            <span className="text-xs text-muted-foreground ml-1">onwards</span>
+          </div>
           <a
-            href="https://www.instagram.com/mysticmoonwithishita"
+            href="https://www.instagram.com/mysticmoon_withishita"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs px-3 py-1.5 rounded-full font-display transition-all duration-200 hover:scale-105"
-            style={{
-              background: 'oklch(52% 0.12 230 / 0.1)',
-              color: 'oklch(52% 0.12 230)',
-              border: '1px solid oklch(52% 0.12 230 / 0.3)',
-            }}
+            className="text-xs bg-primary text-primary-foreground px-3 py-1.5 rounded-full hover:bg-primary/90 transition-colors font-medium"
           >
-            Order
+            Order →
           </a>
         </div>
       </div>

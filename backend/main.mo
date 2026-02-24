@@ -6,12 +6,40 @@ import Text "mo:core/Text";
 import Nat "mo:core/Nat";
 import Order "mo:core/Order";
 import List "mo:core/List";
-
-
+import Time "mo:core/Time";
+import Principal "mo:core/Principal";
+import AccessControl "authorization/access-control";
+import MixinAuthorization "authorization/MixinAuthorization";
 
 actor {
   type ProductId = Text;
   type ServiceId = Nat;
+
+  // Access control state
+  let accessControlState = AccessControl.initState();
+  include MixinAuthorization(accessControlState);
+
+  type UserProfile = { name : Text };
+
+  let userProfiles = Map.empty<Principal, UserProfile>();
+
+  public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
+    userProfiles.get(caller);
+  };
+
+  public query ({ caller }) func getUserProfile(user : Principal) : async ?UserProfile {
+    if (caller != user and not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Can only view your own profile");
+    };
+    userProfiles.get(user);
+  };
+
+  public shared ({ caller }) func saveCallerUserProfile(profile : UserProfile) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can save profiles");
+    };
+    userProfiles.add(caller, profile);
+  };
 
   type Product = {
     id : ProductId;
@@ -68,6 +96,9 @@ actor {
     productType : ProductType,
     isTrending : Bool,
   ) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add products");
+    };
     if (products.containsKey(id)) {
       Runtime.trap("Product with this ID already exists");
     };
@@ -96,6 +127,9 @@ actor {
     price : Nat,
     isTrending : Bool,
   ) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can update products");
+    };
     switch (products.get(id)) {
       case (null) { Runtime.trap("Product not found") };
       case (?_) {
@@ -114,6 +148,9 @@ actor {
   };
 
   public shared ({ caller }) func deleteProduct(id : ProductId) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete products");
+    };
     if (not products.containsKey(id)) {
       Runtime.trap("Product not found");
     };
@@ -155,6 +192,9 @@ actor {
     isVoiceNote : Bool,
     isUrgent : Bool,
   ) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add tarot services");
+    };
     let service : TarotService = {
       id = nextServiceId;
       name;
@@ -177,6 +217,9 @@ actor {
     isVoiceNote : Bool,
     isUrgent : Bool,
   ) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can update tarot services");
+    };
     switch (tarotServices.get(id)) {
       case (null) { Runtime.trap("Service not found") };
       case (?_) {
@@ -195,6 +238,9 @@ actor {
   };
 
   public shared ({ caller }) func deleteTarotService(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete tarot services");
+    };
     if (not tarotServices.containsKey(id)) {
       Runtime.trap("Service not found");
     };
@@ -258,5 +304,52 @@ actor {
       deepDetailed = deepDetailed.toArray();
       premiumExclusive = premiumExclusive.toArray();
     };
+  };
+
+  // APPOINTMENTS
+  type Appointment = {
+    fullName : Text;
+    dateOfBirth : Text;
+    phone : Text;
+    email : Text;
+    problemDescription : Text;
+    selectedService : Text;
+    selectedServicePrice : Nat;
+    status : Text;
+    createdAt : Int;
+  };
+
+  let appointments = List.empty<Appointment>();
+
+  // Any user including guests can create an appointment (booking a service)
+  public shared ({ caller }) func createAppointment(
+    fullName : Text,
+    dateOfBirth : Text,
+    phone : Text,
+    email : Text,
+    problemDescription : Text,
+    selectedService : Text,
+    selectedServicePrice : Nat,
+  ) : async () {
+    let newAppointment = {
+      fullName;
+      dateOfBirth;
+      phone;
+      email;
+      problemDescription;
+      selectedService;
+      selectedServicePrice;
+      status = "pending";
+      createdAt = Time.now();
+    };
+    appointments.add(newAppointment);
+  };
+
+  // Only admins can view all appointments (contains sensitive personal data)
+  public query ({ caller }) func getAppointments() : async [Appointment] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can view all appointments");
+    };
+    appointments.toArray();
   };
 };

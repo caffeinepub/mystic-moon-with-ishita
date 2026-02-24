@@ -21,6 +21,11 @@ export const ServiceCategory = IDL.Variant({
   'deepDetailed' : IDL.Null,
   'loveRelationship' : IDL.Null,
 });
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
 export const Product = IDL.Record({
   'id' : ProductId,
   'name' : IDL.Text,
@@ -39,8 +44,21 @@ export const TarotService = IDL.Record({
   'price' : IDL.Nat,
   'isVoiceNote' : IDL.Bool,
 });
+export const Appointment = IDL.Record({
+  'status' : IDL.Text,
+  'dateOfBirth' : IDL.Text,
+  'createdAt' : IDL.Int,
+  'selectedServicePrice' : IDL.Nat,
+  'fullName' : IDL.Text,
+  'email' : IDL.Text,
+  'selectedService' : IDL.Text,
+  'problemDescription' : IDL.Text,
+  'phone' : IDL.Text,
+});
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 
 export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'addProduct' : IDL.Func(
       [ProductId, IDL.Text, IDL.Text, IDL.Text, ProductType, IDL.Bool],
       [],
@@ -51,10 +69,19 @@ export const idlService = IDL.Service({
       [],
       [],
     ),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'createAppointment' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Nat],
+      [],
+      [],
+    ),
   'deleteProduct' : IDL.Func([ProductId], [], []),
   'deleteTarotService' : IDL.Func([IDL.Nat], [], []),
   'getAllProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
   'getAllTarotServices' : IDL.Func([], [IDL.Vec(TarotService)], ['query']),
+  'getAppointments' : IDL.Func([], [IDL.Vec(Appointment)], ['query']),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getProduct' : IDL.Func([ProductId], [Product], ['query']),
   'getProductsByCategory' : IDL.Func(
       [ProductType],
@@ -82,6 +109,13 @@ export const idlService = IDL.Service({
       ['query'],
     ),
   'getTrendingProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'updateProduct' : IDL.Func(
       [ProductId, IDL.Text, IDL.Text, IDL.Text, ProductType, IDL.Nat, IDL.Bool],
       [],
@@ -118,6 +152,11 @@ export const idlFactory = ({ IDL }) => {
     'deepDetailed' : IDL.Null,
     'loveRelationship' : IDL.Null,
   });
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
   const Product = IDL.Record({
     'id' : ProductId,
     'name' : IDL.Text,
@@ -136,8 +175,21 @@ export const idlFactory = ({ IDL }) => {
     'price' : IDL.Nat,
     'isVoiceNote' : IDL.Bool,
   });
+  const Appointment = IDL.Record({
+    'status' : IDL.Text,
+    'dateOfBirth' : IDL.Text,
+    'createdAt' : IDL.Int,
+    'selectedServicePrice' : IDL.Nat,
+    'fullName' : IDL.Text,
+    'email' : IDL.Text,
+    'selectedService' : IDL.Text,
+    'problemDescription' : IDL.Text,
+    'phone' : IDL.Text,
+  });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
   
   return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'addProduct' : IDL.Func(
         [ProductId, IDL.Text, IDL.Text, IDL.Text, ProductType, IDL.Bool],
         [],
@@ -148,10 +200,19 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'createAppointment' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Nat],
+        [],
+        [],
+      ),
     'deleteProduct' : IDL.Func([ProductId], [], []),
     'deleteTarotService' : IDL.Func([IDL.Nat], [], []),
     'getAllProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
     'getAllTarotServices' : IDL.Func([], [IDL.Vec(TarotService)], ['query']),
+    'getAppointments' : IDL.Func([], [IDL.Vec(Appointment)], ['query']),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getProduct' : IDL.Func([ProductId], [Product], ['query']),
     'getProductsByCategory' : IDL.Func(
         [ProductType],
@@ -183,6 +244,13 @@ export const idlFactory = ({ IDL }) => {
         ['query'],
       ),
     'getTrendingProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'updateProduct' : IDL.Func(
         [
           ProductId,

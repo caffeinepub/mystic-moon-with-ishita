@@ -2,18 +2,19 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-generate-polished-service-card-banner-images-for-each-service-category-using-the-uploaded-service-images-mini-readings-love-relationship-readings-career-money-life-deep-detailed-readings-premium-exclusive-and-incorporate-logo-elements-blue-crescent-moon-crystals-sparkle-stars-botanical-leaves-as-decorative-overlays-to-beautify-each-card-save-them-as-static-assets-in-frontend-public-assets-generated-and-display-them-in-the-services-section-as-the-visual-header-illustration-for-each-service-package-card",
-      "featureTitle": "Generate polished service card banner images for each service category using the uploaded service images (Mini Readings, Love & Relationship Readings, Career/Money/Life, Deep & Detailed Readings, Premium/Exclusive) and incorporate logo elements (blue crescent moon, crystals, sparkle stars, botanical leaves) as decorative overlays to beautify each card. Save them as static assets in frontend/public/assets/generated/ and display them in the Services section as the visual header/illustration for each service package card.",
+      "featureId": "feature-add-19-crystal-products-to-the-static-products-data-file-frontend-src-data-products-ts-each-crystal-must-have-two-entries-one-for-the-raw-form-and-one-for-the-bracelet-form-all-19-crystals-are-clear-quartz-the-master-healer-amethyst-spirituality-protection-rose-quartz-love-compassion-black-tourmaline-grounding-protection-green-aventurine-luck-prosperity-labradorite-transformation-magic-selenite-cleansing-clarity-fluorite-focus-clarity-aquamarine-calm-communication-malachite-transformation-heart-chakra-black-obsidian-negativity-shield-carnelian-creativity-motivation-moonstone-intuition-feminine-energy-lapis-lazuli-wisdom-truth-pyrite-wealth-energy-tiger-s-eye-courage-confidence-moldavite-transformation-blue-lace-agate-calmness-garden-quartz-grounding-manifestation-each-product-s-base-price-must-be-600-raw-forms-and-800-bracelet-forms-before-any-markup-the-description-for-each-must-mention-the-crystal-s-metaphysical-property-e-g-the-master-healer-product-type-must-be-crystal-for-raw-forms-and-bracelet-for-bracelet-forms-image-paths-must-reference-the-corresponding-generated-product-images-from-frontend-public-assets-generated",
+      "featureTitle": "Add 19 crystal products to the static products data file (frontend/src/data/products.ts). Each crystal must have two entries: one for the raw form and one for the bracelet form. All 19 crystals are: Clear Quartz (The Master Healer), Amethyst (Spirituality & Protection), Rose Quartz (Love & Compassion), Black Tourmaline (Grounding & Protection), Green Aventurine (Luck & Prosperity), Labradorite (Transformation & Magic), Selenite (Cleansing & Clarity), Fluorite (Focus & Clarity), Aquamarine (Calm & Communication), Malachite (Transformation & Heart Chakra), Black Obsidian (Negativity Shield), Carnelian (Creativity & Motivation), Moonstone (Intuition & Feminine Energy), Lapis Lazuli (Wisdom & Truth), Pyrite (Wealth & Energy), Tiger's Eye (Courage & Confidence), Moldavite (Transformation), Blue Lace Agate (Calmness), Garden Quartz (Grounding & Manifestation). Each product's base price must be ₹600 (raw forms) and ₹800 (bracelet forms) before any markup. The description for each must mention the crystal's metaphysical property (e.g., 'The Master Healer'). Product type must be 'crystal' for raw forms and 'bracelet' for bracelet forms. Image paths must reference the corresponding generated product images from frontend/public/assets/generated/.",
       "files": [
-        "frontend/src/components/ServicesGallery.tsx",
-        "frontend/src/data/serviceGalleryImages.ts"
+        "frontend/src/data/products.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
       ],
       "testIds": [
         "REQ-1"
@@ -21,50 +22,22 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-retheme-the-entire-website-to-match-the-logo-s-color-palette-primary-steel-blue-2b7ab5-similar-cream-off-white-background-f5f0ea-soft-peach-rose-accent-for-sparkles-and-deep-navy-for-text-update-all-css-custom-properties-in-frontend-src-index-css-tailwind-config-tokens-mystic-colors-gradient-backgrounds-in-app-tsx-hero-header-services-about-footer-productcatalog-reviews-and-all-other-section-components-to-reflect-this-blue-crystal-moon-color-scheme-consistently-throughout",
-      "featureTitle": "Retheme the entire website to match the logo's color palette: primary steel blue (#2b7ab5 / similar), cream/off-white background (#f5f0ea), soft peach/rose accent for sparkles, and deep navy for text. Update all CSS custom properties in frontend/src/index.css, Tailwind config tokens (mystic colors), gradient backgrounds in App.tsx, Hero, Header, Services, About, Footer, ProductCatalog, Reviews, and all other section components to reflect this blue-crystal-moon color scheme consistently throughout.",
+      "featureId": "feature-replace-the-broken-qr-code-image-in-the-payment-section-appointment-tsx-with-the-newly-generated-correct-qr-code-image-saved-at-frontend-public-assets-generated-qr-code-png-update-the-img-src-to-point-to-this-path-the-qr-code-displayed-must-match-the-uploaded-image-exactly-ishita-singh-upi-id-9305831180-pthdfc-kotak-mahindra-bank",
+      "featureTitle": "Replace the broken QR code image in the payment section (Appointment.tsx) with the newly generated correct QR code image saved at frontend/public/assets/generated/qr-code.png. Update the img src to point to this path. The QR code displayed must match the uploaded image exactly (Ishita Singh, UPI ID: 9305831180@pthdfc, Kotak Mahindra bank).",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/About.tsx",
-        "frontend/src/components/Footer.tsx",
-        "frontend/src/components/Header.tsx",
-        "frontend/src/components/Hero.tsx",
-        "frontend/src/components/ImportantNotes.tsx",
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/components/ProductCatalog.tsx",
-        "frontend/src/components/Reviews.tsx",
-        "frontend/src/components/Services.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
+        "frontend/src/components/Appointment.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
       ],
       "testIds": [
         "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-servicesgallery-component-frontend-src-components-servicesgallery-tsx-and-servicegalleryimages-data-frontend-src-data-servicegalleryimages-ts-to-use-the-newly-generated-service-category-images-from-frontend-public-assets-generated-instead-of-placeholder-paths-mapping-each-image-to-its-correct-service-category-label",
-      "featureTitle": "Update the ServicesGallery component (frontend/src/components/ServicesGallery.tsx) and serviceGalleryImages data (frontend/src/data/serviceGalleryImages.ts) to use the newly generated service category images from frontend/public/assets/generated/ instead of placeholder paths, mapping each image to its correct service category label.",
-      "files": [
-        "frontend/src/components/ServicesGallery.tsx",
-        "frontend/src/data/serviceGalleryImages.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
       ],
       "confidence": "high"
     }

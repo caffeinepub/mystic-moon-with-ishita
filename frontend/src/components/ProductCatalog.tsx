@@ -1,132 +1,126 @@
-import { useState } from 'react';
-import { useGetAllProducts, useGetProductsByType } from '@/hooks/useQueries';
-import { ProductType } from '@/backend';
-import ProductCard from './ProductCard';
+import React, { useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { products, LocalProduct } from '../data/products';
+import ProductCard from './ProductCard';
+import { ProductType } from '../backend';
 
 type FilterTab = 'all' | 'crystal' | 'bracelet' | 'pendulum';
-
-const TABS: { key: FilterTab; label: string; emoji: string }[] = [
-  { key: 'all', label: 'All', emoji: '✨' },
-  { key: 'crystal', label: 'Crystals', emoji: '💎' },
-  { key: 'bracelet', label: 'Bracelets', emoji: '📿' },
-  { key: 'pendulum', label: 'Pendulums', emoji: '🔮' },
-];
-
-function ProductsGrid({ filter }: { filter: FilterTab }) {
-  const allQuery = useGetAllProducts();
-  const crystalQuery = useGetProductsByType(ProductType.crystal);
-  const braceletQuery = useGetProductsByType(ProductType.bracelet);
-  const pendulumQuery = useGetProductsByType(ProductType.pendulum);
-
-  const queryMap = {
-    all: allQuery,
-    crystal: crystalQuery,
-    bracelet: braceletQuery,
-    pendulum: pendulumQuery,
-  };
-
-  const { data: products, isLoading, error } = queryMap[filter];
-
-  if (isLoading) {
-    return (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="rounded-2xl overflow-hidden" style={{ border: '1px solid oklch(72% 0.1 230 / 0.2)' }}>
-            <Skeleton className="h-48 w-full" />
-            <div className="p-4 space-y-2">
-              <Skeleton className="h-4 w-3/4" />
-              <Skeleton className="h-3 w-full" />
-              <Skeleton className="h-3 w-1/2" />
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-center py-16">
-        <p className="font-body text-lg" style={{ color: 'oklch(55% 0.18 25)' }}>
-          Unable to load products. Please try again.
-        </p>
-      </div>
-    );
-  }
-
-  if (!products || products.length === 0) {
-    return (
-      <div className="text-center py-16">
-        <div className="text-5xl mb-4">🌙</div>
-        <p className="font-body text-lg" style={{ color: 'oklch(52% 0.06 240)' }}>
-          No products available in this category yet.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
-  );
-}
 
 export default function ProductCatalog() {
   const [activeTab, setActiveTab] = useState<FilterTab>('all');
 
+  const filteredProducts: LocalProduct[] = products.filter((p) => {
+    if (activeTab === 'all') return true;
+    if (activeTab === 'crystal') return p.productType === ProductType.crystal;
+    if (activeTab === 'bracelet') return p.productType === ProductType.bracelet;
+    if (activeTab === 'pendulum') return p.productType === ProductType.pendulum;
+    return true;
+  });
+
+  const tabs: { key: FilterTab; label: string; emoji: string }[] = [
+    { key: 'all', label: 'All', emoji: '✨' },
+    { key: 'crystal', label: 'Crystals', emoji: '💎' },
+    { key: 'bracelet', label: 'Bracelets', emoji: '📿' },
+    { key: 'pendulum', label: 'Pendulums', emoji: '🔮' },
+  ];
+
   return (
-    <section id="products" className="py-20 md:py-28"
-      style={{ background: 'linear-gradient(180deg, oklch(94% 0.02 220) 0%, oklch(97% 0.008 80) 100%)' }}>
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Section header */}
-        <div className="text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <div className="h-px w-16" style={{ background: 'oklch(52% 0.12 230 / 0.4)' }} />
-            <span className="font-body text-sm tracking-widest uppercase" style={{ color: 'oklch(52% 0.12 230)' }}>
-              ✦ Shop ✦
-            </span>
-            <div className="h-px w-16" style={{ background: 'oklch(52% 0.12 230 / 0.4)' }} />
-          </div>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4" style={{ color: 'oklch(52% 0.12 230)' }}>
+    <section id="shop" className="py-16 px-4 bg-background">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">
+            ✦ Crystal Collection ✦
+          </p>
+          <h2 className="font-display text-4xl md:text-5xl text-foreground mb-4">
             Crystal Shop
           </h2>
-          <p className="font-body text-lg max-w-xl mx-auto" style={{ color: 'oklch(45% 0.06 240)' }}>
-            Handpicked crystals, bracelets, and pendulums charged with intention
+          <p className="text-muted-foreground max-w-2xl mx-auto font-body text-base leading-relaxed">
+            Handpicked healing crystals and bracelets — each cleansed, charged, and ready to support your journey.
+            Raw stones starting from <span className="text-primary font-semibold">₹600</span> · Bracelets from <span className="text-primary font-semibold">₹800</span>.
           </p>
         </div>
 
-        {/* Filter tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {TABS.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className="px-5 py-2.5 rounded-full font-display text-sm tracking-wide transition-all duration-200"
-              style={
-                activeTab === tab.key
-                  ? {
-                      background: 'oklch(52% 0.12 230)',
-                      color: 'oklch(99% 0.005 80)',
-                      boxShadow: '0 4px 16px oklch(52% 0.12 230 / 0.3)',
-                    }
-                  : {
-                      background: 'oklch(99% 0.005 80)',
-                      color: 'oklch(52% 0.12 230)',
-                      border: '1px solid oklch(52% 0.12 230 / 0.3)',
-                    }
-              }
-            >
-              {tab.emoji} {tab.label}
-            </button>
-          ))}
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {tabs.map((tab) => {
+            const count =
+              tab.key === 'all'
+                ? products.length
+                : products.filter((p) =>
+                    tab.key === 'crystal'
+                      ? p.productType === ProductType.crystal
+                      : tab.key === 'bracelet'
+                      ? p.productType === ProductType.bracelet
+                      : p.productType === ProductType.pendulum
+                  ).length;
+
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`
+                  flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium
+                  transition-all duration-200 border
+                  ${
+                    activeTab === tab.key
+                      ? 'bg-primary text-primary-foreground border-primary shadow-crystal'
+                      : 'bg-card text-muted-foreground border-border hover:border-primary hover:text-primary'
+                  }
+                `}
+              >
+                <span>{tab.emoji}</span>
+                <span>{tab.label}</span>
+                <span
+                  className={`
+                    text-xs px-1.5 py-0.5 rounded-full
+                    ${activeTab === tab.key ? 'bg-primary-foreground/20 text-primary-foreground' : 'bg-muted text-muted-foreground'}
+                  `}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Products grid */}
-        <ProductsGrid filter={activeTab} />
+        {/* Product Grid */}
+        {filteredProducts.length === 0 ? (
+          <div className="text-center py-16 text-muted-foreground font-body">
+            <p className="text-4xl mb-4">🔮</p>
+            <p>No products found in this category.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
+
+        {/* Bottom note */}
+        <div className="mt-12 text-center">
+          <p className="text-muted-foreground text-sm font-body">
+            💌 To order, DM on Instagram{' '}
+            <a
+              href="https://www.instagram.com/mysticmoon_withishita"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              @mysticmoon_withishita
+            </a>{' '}
+            or WhatsApp{' '}
+            <a
+              href="https://wa.me/919305831180"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              +91 9305831180
+            </a>
+          </p>
+        </div>
       </div>
     </section>
   );

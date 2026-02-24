@@ -1,145 +1,38 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Apply logo color theme and use uploaded service images in service section",
+  "title": "Add 19 crystal products to shop section and fix QR code in payment",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Generate polished service card banner images for each service category using uploaded service images with logo-themed decorative overlays, and display them in the Services section",
+      "summary": "Add 38 crystal product entries (19 crystals × 2 forms) to static products data with generated images",
       "acceptanceCriteria": [
-        "Each service category card in the Services section displays its corresponding uploaded service image enhanced with logo-themed decorative elements",
-        "Images are served from frontend/public/assets/generated/",
-        "Service images are visually consistent with the blue crystal-moon logo aesthetic"
+        "All 19 crystals appear in the ProductCatalog section as separate raw and bracelet product cards (38 total cards)",
+        "Each product card shows the crystal name, type badge (raw/bracelet), metaphysical property description, and price starting from ₹600",
+        "Filtering by 'crystal' tab shows all raw forms; filtering by 'bracelet' tab shows all bracelet forms",
+        "Product images render without broken-image errors"
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/service-mini-readings-banner.dim_800x500.png",
-          "operation": "create",
-          "description": "Place the generated service card banner image for Mini Readings featuring blue crescent moon and crystal cluster illustration with sparkle stars on cream background, pentacle hand motif in corner, blue line-art style. This image will be referenced in the ServicesGallery component."
-        },
-        {
-          "path": "frontend/public/assets/generated/service-love-relationship-banner.dim_800x500.png",
-          "operation": "create",
-          "description": "Place the generated service card banner image for Love & Relationship Readings featuring blue crescent moon and crystal cluster illustration with sparkle stars and rose-pink accent on cream background, pentacle hand motif in corner, blue line-art style."
-        },
-        {
-          "path": "frontend/public/assets/generated/service-career-money-life-banner.dim_800x500.png",
-          "operation": "create",
-          "description": "Place the generated service card banner image for Career/Money/Life featuring blue crescent moon and crystal cluster illustration with sparkle stars and amber accent on cream background, pentacle hand motif in corner, blue line-art style."
-        },
-        {
-          "path": "frontend/public/assets/generated/service-deep-detailed-banner.dim_800x500.png",
-          "operation": "create",
-          "description": "Place the generated service card banner image for Deep & Detailed Readings featuring blue crescent moon and crystal cluster illustration with sparkle stars and golden accent on cream background, pentacle hand motif in corner, blue line-art style."
-        },
-        {
-          "path": "frontend/public/assets/generated/service-premium-exclusive-banner.dim_800x500.png",
-          "operation": "create",
-          "description": "Place the generated service card banner image for Premium/Exclusive featuring blue crescent moon and crystal cluster illustration with sparkle stars and flame-orange accent on cream background, pentacle hand motif in corner, blue line-art style."
-        },
-        {
-          "path": "frontend/src/data/serviceGalleryImages.ts",
+          "path": "frontend/src/data/products.ts",
           "operation": "modify",
-          "description": "Update the serviceGalleryImages array to reference the newly generated service banner images from frontend/public/assets/generated/ instead of placeholder paths. Map each image to its correct service category: Mini Readings (service-mini-readings-banner.dim_800x500.png), Love & Relationship (service-love-relationship-banner.dim_800x500.png), Career/Money/Life (service-career-money-life-banner.dim_800x500.png), Deep & Detailed (service-deep-detailed-banner.dim_800x500.png), and Premium/Exclusive (service-premium-exclusive-banner.dim_800x500.png)."
-        },
-        {
-          "path": "frontend/src/components/ServicesGallery.tsx",
-          "operation": "modify",
-          "description": "Update the ServicesGallery component to properly display the newly generated service category images from the updated serviceGalleryImages data. Ensure each gallery item renders the correct category label (Mini Readings, Love & Relationship Readings, Career/Money/Life, Deep & Detailed Readings, Premium/Exclusive) with proper image loading and error handling."
+          "description": "Add 38 new product entries (19 crystals in both raw and bracelet forms) to the products array. Each raw crystal must have: id format '<crystal-name>-raw', name '<Crystal Name> (Raw)', description mentioning the metaphysical property from the BuildRequest (e.g., 'The Master Healer for Clear Quartz'), productType 'crystal', price 600 (base price before markup per constraints), isTrending false, and imageUrl pointing to 'frontend/public/assets/generated/<crystal-name>-raw.dim_800x800.png'. Each bracelet must have: id format '<crystal-name>-bracelet', name '<Crystal Name> Bracelet', same metaphysical property description, productType 'bracelet', price 800 (base price before markup per constraints), isTrending false, and imageUrl pointing to 'frontend/public/assets/generated/<crystal-name>-bracelet.dim_800x800.png'. All 19 crystals from the BuildRequest must be included: Clear Quartz, Amethyst, Rose Quartz, Black Tourmaline, Green Aventurine, Labradorite, Selenite, Fluorite, Aquamarine, Malachite, Black Obsidian, Carnelian, Moonstone, Lapis Lazuli, Pyrite, Tiger's Eye, Moldavite, Blue Lace Agate, Garden Quartz. Use the exact generated image filenames from imageRequirements (e.g., clear-quartz-raw.dim_800x800.png, amethyst-bracelet.dim_800x800.png). Do not modify existing product entries."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Retheme the entire website to match the logo's blue-crystal-moon color palette with steel blue primary, cream background, and soft peach/rose accents",
+      "summary": "Replace broken QR code image in payment section with correct generated QR code",
       "acceptanceCriteria": [
-        "Primary color across the site is the logo's steel blue",
-        "Background uses the creamy off-white from the logo background",
-        "Accent sparkle/highlight color reflects the peach-rose tones from logo stars",
-        "All buttons, headings, cards, badges, and section backgrounds use the updated logo-consistent palette",
-        "No legacy purple or dark theme colors remain as primary UI elements"
+        "The QR code image renders without error in the payment step of the appointment booking flow",
+        "The displayed QR code matches the uploaded image (shows Ishita Singh, UPI ID 9305831180@pthdfc)",
+        "No broken image icon appears in the payment section"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/components/Appointment.tsx",
           "operation": "modify",
-          "description": "Update all CSS custom properties to match the logo's color palette. Replace primary colors with steel blue (#2b7ab5 or similar), background with cream/off-white (#f5f0ea), accent colors with soft peach/rose for sparkles, and text colors with deep navy. Update both light and dark theme tokens to ensure consistency with the blue-crystal-moon aesthetic throughout the site."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Update Tailwind theme extension with logo-consistent color tokens. Replace mystic-purple, mystic-rose, mystic-gold, and mystic-cream with the new palette: steel blue primary (#2b7ab5), cream/off-white background (#f5f0ea), soft peach/rose accent, and deep navy text. Update all custom color definitions to align with the blue-crystal-moon theme."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Update the gradient background wrapper to use the new logo-inspired color palette. Replace existing purple/dark gradient with blue-crystal-moon themed gradient using steel blue and cream tones. Ensure the background complements the overall blue-crystal aesthetic."
-        },
-        {
-          "path": "frontend/src/components/Hero.tsx",
-          "operation": "modify",
-          "description": "Update Hero component styling to use the new logo color palette. Replace animated gradient background with blue-crystal-moon themed colors (steel blue, cream, soft peach accents). Update button styles, text colors, and accent elements to match the new theme."
-        },
-        {
-          "path": "frontend/src/components/Header.tsx",
-          "operation": "modify",
-          "description": "Update Header component background and styling to use the new cream/off-white background and steel blue accents. Ensure the logo and navigation elements align with the blue-crystal-moon color scheme."
-        },
-        {
-          "path": "frontend/src/components/Services.tsx",
-          "operation": "modify",
-          "description": "Update Services section styling to use the new logo color palette. Replace card backgrounds, borders, and accent colors with cream, steel blue, and soft peach/rose tones. Update SVG hand/pentacle decoration colors to match the blue line-art style."
-        },
-        {
-          "path": "frontend/src/components/About.tsx",
-          "operation": "modify",
-          "description": "Update About section card styling and background colors to use cream/off-white background, steel blue accents, and deep navy text. Ensure the healer portrait card integrates seamlessly with the new blue-crystal-moon theme."
-        },
-        {
-          "path": "frontend/src/components/Footer.tsx",
-          "operation": "modify",
-          "description": "Update Footer component background, text colors, and link colors to match the logo palette. Use cream background, deep navy text, and steel blue accents for links. Ensure copyright notice and attribution styling align with the new theme."
-        },
-        {
-          "path": "frontend/src/components/ProductCatalog.tsx",
-          "operation": "modify",
-          "description": "Update ProductCatalog section styling including tabs, filters, and card grid to use the new color palette. Replace existing colors with steel blue for active tabs, cream background, and soft peach/rose for hover states and accents."
-        },
-        {
-          "path": "frontend/src/components/ProductCard.tsx",
-          "operation": "modify",
-          "description": "Update ProductCard component styling to use cream card backgrounds, steel blue borders and badges, deep navy text, and soft peach/rose accents for interactive elements. Ensure price display and type badges match the blue-crystal-moon aesthetic."
-        },
-        {
-          "path": "frontend/src/components/Reviews.tsx",
-          "operation": "modify",
-          "description": "Update Reviews section testimonial cards to use cream backgrounds, steel blue star ratings and accents, and deep navy text. Ensure card borders and hover effects align with the logo-consistent color scheme."
-        },
-        {
-          "path": "frontend/src/components/ImportantNotes.tsx",
-          "operation": "modify",
-          "description": "Update ImportantNotes section card styling to use cream card backgrounds, steel blue borders and accent colors, and deep navy text. Ensure emoji-labeled cards integrate with the overall blue-crystal-moon theme."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Update ServicesGallery component and data to use newly generated service category images instead of placeholder paths",
-      "acceptanceCriteria": [
-        "ServicesGallery grid shows the real uploaded/generated service images",
-        "Each gallery item has the correct category label (Mini Readings, Love & Relationship, Career/Money/Life, Deep & Detailed, Premium/Exclusive)",
-        "No broken image links in the gallery"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/data/serviceGalleryImages.ts",
-          "operation": "modify",
-          "description": "Update the serviceGalleryImages data array to map each service category to its corresponding generated banner image from frontend/public/assets/generated/. Ensure correct paths: service-mini-readings-banner.dim_800x500.png, service-love-relationship-banner.dim_800x500.png, service-career-money-life-banner.dim_800x500.png, service-deep-detailed-banner.dim_800x500.png, and service-premium-exclusive-banner.dim_800x500.png. Verify all category labels match the backend ServiceCategory enum values."
-        },
-        {
-          "path": "frontend/src/components/ServicesGallery.tsx",
-          "operation": "modify",
-          "description": "Update ServicesGallery component to properly render the updated service gallery images from the serviceGalleryImages data source. Ensure image loading, error handling, hover overlays, and category labels display correctly. Verify the call-to-action link to Instagram booking page remains functional. Apply new logo color palette (steel blue, cream, soft peach accents) to overlay styles and labels."
+          "description": "Update the QR code image src in the payment step to reference the correct generated QR code at 'frontend/public/assets/generated/qr-code.dim_600x800.png'. Locate the img element displaying the QR code within the payment confirmation UI (likely inside a conditional render for currentStep === 'payment' or similar) and replace its src attribute value with '/assets/generated/qr-code.dim_600x800.png'. Ensure the alt text remains descriptive (e.g., 'UPI Payment QR Code'). Do not modify any other payment logic, form validation, or appointment submission flow."
         }
       ]
     }

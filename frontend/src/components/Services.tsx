@@ -1,4 +1,4 @@
-import { Instagram } from 'lucide-react';
+import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { useGetTarotServiceCatalog } from '@/hooks/useQueries';
 
@@ -35,17 +35,25 @@ interface ServiceItem {
   isUrgent: boolean;
 }
 
+interface StaticService {
+  name: string;
+  price: string;
+  note?: string;
+  priceNum?: number;
+}
+
 interface ServiceCategoryCardProps {
   emoji: string;
   title: string;
   services: ServiceItem[];
   accentColor: string;
-  staticServices?: { name: string; price: string; note?: string }[];
+  staticServices?: StaticService[];
+  onBookNow: (serviceName: string, servicePrice: string) => void;
 }
 
-function ServiceCategoryCard({ emoji, title, accentColor, staticServices }: ServiceCategoryCardProps) {
+function ServiceCategoryCard({ emoji, title, accentColor, staticServices, onBookNow }: ServiceCategoryCardProps) {
   return (
-    <div className="rounded-2xl overflow-hidden shadow-crystal transition-all duration-300 hover:shadow-crystal-lg"
+    <div className="rounded-2xl overflow-hidden shadow-crystal transition-all duration-300 hover:shadow-crystal-lg flex flex-col"
       style={{ background: 'oklch(99% 0.005 80)', border: '1px solid oklch(72% 0.1 230 / 0.2)' }}>
       {/* Top hand illustration */}
       <div className="flex justify-start px-4 pt-4 pb-0">
@@ -53,31 +61,56 @@ function ServiceCategoryCard({ emoji, title, accentColor, staticServices }: Serv
       </div>
 
       {/* Content */}
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 flex-1">
         <h3 className="font-display text-xl font-bold mb-4 text-center"
           style={{ color: accentColor }}>
           {emoji} {title}
         </h3>
 
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {staticServices?.map((svc, i) => (
-            <li key={i} className="font-body text-base text-center leading-snug"
-              style={{ color: 'oklch(25% 0.05 240)' }}>
-              <span className="font-semibold">• {svc.name}</span>
-              {svc.price && <span style={{ color: accentColor }}> – {svc.price}</span>}
-              {svc.note && (
-                <span className="block text-sm mt-0.5" style={{ color: 'oklch(52% 0.06 240)' }}>
-                  ({svc.note})
-                </span>
-              )}
+            <li key={i} className="flex flex-col items-center gap-1.5">
+              <div className="font-body text-base text-center leading-snug" style={{ color: 'oklch(25% 0.05 240)' }}>
+                <span className="font-semibold">• {svc.name}</span>
+                {svc.price && <span style={{ color: accentColor }}> – {svc.price}</span>}
+                {svc.note && (
+                  <span className="block text-sm mt-0.5" style={{ color: 'oklch(52% 0.06 240)' }}>
+                    ({svc.note})
+                  </span>
+                )}
+              </div>
+              <button
+                onClick={() => onBookNow(svc.name, svc.price)}
+                className="text-xs font-body font-semibold px-4 py-1.5 rounded-full transition-all duration-200 hover:scale-105 hover:shadow-sm"
+                style={{
+                  background: `${accentColor}18`,
+                  color: accentColor,
+                  border: `1px solid ${accentColor}40`,
+                }}
+              >
+                Book This →
+              </button>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Bottom hand illustration (flipped) */}
+      {/* Bottom hand illustration (flipped) + Book Category button */}
+      <div className="px-6 pb-5 pt-2">
+        <button
+          onClick={() => onBookNow(title, staticServices?.[0]?.price ?? '')}
+          className="w-full py-2.5 rounded-full font-display text-sm font-bold tracking-wide transition-all duration-200 hover:scale-[1.02] hover:shadow-crystal"
+          style={{
+            background: accentColor,
+            color: 'oklch(99% 0.005 80)',
+          }}
+        >
+          Book {emoji} {title}
+        </button>
+      </div>
+
       <div className="flex justify-end px-4 pb-4 pt-0">
-        <HandPentacleSVG size={100} flip />
+        <HandPentacleSVG size={80} flip />
       </div>
     </div>
   );
@@ -85,33 +118,37 @@ function ServiceCategoryCard({ emoji, title, accentColor, staticServices }: Serv
 
 const STATIC_SERVICES = {
   miniReading: [
-    { name: '1 Question Reading', price: '₹199', note: 'Yes/No or short guidance' },
-    { name: '3 Card Reading', price: '₹299', note: 'Past–Present–Future / Situation–Advice–Outcome' },
+    { name: '1 Question Reading', price: '₹199', note: 'Yes/No or short guidance', priceNum: 199 },
+    { name: '3 Card Reading', price: '₹299', note: 'Past–Present–Future / Situation–Advice–Outcome', priceNum: 299 },
   ],
   loveRelationship: [
-    { name: 'Love Guidance Reading', price: '₹399' },
-    { name: 'No Contact / Separation Reading', price: '₹499' },
-    { name: 'Does He/She Love Me?', price: '₹499' },
-    { name: 'Future of This Connection', price: '₹599' },
+    { name: 'Love Guidance Reading', price: '₹399', priceNum: 399 },
+    { name: 'No Contact / Separation Reading', price: '₹499', priceNum: 499 },
+    { name: 'Does He/She Love Me?', price: '₹499', priceNum: 499 },
+    { name: 'Future of This Connection', price: '₹599', priceNum: 599 },
   ],
   careerMoneyLife: [
-    { name: 'Career Guidance Reading', price: '₹399' },
-    { name: 'Money & Abundance Reading', price: '₹499' },
-    { name: 'Life Purpose / Direction Reading', price: '₹699' },
+    { name: 'Career Guidance Reading', price: '₹399', priceNum: 399 },
+    { name: 'Money & Abundance Reading', price: '₹499', priceNum: 499 },
+    { name: 'Life Purpose / Direction Reading', price: '₹699', priceNum: 699 },
   ],
   deepDetailed: [
-    { name: 'Full Tarot Spread (6–8 cards)', price: '₹999' },
-    { name: '1 Month Forecast', price: '₹899' },
-    { name: '3 Month Forecast', price: '₹1,499' },
+    { name: 'Full Tarot Spread (6–8 cards)', price: '₹999', priceNum: 999 },
+    { name: '1 Month Forecast', price: '₹899', priceNum: 899 },
+    { name: '3 Month Forecast', price: '₹1,499', priceNum: 1499 },
   ],
   premiumExclusive: [
-    { name: 'Soulmate / Twin Flame Reading', price: '₹1,499' },
-    { name: 'Personalized Voice Note Reading', price: '₹1,999' },
-    { name: 'Emergency Same-Day Reading', price: '+₹300 extra' },
+    { name: 'Soulmate / Twin Flame Reading', price: '₹1,499', priceNum: 1499 },
+    { name: 'Personalized Voice Note Reading', price: '₹1,999', priceNum: 1999 },
+    { name: 'Emergency Same-Day Reading', price: '+₹300 extra', priceNum: 300 },
   ],
 };
 
-export default function Services() {
+interface ServicesProps {
+  onBookNow: (serviceName: string, servicePrice: string) => void;
+}
+
+export default function Services({ onBookNow }: ServicesProps) {
   const { data: catalog } = useGetTarotServiceCatalog();
 
   const categories = [
@@ -164,7 +201,7 @@ export default function Services() {
             Tarot Reading Services
           </h2>
           <p className="font-body text-lg max-w-xl mx-auto" style={{ color: 'oklch(45% 0.06 240)' }}>
-            Choose the reading that resonates with your soul's journey
+            Choose the reading that resonates with your soul's journey — book directly here!
           </p>
         </div>
 
@@ -178,30 +215,16 @@ export default function Services() {
               accentColor={cat.accentColor}
               services={catalog ? (catalog as Record<string, ServiceItem[]>)[cat.key] ?? [] : []}
               staticServices={STATIC_SERVICES[cat.key]}
+              onBookNow={onBookNow}
             />
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA note */}
         <div className="text-center">
-          <a
-            href="https://www.instagram.com/mysticmoonwithishita"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              size="lg"
-              className="font-display text-sm tracking-wider px-10 py-6 rounded-full shadow-crystal hover:shadow-crystal-lg transition-all duration-300 hover:scale-105"
-              style={{
-                background: 'oklch(52% 0.12 230)',
-                color: 'oklch(99% 0.005 80)',
-                border: 'none',
-              }}
-            >
-              <Instagram className="w-4 h-4 mr-2" />
-              Book Your Reading on Instagram
-            </Button>
-          </a>
+          <p className="font-body text-base" style={{ color: 'oklch(52% 0.06 240)' }}>
+            ✨ Click any <strong>"Book This"</strong> button above to fill in your details and complete your booking right here — no Instagram needed!
+          </p>
         </div>
       </div>
     </section>

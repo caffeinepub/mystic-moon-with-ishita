@@ -1,3 +1,4 @@
+import { useRef, useState, useCallback } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -6,9 +7,39 @@ import ServicesGallery from './components/ServicesGallery';
 import ImportantNotes from './components/ImportantNotes';
 import Reviews from './components/Reviews';
 import ProductCatalog from './components/ProductCatalog';
+import Appointment from './components/Appointment';
 import Footer from './components/Footer';
 
 function App() {
+  const [selectedService, setSelectedService] = useState<string | undefined>(undefined);
+  const [selectedServicePrice, setSelectedServicePrice] = useState<number | undefined>(undefined);
+  const appointmentRef = useRef<HTMLDivElement>(null);
+
+  const handleBookNow = useCallback((serviceName: string, servicePrice: string) => {
+    setSelectedService(serviceName);
+    // Parse the price string (e.g. "₹500" or "500") to a number
+    const parsed = parseInt(servicePrice.replace(/[^\d]/g, ''), 10);
+    setSelectedServicePrice(isNaN(parsed) ? undefined : parsed);
+    setTimeout(() => {
+      const el = document.getElementById('appointment');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
+  }, []);
+
+  const handleScrollToAppointment = useCallback(() => {
+    const el = document.getElementById('appointment');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, []);
+
+  const handleClearService = useCallback(() => {
+    setSelectedService(undefined);
+    setSelectedServicePrice(undefined);
+  }, []);
+
   return (
     <div className="min-h-screen bg-crystal-gradient">
       {/* Subtle decorative background pattern */}
@@ -29,13 +60,20 @@ function App() {
         <main>
           <Hero />
           <About />
-          <Services />
+          <Services onBookNow={handleBookNow} />
           <ServicesGallery />
+          <div ref={appointmentRef}>
+            <Appointment
+              selectedService={selectedService}
+              selectedServicePrice={selectedServicePrice}
+              onClearService={handleClearService}
+            />
+          </div>
           <ImportantNotes />
           <Reviews />
           <ProductCatalog />
         </main>
-        <Footer />
+        <Footer onBookReading={handleScrollToAppointment} />
       </div>
     </div>
   );

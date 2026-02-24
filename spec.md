@@ -1,14 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Retheme the Mystic Moon with Ishita website to match the logo's blue-crystal-moon color palette and display polished service banner images (using the uploaded service card illustrations) in the Services section.
+**Goal:** Add 38 crystal product listings (19 crystals × raw + bracelet forms) to the shop section and fix the broken QR code image in the payment section.
 
 **Planned changes:**
-- Update all CSS custom properties and Tailwind color tokens to use the logo's steel blue (#2b7ab5), cream/off-white background (#f5f0ea), peach-rose accent, and deep navy text — replacing any legacy purple or dark theme colors
-- Apply the updated color theme consistently across all section components: Header, Hero, Services, About, Footer, ProductCatalog, Reviews, and ServicesGallery
-- Generate five service card banner images (one per category: Mini Readings, Love & Relationship, Career/Money/Life, Deep & Detailed, Premium/Exclusive) combining the uploaded pentacle-hand illustration style with blue crescent moon and crystal decorative overlays from the logo
-- Save generated banner images to `frontend/public/assets/generated/`
-- Update the Services section to display each service card's corresponding banner image as the visual header
-- Update ServicesGallery component and `serviceGalleryImages` data to reference the new generated images with correct category labels
+- Add 38 product entries to the static products data file covering all 19 crystals in both raw (₹600 base) and bracelet (₹800 base) forms, each with name, type badge, metaphysical property description, and image path
+- Update the QR code image in the payment/appointment section to use the correct image (Ishita Singh, UPI ID: 9305831180@pthdfc, Kotak Mahindra bank)
+- Add all new crystal product images (raw and bracelet forms) as static assets referenced by the product data
 
-**User-visible outcome:** The entire website uses the blue-crystal-moon color scheme from the logo, and each service category card in the Services section displays a beautifully styled banner image featuring the pentacle hand motif with blue moon and crystal decorative overlays.
+**User-visible outcome:** The shop section displays 38 crystal product cards filterable by raw/bracelet type, and the payment section shows the correct working QR code without any broken image error.

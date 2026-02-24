@@ -1,84 +1,100 @@
 {
   "kind": "build_request",
-  "title": "Apply logo color theme and use uploaded service images in service section",
-  "projectName": "Mystic Moon with Ishita",
+  "title": "Add 19 crystal products to shop section and fix QR code in payment",
+  "projectName": "Crystal Healing Shop",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Generate polished service card banner images for each service category using the uploaded service images (Mini Readings, Love & Relationship Readings, Career/Money/Life, Deep & Detailed Readings, Premium/Exclusive) and incorporate logo elements (blue crescent moon, crystals, sparkle stars, botanical leaves) as decorative overlays to beautify each card. Save them as static assets in frontend/public/assets/generated/ and display them in the Services section as the visual header/illustration for each service package card.",
+      "text": "Add 19 crystal products to the static products data file (frontend/src/data/products.ts). Each crystal must have two entries: one for the raw form and one for the bracelet form. All 19 crystals are: Clear Quartz (The Master Healer), Amethyst (Spirituality & Protection), Rose Quartz (Love & Compassion), Black Tourmaline (Grounding & Protection), Green Aventurine (Luck & Prosperity), Labradorite (Transformation & Magic), Selenite (Cleansing & Clarity), Fluorite (Focus & Clarity), Aquamarine (Calm & Communication), Malachite (Transformation & Heart Chakra), Black Obsidian (Negativity Shield), Carnelian (Creativity & Motivation), Moonstone (Intuition & Feminine Energy), Lapis Lazuli (Wisdom & Truth), Pyrite (Wealth & Energy), Tiger's Eye (Courage & Confidence), Moldavite (Transformation), Blue Lace Agate (Calmness), Garden Quartz (Grounding & Manifestation). Each product's base price must be ₹600 (raw forms) and ₹800 (bracelet forms) before any markup. The description for each must mention the crystal's metaphysical property (e.g., 'The Master Healer'). Product type must be 'crystal' for raw forms and 'bracelet' for bracelet forms. Image paths must reference the corresponding generated product images from frontend/public/assets/generated/.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-5"
         ],
         "quotes": [
-          "use given service images to post in service section",
-          "use the given logo of blue color with crystal and moon to beautify the service section pic"
+          "Make these crystals as product photography for e commercial website display them in raw and bracelet forms each starting from 600 rupees",
+          "Display them in my crystal shop section"
         ]
       },
       "acceptanceCriteria": [
-        "Each service category card in the Services section displays its corresponding uploaded service image enhanced with logo-themed decorative elements",
-        "Images are served from frontend/public/assets/generated/",
-        "Service images are visually consistent with the blue crystal-moon logo aesthetic"
+        "All 19 crystals appear in the ProductCatalog section as separate raw and bracelet product cards (38 total cards)",
+        "Each product card shows the crystal name, type badge (raw/bracelet), metaphysical property description, and price starting from ₹600",
+        "Filtering by 'crystal' tab shows all raw forms; filtering by 'bracelet' tab shows all bracelet forms",
+        "Product images render without broken-image errors"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Retheme the entire website to match the logo's color palette: primary steel blue (#2b7ab5 / similar), cream/off-white background (#f5f0ea), soft peach/rose accent for sparkles, and deep navy for text. Update all CSS custom properties in frontend/src/index.css, Tailwind config tokens (mystic colors), gradient backgrounds in App.tsx, Hero, Header, Services, About, Footer, ProductCatalog, Reviews, and all other section components to reflect this blue-crystal-moon color scheme consistently throughout.",
+      "text": "Replace the broken QR code image in the payment section (Appointment.tsx) with the newly generated correct QR code image saved at frontend/public/assets/generated/qr-code.png. Update the img src to point to this path. The QR code displayed must match the uploaded image exactly (Ishita Singh, UPI ID: 9305831180@pthdfc, Kotak Mahindra bank).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-5"
         ],
         "quotes": [
-          "turn the whole website into my logo theme"
+          "correct my qr code picture use this original qr code in payment section",
+          "the qr code is showing error"
         ]
       },
       "acceptanceCriteria": [
-        "Primary color across the site is the logo's steel blue",
-        "Background uses the creamy off-white from the logo background",
-        "Accent sparkle/highlight color reflects the peach-rose tones from logo stars",
-        "All buttons, headings, cards, badges, and section backgrounds use the updated logo-consistent palette",
-        "No legacy purple or dark theme colors remain as primary UI elements"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Update the ServicesGallery component (frontend/src/components/ServicesGallery.tsx) and serviceGalleryImages data (frontend/src/data/serviceGalleryImages.ts) to use the newly generated service category images from frontend/public/assets/generated/ instead of placeholder paths, mapping each image to its correct service category label.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "use given service images to post in service section"
-        ]
-      },
-      "acceptanceCriteria": [
-        "ServicesGallery grid shows the real uploaded/generated service images",
-        "Each gallery item has the correct category label (Mini Readings, Love & Relationship, Career/Money/Life, Deep & Detailed, Premium/Exclusive)",
-        "No broken image links in the gallery"
+        "The QR code image renders without error in the payment step of the appointment booking flow",
+        "The displayed QR code matches the uploaded image (shows Ishita Singh, UPI ID 9305831180@pthdfc)",
+        "No broken image icon appears in the payment section"
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui/",
-    "Do not alter the backend data model or Motoko actor",
-    "All generated images must be placed in frontend/public/assets/generated/"
+    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui/",
+    "Crystal product prices must start at ₹600 for raw forms and ₹800 for bracelets as base prices before markup",
+    "QR code image must be served as a static asset from frontend/public/assets/generated/, not fetched from the backend"
   ],
   "nonGoals": [
-    "Changing service pricing data or backend service records",
-    "Adding new service categories beyond what exists",
-    "Redesigning the overall page layout or section structure"
+    "Adding backend persistence for the new crystal products (static data only)",
+    "Building a cart or checkout flow beyond what already exists",
+    "Changing the overall site design or color palette"
   ],
   "imageRequirements": {
     "required": [
-      "Service card banner for Mini Readings — blue crescent moon and crystal cluster illustration with sparkle stars on a cream background, pentacle hand motif in the corner, blue line-art style (service-mini-readings-banner.dim_800x500.png)",
-      "Service card banner for Love & Relationship Readings — blue crescent moon and crystal cluster illustration with sparkle stars and rose-pink accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-love-relationship-banner.dim_800x500.png)",
-      "Service card banner for Career / Money / Life — blue crescent moon and crystal cluster illustration with sparkle stars and amber accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-career-money-life-banner.dim_800x500.png)",
-      "Service card banner for Deep & Detailed Readings — blue crescent moon and crystal cluster illustration with sparkle stars and golden accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-deep-detailed-banner.dim_800x500.png)",
-      "Service card banner for Premium / Exclusive — blue crescent moon and crystal cluster illustration with sparkle stars and flame-orange accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-premium-exclusive-banner.dim_800x500.png)"
+      "Clear Quartz raw crystal chunk, white/transparent milky stone, studio product photography on dark moody background with soft lighting (clear-quartz-raw.dim_800x800.png)",
+      "Clear Quartz crystal bead stretch bracelet, white/transparent beads, studio product photography on dark moody background (clear-quartz-bracelet.dim_800x800.png)",
+      "Amethyst raw crystal cluster, deep purple stone, studio product photography on dark moody background with soft lighting (amethyst-raw.dim_800x800.png)",
+      "Amethyst purple bead stretch bracelet, studio product photography on dark moody background (amethyst-bracelet.dim_800x800.png)",
+      "Rose Quartz raw crystal chunk, pale pink stone, studio product photography on dark moody background (rose-quartz-raw.dim_800x800.png)",
+      "Rose Quartz pink bead stretch bracelet, studio product photography on dark moody background (rose-quartz-bracelet.dim_800x800.png)",
+      "Black Tourmaline raw crystal rod, jet black stone, studio product photography on dark moody background (black-tourmaline-raw.dim_800x800.png)",
+      "Black Tourmaline black bead stretch bracelet, studio product photography on dark moody background (black-tourmaline-bracelet.dim_800x800.png)",
+      "Green Aventurine raw tumbled stone, shimmering green stone, studio product photography on dark moody background (green-aventurine-raw.dim_800x800.png)",
+      "Green Aventurine green bead stretch bracelet, studio product photography on dark moody background (green-aventurine-bracelet.dim_800x800.png)",
+      "Labradorite raw slab, dark grey stone with iridescent blue-green flash, studio product photography on dark moody background (labradorite-raw.dim_800x800.png)",
+      "Labradorite grey iridescent bead stretch bracelet, studio product photography on dark moody background (labradorite-bracelet.dim_800x800.png)",
+      "Selenite raw wand, white chalky striated stick, studio product photography on dark moody background (selenite-raw.dim_800x800.png)",
+      "Selenite white bead stretch bracelet, studio product photography on dark moody background (selenite-bracelet.dim_800x800.png)",
+      "Fluorite raw crystal cube, purple-green banded stone, studio product photography on dark moody background (fluorite-raw.dim_800x800.png)",
+      "Fluorite multicolor banded bead stretch bracelet, studio product photography on dark moody background (fluorite-bracelet.dim_800x800.png)",
+      "Aquamarine raw crystal point, pale blue-green stone, studio product photography on dark moody background (aquamarine-raw.dim_800x800.png)",
+      "Aquamarine pale blue bead stretch bracelet, studio product photography on dark moody background (aquamarine-bracelet.dim_800x800.png)",
+      "Malachite raw chunk, vivid green banded stone, studio product photography on dark moody background (malachite-raw.dim_800x800.png)",
+      "Malachite vivid green banded bead stretch bracelet, studio product photography on dark moody background (malachite-bracelet.dim_800x800.png)",
+      "Black Obsidian raw volcanic glass chunk, glossy jet black stone, studio product photography on dark moody background (black-obsidian-raw.dim_800x800.png)",
+      "Black Obsidian glossy black bead stretch bracelet, studio product photography on dark moody background (black-obsidian-bracelet.dim_800x800.png)",
+      "Carnelian raw tumbled stone, warm orange-red stone, studio product photography on dark moody background (carnelian-raw.dim_800x800.png)",
+      "Carnelian orange-red bead stretch bracelet, studio product photography on dark moody background (carnelian-bracelet.dim_800x800.png)",
+      "Moonstone raw cabochon, pearlescent white stone with blue sheen, studio product photography on dark moody background (moonstone-raw.dim_800x800.png)",
+      "Moonstone pearlescent white bead stretch bracelet, studio product photography on dark moody background (moonstone-bracelet.dim_800x800.png)",
+      "Lapis Lazuli raw chunk, deep royal blue stone with gold pyrite flecks, studio product photography on dark moody background (lapis-lazuli-raw.dim_800x800.png)",
+      "Lapis Lazuli deep blue bead stretch bracelet with gold flecks, studio product photography on dark moody background (lapis-lazuli-bracelet.dim_800x800.png)",
+      "Pyrite raw cluster, shiny gold metallic cubic crystals, studio product photography on dark moody background (pyrite-raw.dim_800x800.png)",
+      "Pyrite gold metallic bead stretch bracelet, studio product photography on dark moody background (pyrite-bracelet.dim_800x800.png)",
+      "Tiger's Eye raw tumbled stone, golden-brown chatoyant stone, studio product photography on dark moody background (tigers-eye-raw.dim_800x800.png)",
+      "Tiger's Eye golden-brown chatoyant bead stretch bracelet, studio product photography on dark moody background (tigers-eye-bracelet.dim_800x800.png)",
+      "Moldavite raw fragment, dark forest green glassy tektite, studio product photography on dark moody background (moldavite-raw.dim_800x800.png)",
+      "Moldavite dark green glassy bead stretch bracelet, studio product photography on dark moody background (moldavite-bracelet.dim_800x800.png)",
+      "Blue Lace Agate raw slice, pale blue banded translucent stone, studio product photography on dark moody background (blue-lace-agate-raw.dim_800x800.png)",
+      "Blue Lace Agate pale blue banded bead stretch bracelet, studio product photography on dark moody background (blue-lace-agate-bracelet.dim_800x800.png)",
+      "Garden Quartz raw point, clear quartz with green garden inclusions inside, studio product photography on dark moody background (garden-quartz-raw.dim_800x800.png)",
+      "Garden Quartz clear bead stretch bracelet with green inclusions, studio product photography on dark moody background (garden-quartz-bracelet.dim_800x800.png)",
+      "UPI QR code screenshot showing Ishita Singh name, UPI ID 9305831180@pthdfc, Kotak Mahindra bank, blue background, clean high-contrast black and white QR code (qr-code.dim_600x800.png)"
     ],
     "edits": []
   }

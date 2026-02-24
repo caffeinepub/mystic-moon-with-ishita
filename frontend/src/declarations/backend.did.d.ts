@@ -10,6 +10,17 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface Appointment {
+  'status' : string,
+  'dateOfBirth' : string,
+  'createdAt' : bigint,
+  'selectedServicePrice' : bigint,
+  'fullName' : string,
+  'email' : string,
+  'selectedService' : string,
+  'problemDescription' : string,
+  'phone' : string,
+}
 export interface Product {
   'id' : ProductId,
   'name' : string,
@@ -37,7 +48,12 @@ export interface TarotService {
   'price' : bigint,
   'isVoiceNote' : boolean,
 }
+export interface UserProfile { 'name' : string }
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
 export interface _SERVICE {
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'addProduct' : ActorMethod<
     [ProductId, string, string, string, ProductType, boolean],
     undefined
@@ -46,10 +62,18 @@ export interface _SERVICE {
     [string, string, bigint, ServiceCategory, boolean, boolean],
     undefined
   >,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'createAppointment' : ActorMethod<
+    [string, string, string, string, string, string, bigint],
+    undefined
+  >,
   'deleteProduct' : ActorMethod<[ProductId], undefined>,
   'deleteTarotService' : ActorMethod<[bigint], undefined>,
   'getAllProducts' : ActorMethod<[], Array<Product>>,
   'getAllTarotServices' : ActorMethod<[], Array<TarotService>>,
+  'getAppointments' : ActorMethod<[], Array<Appointment>>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getProduct' : ActorMethod<[ProductId], Product>,
   'getProductsByCategory' : ActorMethod<[ProductType], Array<Product>>,
   'getProductsByType' : ActorMethod<[ProductType], Array<Product>>,
@@ -69,6 +93,9 @@ export interface _SERVICE {
     Array<TarotService>
   >,
   'getTrendingProducts' : ActorMethod<[], Array<Product>>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'updateProduct' : ActorMethod<
     [ProductId, string, string, string, ProductType, bigint, boolean],
     undefined

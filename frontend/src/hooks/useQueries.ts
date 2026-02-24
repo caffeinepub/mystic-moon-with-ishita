@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useActor } from './useActor';
-import type { Product, TarotService, ProductType, ServiceCategory } from '../backend';
+import type { Product, TarotService, ProductType, ServiceCategory, Appointment } from '../backend';
 
 export function useGetAllProducts() {
   const { actor, isFetching } = useActor();
@@ -230,5 +230,49 @@ export function useDeleteTarotService() {
       queryClient.invalidateQueries({ queryKey: ['tarot-services'] });
       queryClient.invalidateQueries({ queryKey: ['tarot-services-catalog'] });
     },
+  });
+}
+
+export function useCreateAppointment() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (params: {
+      fullName: string;
+      dateOfBirth: string;
+      phone: string;
+      email: string;
+      problemDescription: string;
+      selectedService: string;
+      selectedServicePrice: bigint;
+    }) => {
+      if (!actor) throw new Error('Actor not initialized');
+      return actor.createAppointment(
+        params.fullName,
+        params.dateOfBirth,
+        params.phone,
+        params.email,
+        params.problemDescription,
+        params.selectedService,
+        params.selectedServicePrice
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['appointments'] });
+    },
+  });
+}
+
+export function useGetAppointments() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<Appointment[]>({
+    queryKey: ['appointments'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAppointments();
+    },
+    enabled: !!actor && !isFetching,
   });
 }

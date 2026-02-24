@@ -8,18 +8,18 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full"
       style={{ background: 'oklch(99% 0.005 80 / 0.95)', backdropFilter: 'blur(12px)', borderBottom: '1px solid oklch(72% 0.1 230 / 0.2)' }}>
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-center">
+      <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-center">
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-3 group focus:outline-none"
+          className="flex items-center group focus:outline-none"
           aria-label="Scroll to top"
         >
-          {/* Logo image */}
+          {/* Logo image - full logo with text */}
           <div className="relative">
             <img
-              src="/assets/generated/mystic-moon-logo.dim_400x300.png"
+              src="/assets/generated/mystic-moon-logo.dim_800x600.png"
               alt="Mystic Moon with Ishita Logo"
-              className="h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               onError={(e) => {
                 const target = e.currentTarget;
                 target.style.display = 'none';
@@ -41,17 +41,17 @@ export default function Header() {
                 <circle cx="38" cy="20" r="1" fill="oklch(78% 0.08 30)" />
                 <circle cx="34" cy="10" r="1" fill="oklch(78% 0.08 30)" />
               </svg>
+              <div className="text-left">
+                <h1 className="font-display text-lg md:text-xl font-bold leading-tight"
+                  style={{ color: 'oklch(52% 0.12 230)' }}>
+                  MYSTIC MOON
+                </h1>
+                <p className="font-display text-xs md:text-sm font-medium tracking-widest"
+                  style={{ color: 'oklch(52% 0.12 230 / 0.75)' }}>
+                  WITH ISHITA
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="text-left">
-            <h1 className="font-display text-lg md:text-xl font-bold leading-tight"
-              style={{ color: 'oklch(52% 0.12 230)' }}>
-              MYSTIC MOON
-            </h1>
-            <p className="font-display text-xs md:text-sm font-medium tracking-widest"
-              style={{ color: 'oklch(52% 0.12 230 / 0.75)' }}>
-              WITH ISHITA
-            </p>
           </div>
         </button>
       </div>

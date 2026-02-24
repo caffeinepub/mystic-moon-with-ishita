@@ -39,9 +39,9 @@ export default function Hero() {
         <div className="flex justify-center mb-8 animate-moonrise">
           <div className="relative">
             <img
-              src="/assets/generated/mystic-moon-logo.dim_400x300.png"
+              src="/assets/generated/mystic-moon-logo.dim_800x600.png"
               alt="Mystic Moon with Ishita"
-              className="w-56 md:w-72 h-auto object-contain animate-float drop-shadow-lg"
+              className="w-72 md:w-96 h-auto object-contain animate-float drop-shadow-lg"
               onError={(e) => {
                 const target = e.currentTarget;
                 target.style.display = 'none';

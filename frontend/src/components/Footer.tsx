@@ -1,8 +1,21 @@
 import { Instagram, Heart } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  onBookReading?: () => void;
+}
+
+export default function Footer({ onBookReading }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const appId = encodeURIComponent(typeof window !== 'undefined' ? window.location.hostname : 'mysticmoonwithishita');
+
+  const handleBookReading = () => {
+    if (onBookReading) {
+      onBookReading();
+    } else {
+      const el = document.getElementById('appointment');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer style={{ background: 'oklch(22% 0.06 240)', color: 'oklch(88% 0.02 230)' }}>
@@ -81,19 +94,32 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <a
-              href="https://www.instagram.com/mysticmoonwithishita"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-display text-sm transition-all duration-200 hover:scale-105"
+
+            {/* Primary CTA: internal booking */}
+            <button
+              onClick={handleBookReading}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-display text-sm transition-all duration-200 hover:scale-105 mb-2"
               style={{
                 background: 'oklch(52% 0.12 230)',
                 color: 'oklch(99% 0.005 80)',
               }}
             >
-              <Instagram className="w-4 h-4" />
-              Book Now
-            </a>
+              ✨ Book a Reading
+            </button>
+
+            {/* Secondary: Instagram link */}
+            <div>
+              <a
+                href="https://www.instagram.com/mysticmoonwithishita"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-body text-xs transition-opacity hover:opacity-70"
+                style={{ color: 'oklch(60% 0.06 240)' }}
+              >
+                <Instagram className="w-3.5 h-3.5" />
+                Also on Instagram
+              </a>
+            </div>
           </div>
         </div>
       </div>

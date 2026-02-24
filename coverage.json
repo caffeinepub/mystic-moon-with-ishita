@@ -1,110 +1,67 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-24T10:44:37.119Z",
+  "generatedAt": "2026-02-24T14:32:10.021Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Generate polished service card banner images for each service category using the uploaded service images (Mini Readings, Love & Relationship Readings, Career/Money/Life, Deep & Detailed Readings, Premium/Exclusive) and incorporate logo elements (blue crescent moon, crystals, sparkle stars, botanical leaves) as decorative overlays to beautify each card. Save them as static assets in frontend/public/assets/generated/ and display them in the Services section as the visual header/illustration for each service package card.",
+        "summary": "Add 19 crystal products to the static products data file (frontend/src/data/products.ts). Each crystal must have two entries: one for the raw form and one for the bracelet form. All 19 crystals are: Clear Quartz (The Master Healer), Amethyst (Spirituality & Protection), Rose Quartz (Love & Compassion), Black Tourmaline (Grounding & Protection), Green Aventurine (Luck & Prosperity), Labradorite (Transformation & Magic), Selenite (Cleansing & Clarity), Fluorite (Focus & Clarity), Aquamarine (Calm & Communication), Malachite (Transformation & Heart Chakra), Black Obsidian (Negativity Shield), Carnelian (Creativity & Motivation), Moonstone (Intuition & Feminine Energy), Lapis Lazuli (Wisdom & Truth), Pyrite (Wealth & Energy), Tiger's Eye (Courage & Confidence), Moldavite (Transformation), Blue Lace Agate (Calmness), Garden Quartz (Grounding & Manifestation). Each product's base price must be ₹600 (raw forms) and ₹800 (bracelet forms) before any markup. The description for each must mention the crystal's metaphysical property (e.g., 'The Master Healer'). Product type must be 'crystal' for raw forms and 'bracelet' for bracelet forms. Image paths must reference the corresponding generated product images from frontend/public/assets/generated/.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/service-mini-readings-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-love-relationship-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-career-money-life-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-deep-detailed-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-premium-exclusive-banner.dim_800x500.png",
-          "frontend/src/data/serviceGalleryImages.ts",
-          "frontend/src/components/ServicesGallery.tsx"
+          "frontend/src/data/products.ts"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/service-mini-readings-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-love-relationship-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-career-money-life-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-deep-detailed-banner.dim_800x500.png",
-          "frontend/public/assets/generated/service-premium-exclusive-banner.dim_800x500.png",
-          "frontend/src/data/serviceGalleryImages.ts",
-          "frontend/src/components/ServicesGallery.tsx"
+          "frontend/src/data/products.ts"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Retheme the entire website to match the logo's color palette: primary steel blue (#2b7ab5 / similar), cream/off-white background (#f5f0ea), soft peach/rose accent for sparkles, and deep navy for text. Update all CSS custom properties in frontend/src/index.css, Tailwind config tokens (mystic colors), gradient backgrounds in App.tsx, Hero, Header, Services, About, Footer, ProductCatalog, Reviews, and all other section components to reflect this blue-crystal-moon color scheme consistently throughout.",
+        "summary": "Replace the broken QR code image in the payment section (Appointment.tsx) with the newly generated correct QR code image saved at frontend/public/assets/generated/qr-code.png. Update the img src to point to this path. The QR code displayed must match the uploaded image exactly (Ishita Singh, UPI ID: 9305831180@pthdfc, Kotak Mahindra bank).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/App.tsx",
-          "frontend/src/components/Hero.tsx",
-          "frontend/src/components/Header.tsx",
-          "frontend/src/components/Services.tsx",
-          "frontend/src/components/About.tsx",
-          "frontend/src/components/Footer.tsx",
-          "frontend/src/components/ProductCatalog.tsx",
-          "frontend/src/components/ProductCard.tsx",
-          "frontend/src/components/Reviews.tsx",
-          "frontend/src/components/ImportantNotes.tsx"
+          "frontend/src/components/Appointment.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/App.tsx",
-          "frontend/src/components/Hero.tsx",
-          "frontend/src/components/Header.tsx",
-          "frontend/src/components/Services.tsx",
-          "frontend/src/components/About.tsx",
-          "frontend/src/components/Footer.tsx",
-          "frontend/src/components/ProductCatalog.tsx",
-          "frontend/src/components/ProductCard.tsx",
-          "frontend/src/components/Reviews.tsx",
-          "frontend/src/components/ImportantNotes.tsx"
-        ]
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Update the ServicesGallery component (frontend/src/components/ServicesGallery.tsx) and serviceGalleryImages data (frontend/src/data/serviceGalleryImages.ts) to use the newly generated service category images from frontend/public/assets/generated/ instead of placeholder paths, mapping each image to its correct service category label.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/data/serviceGalleryImages.ts",
-          "frontend/src/components/ServicesGallery.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/data/serviceGalleryImages.ts",
-          "frontend/src/components/ServicesGallery.tsx"
+          "frontend/src/components/Appointment.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/service-career-money-life-banner.dim_800x500.png",
-    "frontend/public/assets/generated/service-deep-detailed-banner.dim_800x500.png",
-    "frontend/public/assets/generated/service-love-relationship-banner.dim_800x500.png",
-    "frontend/public/assets/generated/service-mini-readings-banner.dim_800x500.png",
-    "frontend/public/assets/generated/service-premium-exclusive-banner.dim_800x500.png",
+    "frontend/public/assets/generated/amethyst-bracelet.dim_800x800.png",
+    "frontend/public/assets/generated/amethyst-raw.dim_800x800.png",
+    "frontend/public/assets/generated/black-tourmaline-bracelet.dim_800x800.png",
+    "frontend/public/assets/generated/black-tourmaline-raw.dim_800x800.png",
+    "frontend/public/assets/generated/clear-quartz-bracelet.dim_800x800.png",
+    "frontend/public/assets/generated/clear-quartz-raw.dim_800x800.png",
+    "frontend/public/assets/generated/fluorite-raw.dim_800x800.png",
+    "frontend/public/assets/generated/green-aventurine-bracelet.dim_800x800.png",
+    "frontend/public/assets/generated/green-aventurine-raw.dim_800x800.png",
+    "frontend/public/assets/generated/labradorite-bracelet.dim_800x800.png",
+    "frontend/public/assets/generated/labradorite-raw.dim_800x800.png",
+    "frontend/public/assets/generated/rose-quartz-bracelet.dim_800x800.png",
+    "frontend/public/assets/generated/rose-quartz-raw.dim_800x800.png",
+    "frontend/public/assets/generated/selenite-bracelet.dim_800x800.png",
+    "frontend/public/assets/generated/selenite-raw.dim_800x800.png",
     "frontend/src/App.tsx",
-    "frontend/src/components/About.tsx",
-    "frontend/src/components/Footer.tsx",
-    "frontend/src/components/Header.tsx",
-    "frontend/src/components/Hero.tsx",
-    "frontend/src/components/ImportantNotes.tsx",
+    "frontend/src/components/Appointment.tsx",
     "frontend/src/components/ProductCard.tsx",
     "frontend/src/components/ProductCatalog.tsx",
-    "frontend/src/components/Reviews.tsx",
-    "frontend/src/components/Services.tsx",
-    "frontend/src/components/ServicesGallery.tsx",
-    "frontend/src/data/serviceGalleryImages.ts",
-    "frontend/src/index.css",
-    "frontend/tailwind.config.js",
+    "frontend/src/data/products.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
