@@ -1,0 +1,21 @@
+{
+  "frontend/src/App.tsx": "Main app component with a subtle blue-crystal-moon gradient background and decorative radial glow overlays replacing the old purple gradient.",
+  "frontend/src/components/Hero.tsx": "Hero section with cream-to-blue gradient background, floating logo, sparkle animations, steel blue typography, and three CTAs (Explore Readings, Shop Crystals, Book on Instagram).",
+  "frontend/src/components/About.tsx": "About section with circular portrait card, steel blue accents, and three stat badges (Experience, Clients, Confidential) using the new crystal-moon color palette.",
+  "frontend/src/components/Reviews.tsx": "Reviews section displaying all 35 customer testimonials in a responsive grid with fixed 5-star ratings (peach color), steel blue reviewer names, category badges, and crystal-card styling matching the blue-crystal-moon theme.",
+  "frontend/src/components/ProductCatalog.tsx": "Product catalog with four filter tabs (All/Crystals/Bracelets/Pendulums) using steel blue active state, cream backgrounds, and skeleton loading states in the new palette.",
+  "frontend/src/components/ProductCard.tsx": "Product card component with square image, trending/type badges in steel blue and peach, price display, and an Order link — all styled with the blue-crystal-moon theme.",
+  "frontend/src/components/Footer.tsx": "Footer with deep navy background, steel blue accent links, three-column layout (brand, services, shop), Instagram CTA button, and caffeine.ai attribution with heart icon.",
+  "frontend/src/data/products.ts": "Product data file containing 15 crystal and bracelet products with support for pendulum type in the Product interface, maintaining ₹500 base pricing structure.",
+  "frontend/src/data/reviews.ts": "Reviews data file containing exactly 35 unique customer testimonials spanning January to February 2026, mixing tarot session and crystal purchase reviews with authentic varied feedback.",
+  "frontend/src/utils/pricing.ts": "Pricing utility module with calculateFinalPrice function (basePrice + ₹400) and formatPrice function for displaying prices with Indian Rupee symbol.",
+  "frontend/src/index.css": "Global styles with OKLCH color system updated to the logo's blue-crystal-moon palette — steel blue primary, cream background, peach/rose sparkle accents — with Cinzel, Cormorant Garamond, and Lato fonts plus crystal/moon animation utilities.",
+  "frontend/tailwind.config.js": "Tailwind configuration updated with logo-inspired brand tokens (crystal-blue, moon-cream, sparkle-peach, navy) replacing the old mystic-purple palette, plus crystal shadow and gradient utilities.",
+  "frontend/src/components/Services.tsx": "Services section with five category cards each featuring hand-pentacle SVG illustrations (matching uploaded service images), category-specific accent colors, and static pricing data in the blue-crystal-moon theme.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks module managing all backend interactions including product CRUD operations, tarot service queries (getAllTarotServices, getTarotServiceCatalog, getTarotServicesByCategory), tarot service mutations (add, update, delete), and proper cache invalidation.",
+  "frontend/index.html": "HTML entry point with updated meta tags and page title reflecting the unified \"Mystic Moon with Ishita\" business identity and SEO-optimized description.",
+  "frontend/src/components/Header.tsx": "Sticky header with cream/glass background and steel blue branding, displaying the logo image with a fallback SVG crescent-crystal illustration.",
+  "frontend/src/components/ImportantNotes.tsx": "Important Notes section with four policy cards (Delivery, Format, Restrictions, Confidentiality) using cream crystal-card styling and steel blue headings.",
+  "frontend/src/data/serviceGalleryImages.ts": "Service gallery data array mapping five service categories (Mini Readings, Love & Relationship, Career/Money/Life, Deep & Detailed, Premium/Exclusive) to their generated banner image paths.",
+  "frontend/src/components/ServicesGallery.tsx": "Services gallery grid displaying five category banner images with hover overlays, always-visible label badges, and a fallback hand-pentacle SVG, all styled in the blue-crystal-moon theme."
+}

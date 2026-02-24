@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Website project with logo-themed design. User wants service images used in the service section, a blue crystal and moon logo integrated to beautify service section images, and the entire website styled to match the logo's color theme.",
+  "architectural_notes": [
+    "Website theme should be based on the blue crystal and moon logo colors"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Service card banner for Mini Readings — blue crescent moon and crystal cluster illustration with sparkle stars on a cream background, pentacle hand motif in the corner, blue line-art style (service-mini-readings-banner.dim_800x500.png)\n- Service card banner for Love & Relationship Readings — blue crescent moon and crystal cluster illustration with sparkle stars and rose-pink accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-love-relationship-banner.dim_800x500.png)\n- Service card banner for Career / Money / Life — blue crescent moon and crystal cluster illustration with sparkle stars and amber accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-career-money-life-banner.dim_800x500.png)\n- Service card banner for Deep & Detailed Readings — blue crescent moon and crystal cluster illustration with sparkle stars and golden accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-deep-detailed-banner.dim_800x500.png)\n- Service card banner for Premium / Exclusive — blue crescent moon and crystal cluster illustration with sparkle stars and flame-orange accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-premium-exclusive-banner.dim_800x500.png)",
+  "existing_features": [
+    {
+      "id": "feature-generate-polished-service-card-banner-images-for-each-service-category-using-the-uploaded-service-images-mini-readings-love-relationship-readings-career-money-life-deep-detailed-readings-premium-exclusive-and-incorporate-logo-elements-blue-crescent-moon-crystals-sparkle-stars-botanical-leaves-as-decorative-overlays-to-beautify-each-card-save-them-as-static-assets-in-frontend-public-assets-generated-and-display-them-in-the-services-section-as-the-visual-header-illustration-for-each-service-package-card",
+      "title": "Generate polished service card banner images for each service category using the uploaded service images (Mini Readings, Love & Relationship Readings, Career/Money/Life, Deep & Detailed Readings, Premium/Exclusive) and incorporate logo elements (blue crescent moon, crystals, sparkle stars, botanical leaves) as decorative overlays to beautify each card. Save them as static assets in frontend/public/assets/generated/ and display them in the Services section as the visual header/illustration for each service package card.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-retheme-the-entire-website-to-match-the-logo-s-color-palette-primary-steel-blue-2b7ab5-similar-cream-off-white-background-f5f0ea-soft-peach-rose-accent-for-sparkles-and-deep-navy-for-text-update-all-css-custom-properties-in-frontend-src-index-css-tailwind-config-tokens-mystic-colors-gradient-backgrounds-in-app-tsx-hero-header-services-about-footer-productcatalog-reviews-and-all-other-section-components-to-reflect-this-blue-crystal-moon-color-scheme-consistently-throughout",
+      "title": "Retheme the entire website to match the logo's color palette: primary steel blue (#2b7ab5 / similar), cream/off-white background (#f5f0ea), soft peach/rose accent for sparkles, and deep navy for text. Update all CSS custom properties in frontend/src/index.css, Tailwind config tokens (mystic colors), gradient backgrounds in App.tsx, Hero, Header, Services, About, Footer, ProductCatalog, Reviews, and all other section components to reflect this blue-crystal-moon color scheme consistently throughout.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-servicesgallery-component-frontend-src-components-servicesgallery-tsx-and-servicegalleryimages-data-frontend-src-data-servicegalleryimages-ts-to-use-the-newly-generated-service-category-images-from-frontend-public-assets-generated-instead-of-placeholder-paths-mapping-each-image-to-its-correct-service-category-label",
+      "title": "Update the ServicesGallery component (frontend/src/components/ServicesGallery.tsx) and serviceGalleryImages data (frontend/src/data/serviceGalleryImages.ts) to use the newly generated service category images from frontend/public/assets/generated/ instead of placeholder paths, mapping each image to its correct service category label.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Use uploaded service images in the service section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Use blue crystal and moon logo to beautify service section images",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Apply logo color theme (blue, crystal, moon) across the entire website",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Mystic Moon with Ishita",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

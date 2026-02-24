@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Logo-inspired blue-crystal-moon palette */
+    --background: oklch(97% 0.008 80);
+    --foreground: oklch(22% 0.04 240);
+
+    --card: oklch(99% 0.005 80);
+    --card-foreground: oklch(22% 0.04 240);
+
+    --popover: oklch(99% 0.005 80);
+    --popover-foreground: oklch(22% 0.04 240);
+
+    /* Steel blue primary from logo */
+    --primary: oklch(52% 0.12 230);
+    --primary-foreground: oklch(99% 0.005 80);
+
+    /* Soft peach/rose secondary from logo sparkles */
+    --secondary: oklch(88% 0.04 30);
+    --secondary-foreground: oklch(35% 0.08 230);
+
+    --muted: oklch(93% 0.012 80);
+    --muted-foreground: oklch(52% 0.04 240);
+
+    /* Peach accent from logo stars */
+    --accent: oklch(78% 0.08 30);
+    --accent-foreground: oklch(25% 0.06 240);
+
+    --destructive: oklch(55% 0.18 25);
+    --destructive-foreground: oklch(99% 0.005 80);
+
+    --border: oklch(88% 0.02 230);
+    --input: oklch(88% 0.02 230);
+    --ring: oklch(52% 0.12 230);
+
+    --radius: 0.75rem;
+
+    /* Custom brand tokens */
+    --crystal-blue: oklch(52% 0.12 230);
+    --crystal-blue-light: oklch(72% 0.1 230);
+    --crystal-blue-dark: oklch(35% 0.1 230);
+    --moon-cream: oklch(97% 0.008 80);
+    --moon-cream-dark: oklch(93% 0.015 80);
+    --sparkle-peach: oklch(78% 0.08 30);
+    --sparkle-rose: oklch(72% 0.1 10);
+    --deep-navy: oklch(22% 0.06 240);
+    --leaf-green: oklch(58% 0.1 160);
+  }
+
+  .dark {
+    --background: oklch(18% 0.04 240);
+    --foreground: oklch(95% 0.01 80);
+
+    --card: oklch(22% 0.05 240);
+    --card-foreground: oklch(95% 0.01 80);
+
+    --popover: oklch(22% 0.05 240);
+    --popover-foreground: oklch(95% 0.01 80);
+
+    --primary: oklch(65% 0.14 230);
+    --primary-foreground: oklch(18% 0.04 240);
+
+    --secondary: oklch(30% 0.06 240);
+    --secondary-foreground: oklch(85% 0.05 80);
+
+    --muted: oklch(28% 0.05 240);
+    --muted-foreground: oklch(65% 0.04 240);
+
+    --accent: oklch(72% 0.1 30);
+    --accent-foreground: oklch(18% 0.04 240);
+
+    --destructive: oklch(55% 0.18 25);
+    --destructive-foreground: oklch(99% 0.005 80);
+
+    --border: oklch(32% 0.06 240);
+    --input: oklch(32% 0.06 240);
+    --ring: oklch(65% 0.14 230);
+
+    --crystal-blue: oklch(65% 0.14 230);
+    --crystal-blue-light: oklch(75% 0.1 230);
+    --crystal-blue-dark: oklch(45% 0.12 230);
+    --moon-cream: oklch(18% 0.04 240);
+    --moon-cream-dark: oklch(22% 0.05 240);
+    --sparkle-peach: oklch(72% 0.1 30);
+    --sparkle-rose: oklch(68% 0.12 10);
+    --deep-navy: oklch(95% 0.01 80);
+    --leaf-green: oklch(65% 0.12 160);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Lato', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-display {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-body {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-blue {
+    background: linear-gradient(135deg, oklch(52% 0.12 230), oklch(65% 0.14 220), oklch(72% 0.1 230));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-crystal {
+    background: linear-gradient(135deg, oklch(52% 0.12 230), oklch(78% 0.08 30));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-crystal-gradient {
+    background: linear-gradient(135deg, oklch(97% 0.008 80) 0%, oklch(93% 0.02 220) 50%, oklch(97% 0.008 80) 100%);
+  }
+
+  .bg-moon-gradient {
+    background: linear-gradient(180deg, oklch(97% 0.008 80) 0%, oklch(94% 0.018 220) 100%);
+  }
+
+  .sparkle-border {
+    border: 1px solid oklch(72% 0.1 230 / 0.3);
+    box-shadow: 0 0 20px oklch(52% 0.12 230 / 0.08);
+  }
+
+  .crystal-card {
+    background: oklch(99% 0.005 80);
+    border: 1px solid oklch(72% 0.1 230 / 0.25);
+    box-shadow: 0 4px 24px oklch(52% 0.12 230 / 0.08);
+  }
+
+  .crystal-card:hover {
+    box-shadow: 0 8px 32px oklch(52% 0.12 230 / 0.15);
+    border-color: oklch(52% 0.12 230 / 0.4);
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes moonrise {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-moonrise {
+  animation: moonrise 0.8s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, oklch(52% 0.12 230 / 0.1) 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}

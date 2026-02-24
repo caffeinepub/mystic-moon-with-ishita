@@ -1,0 +1,85 @@
+{
+  "kind": "build_request",
+  "title": "Apply logo color theme and use uploaded service images in service section",
+  "projectName": "Mystic Moon with Ishita",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Generate polished service card banner images for each service category using the uploaded service images (Mini Readings, Love & Relationship Readings, Career/Money/Life, Deep & Detailed Readings, Premium/Exclusive) and incorporate logo elements (blue crescent moon, crystals, sparkle stars, botanical leaves) as decorative overlays to beautify each card. Save them as static assets in frontend/public/assets/generated/ and display them in the Services section as the visual header/illustration for each service package card.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "use given service images to post in service section",
+          "use the given logo of blue color with crystal and moon to beautify the service section pic"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each service category card in the Services section displays its corresponding uploaded service image enhanced with logo-themed decorative elements",
+        "Images are served from frontend/public/assets/generated/",
+        "Service images are visually consistent with the blue crystal-moon logo aesthetic"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Retheme the entire website to match the logo's color palette: primary steel blue (#2b7ab5 / similar), cream/off-white background (#f5f0ea), soft peach/rose accent for sparkles, and deep navy for text. Update all CSS custom properties in frontend/src/index.css, Tailwind config tokens (mystic colors), gradient backgrounds in App.tsx, Hero, Header, Services, About, Footer, ProductCatalog, Reviews, and all other section components to reflect this blue-crystal-moon color scheme consistently throughout.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "turn the whole website into my logo theme"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Primary color across the site is the logo's steel blue",
+        "Background uses the creamy off-white from the logo background",
+        "Accent sparkle/highlight color reflects the peach-rose tones from logo stars",
+        "All buttons, headings, cards, badges, and section backgrounds use the updated logo-consistent palette",
+        "No legacy purple or dark theme colors remain as primary UI elements"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Update the ServicesGallery component (frontend/src/components/ServicesGallery.tsx) and serviceGalleryImages data (frontend/src/data/serviceGalleryImages.ts) to use the newly generated service category images from frontend/public/assets/generated/ instead of placeholder paths, mapping each image to its correct service category label.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "use given service images to post in service section"
+        ]
+      },
+      "acceptanceCriteria": [
+        "ServicesGallery grid shows the real uploaded/generated service images",
+        "Each gallery item has the correct category label (Mini Readings, Love & Relationship, Career/Money/Life, Deep & Detailed, Premium/Exclusive)",
+        "No broken image links in the gallery"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui/",
+    "Do not alter the backend data model or Motoko actor",
+    "All generated images must be placed in frontend/public/assets/generated/"
+  ],
+  "nonGoals": [
+    "Changing service pricing data or backend service records",
+    "Adding new service categories beyond what exists",
+    "Redesigning the overall page layout or section structure"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Service card banner for Mini Readings — blue crescent moon and crystal cluster illustration with sparkle stars on a cream background, pentacle hand motif in the corner, blue line-art style (service-mini-readings-banner.dim_800x500.png)",
+      "Service card banner for Love & Relationship Readings — blue crescent moon and crystal cluster illustration with sparkle stars and rose-pink accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-love-relationship-banner.dim_800x500.png)",
+      "Service card banner for Career / Money / Life — blue crescent moon and crystal cluster illustration with sparkle stars and amber accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-career-money-life-banner.dim_800x500.png)",
+      "Service card banner for Deep & Detailed Readings — blue crescent moon and crystal cluster illustration with sparkle stars and golden accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-deep-detailed-banner.dim_800x500.png)",
+      "Service card banner for Premium / Exclusive — blue crescent moon and crystal cluster illustration with sparkle stars and flame-orange accent on a cream background, pentacle hand motif in the corner, blue line-art style (service-premium-exclusive-banner.dim_800x500.png)"
+    ],
+    "edits": []
+  }
+}
