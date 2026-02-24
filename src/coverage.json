@@ -1,50 +1,36 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T15:29:10.251Z",
+  "generatedAt": "2026-02-23T22:05:45.846Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-28",
-        "summary": "Replace the existing service gallery images in the ServicesGallery component with the 8 uploaded Instagram screenshots in the following order: Screenshot_20260223-202001_Instagram-2.jpg (Career/Money/Life section header), Screenshot_20260223-202059_Instagram-2.jpg (Love & Relationship services), Screenshot_20260223-202107_Instagram-2.jpg (Future of This Connection and Deep & Detailed header), Screenshot_20260223-202112_Instagram-2.jpg (1 Month Forecast and 3 Month Forecast with Schedule Your Reading button), Screenshot_20260223-202008_Instagram-2.jpg (Money & Abundance Reading and Life Purpose/Direction Reading), Screenshot_20260223-202048_Instagram-2.jpg (Personalized Voice Note Reading and Emergency Same-Day Reading with Love & Relationship header), Screenshot_20260223-202025_Instagram-2.jpg (Mini Readings with 1 Question Reading and 3 Card Reading), Screenshot_20260223-202043_Instagram-2.jpg (Premium/Exclusive with Soulmate/Twin Flame Reading and Personalized Voice Note Reading)",
-        "status": "missing",
-        "plannedFiles": [
-          "frontend/src/components/ServicesGallery.tsx"
-        ],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-29",
-        "summary": "Update the serviceGalleryImages data array in frontend/src/data/serviceGalleryImages.ts to reference the 8 new uploaded screenshot filenames instead of the current service category image paths",
+        "id": "REQ-1",
+        "summary": "Redesign the Services section to display tarot reading service cards in a clean, card-based layout matching the reference images. Each service card must include: a circular icon or badge (Mini Readings icon), the service title in a serif font (e.g., '1 Question Reading'), a brief description below the title, the price prominently displayed (₹199, ₹299, etc.), and 'per session' label. Cards should have rounded corners, subtle borders, and ample padding.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/serviceGalleryImages.ts"
+          "frontend/src/components/Services.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/data/serviceGalleryImages.ts"
+          "frontend/src/components/Services.tsx"
         ]
       },
       {
-        "id": "REQ-30",
-        "summary": "Render all 8 uploaded Instagram screenshot images as static assets in the frontend/public/assets/generated directory with appropriate filenames that maintain clarity about their content (e.g., career-money-life-header.jpg, love-relationship-services.jpg, etc.)",
-        "status": "missing",
+        "id": "REQ-2",
+        "summary": "Group services by category with section headers. Display 'Mini Readings' as a section with its own badge/icon, followed by individual service cards (1 Question Reading, 3 Card Reading, etc.). Add similar sections for 'Premium / In-Depth Readings' and other service categories if applicable. Each section header should match the style from the reference images.",
+        "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/Screenshot_20260223-202001_Instagram-2.jpg",
-          "frontend/public/assets/Screenshot_20260223-202059_Instagram-2.jpg",
-          "frontend/public/assets/Screenshot_20260223-202107_Instagram-2.jpg",
-          "frontend/public/assets/Screenshot_20260223-202112_Instagram-2.jpg",
-          "frontend/public/assets/Screenshot_20260223-202008_Instagram-2.jpg",
-          "frontend/public/assets/Screenshot_20260223-202048_Instagram-2.jpg",
-          "frontend/public/assets/Screenshot_20260223-202025_Instagram-2.jpg",
-          "frontend/public/assets/Screenshot_20260223-202043_Instagram-2.jpg"
+          "frontend/src/components/Services.tsx"
         ],
-        "matchedFiles": []
+        "matchedFiles": [
+          "frontend/src/components/Services.tsx"
+        ]
       }
     ]
   },
@@ -53,7 +39,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/data/serviceGalleryImages.ts",
+    "frontend/src/App.tsx",
+    "frontend/src/components/Services.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

@@ -1,71 +1,53 @@
 {
   "kind": "build_request",
-  "title": "Replace service gallery images with uploaded Instagram screenshots in order",
+  "title": "Update Services section layout to match reference format",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-28",
-      "text": "Replace the existing service gallery images in the ServicesGallery component with the 8 uploaded Instagram screenshots in the following order: Screenshot_20260223-202001_Instagram-2.jpg (Career/Money/Life section header), Screenshot_20260223-202059_Instagram-2.jpg (Love & Relationship services), Screenshot_20260223-202107_Instagram-2.jpg (Future of This Connection and Deep & Detailed header), Screenshot_20260223-202112_Instagram-2.jpg (1 Month Forecast and 3 Month Forecast with Schedule Your Reading button), Screenshot_20260223-202008_Instagram-2.jpg (Money & Abundance Reading and Life Purpose/Direction Reading), Screenshot_20260223-202048_Instagram-2.jpg (Personalized Voice Note Reading and Emergency Same-Day Reading with Love & Relationship header), Screenshot_20260223-202025_Instagram-2.jpg (Mini Readings with 1 Question Reading and 3 Card Reading), Screenshot_20260223-202043_Instagram-2.jpg (Premium/Exclusive with Soulmate/Twin Flame Reading and Personalized Voice Note Reading)",
+      "id": "REQ-1",
+      "text": "Redesign the Services section to display tarot reading service cards in a clean, card-based layout matching the reference images. Each service card must include: a circular icon or badge (Mini Readings icon), the service title in a serif font (e.g., '1 Question Reading'), a brief description below the title, the price prominently displayed (₹199, ₹299, etc.), and 'per session' label. Cards should have rounded corners, subtle borders, and ample padding.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-last"
         ],
         "quotes": [
-          "Replace service images with given images on types of reading in order"
+          "Make the service section like this format"
         ]
       },
       "acceptanceCriteria": [
-        "All 8 uploaded Instagram screenshots are displayed in the Services Gallery section",
-        "Images appear in the exact order specified matching the tarot service categories",
-        "Each image maintains its original quality and aspect ratio",
-        "The gallery layout remains responsive and visually consistent with the mystical theme"
+        "Services are displayed in a vertical stack or responsive grid of cards",
+        "Each card shows the service icon/badge, title, description, price, and 'per session' text",
+        "Typography uses elegant serif fonts (Cinzel or Cormorant Garamond) for titles",
+        "Cards have rounded borders and consistent spacing between elements",
+        "Layout matches the visual hierarchy shown in the uploaded reference screenshots"
       ]
     },
     {
-      "id": "REQ-29",
-      "text": "Update the serviceGalleryImages data array in frontend/src/data/serviceGalleryImages.ts to reference the 8 new uploaded screenshot filenames instead of the current service category image paths",
+      "id": "REQ-2",
+      "text": "Group services by category with section headers. Display 'Mini Readings' as a section with its own badge/icon, followed by individual service cards (1 Question Reading, 3 Card Reading, etc.). Add similar sections for 'Premium / In-Depth Readings' and other service categories if applicable. Each section header should match the style from the reference images.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-last"
         ]
       },
       "acceptanceCriteria": [
-        "The serviceGalleryImages array contains exactly 8 entries",
-        "Each entry maps to the correct uploaded screenshot filename",
-        "The order matches the sequence: Career/Money/Life section, Love & Relationship, Future/Deep sections, Forecasts with CTA, Money/Life Purpose, Premium services, Mini Readings, Premium/Exclusive details",
-        "All image paths correctly point to the generated assets directory"
-      ]
-    },
-    {
-      "id": "REQ-30",
-      "text": "Render all 8 uploaded Instagram screenshot images as static assets in the frontend/public/assets/generated directory with appropriate filenames that maintain clarity about their content (e.g., career-money-life-header.jpg, love-relationship-services.jpg, etc.)",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All 8 screenshots are saved in frontend/public/assets/generated/",
-        "Filenames are descriptive and indicate the service category or section they represent",
-        "Images maintain their original quality and format",
-        "File paths are correctly referenced in the serviceGalleryImages data"
+        "Services are organized under clear category headers (e.g., 'Mini Readings', 'Premium / In-Depth Readings')",
+        "Category headers use matching typography and styling from the reference",
+        "Each category section is visually separated with appropriate spacing"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the ServicesGallery component structure or layout",
-    "Maintain the existing mystical visual theme and styling",
-    "Preserve the responsive grid layout for service images",
-    "Do not alter the 'Schedule Your Reading' CTA button functionality"
+    "Do not modify the backend/main.mo file or change service data structure",
+    "Preserve existing service pricing and descriptions from the backend",
+    "Do not alter the Header, Footer, or other non-Services components"
   ],
   "nonGoals": [
-    "Creating new service categories or changing service pricing",
-    "Modifying the Services section component",
-    "Changing the order or content of other website sections",
-    "Adding new filtering or sorting functionality to the gallery"
+    "Changing service prices or adding new services to the backend",
+    "Modifying the product catalog layout",
+    "Altering the reviews section or other components"
   ],
   "imageRequirements": {
     "required": [],

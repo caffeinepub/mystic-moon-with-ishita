@@ -1,227 +1,24 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 13,
-  "summary": "Professional tarot reading and crystal shop website for Mystic Moon with Ishita featuring about section with 4 years healing experience, booking system for multiple tarot reading services with Indian Rupees pricing (₹199-₹1,999), product gallery with crystals and bracelets (₹900+ pricing), Instagram integration, and 35 customer reviews",
-  "architectural_notes": [
-    "E-commerce functionality for crystal and bracelet shopping",
-    "Product image gallery with professional photography",
-    "Customer review system with timestamps",
-    "Social media integration (Instagram)",
-    "Integration with existing website at mysticmoonwithishita-2kv.caffeine.xyz",
-    "Multi-service booking system with detailed customer information collection",
-    "Tarot reading service catalog with tiered pricing structure in INR",
-    "Payment gateway consideration for Razorpay integration (future enhancement)"
-  ],
-  "known_issues": [
-    "Payment gateway integration (Razorpay for INR) not currently implemented - placeholder booking system in use"
-  ],
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-add-instagram-social-link-to-mysticmoonwithishita-in-the-website-header-or-footer",
-      "title": "Add Instagram social link to @MysticMoonWithIshita in the website header or footer",
+      "id": "feature-redesign-the-services-section-to-display-tarot-reading-service-cards-in-a-clean-card-based-layout-matching-the-reference-images-each-service-card-must-include-a-circular-icon-or-badge-mini-readings-icon-the-service-title-in-a-serif-font-e-g-1-question-reading-a-brief-description-below-the-title-the-price-prominently-displayed-199-299-etc-and-per-session-label-cards-should-have-rounded-corners-subtle-borders-and-ample-padding",
+      "title": "Redesign the Services section to display tarot reading service cards in a clean, card-based layout matching the reference images. Each service card must include: a circular icon or badge (Mini Readings icon), the service title in a serif font (e.g., '1 Question Reading'), a brief description below the title, the price prominently displayed (₹199, ₹299, etc.), and 'per session' label. Cards should have rounded corners, subtle borders, and ample padding.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-an-about-section-describing-ishita-as-a-genuine-healer-with-strong-intuition-and-4-years-of-experience-in-tarot-reading-emphasizing-authenticity-and-healing-abilities",
-      "title": "Create an About section describing Ishita as a genuine healer with strong intuition and 4 years of experience in tarot reading, emphasizing authenticity and healing abilities",
+      "id": "feature-group-services-by-category-with-section-headers-display-mini-readings-as-a-section-with-its-own-badge-icon-followed-by-individual-service-cards-1-question-reading-3-card-reading-etc-add-similar-sections-for-premium-in-depth-readings-and-other-service-categories-if-applicable-each-section-header-should-match-the-style-from-the-reference-images",
+      "title": "Group services by category with section headers. Display 'Mini Readings' as a section with its own badge/icon, followed by individual service cards (1 Question Reading, 3 Card Reading, etc.). Add similar sections for 'Premium / In-Depth Readings' and other service categories if applicable. Each section header should match the style from the reference images.",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-35-customer-reviews-from-different-people-spanning-january-to-present-covering-both-tarot-reading-sessions-and-crystal-product-purchases",
-      "title": "Add 35 customer reviews from different people spanning January to present, covering both tarot reading sessions and crystal product purchases",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-product-catalog-featuring-all-types-of-crystals-and-crystal-bracelets-with-high-quality-professional-product-images",
-      "title": "Create a product catalog featuring all types of crystals and crystal bracelets with high-quality professional product images",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-product-pricing-system-with-base-price-of-500-plus-400-markup-resulting-in-minimum-price-of-900-with-prices-displayed-in-indian-rupees",
-      "title": "Implement product pricing system with base price of ₹500 plus ₹400 markup, resulting in minimum price of ₹900, with prices displayed in Indian Rupees",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-design-a-cohesive-mystical-visual-theme-with-warm-earth-tones-celestial-accents-and-elegant-typography-that-reflects-spiritual-healing-and-crystal-energy-aesthetics",
-      "title": "Design a cohesive mystical visual theme with warm earth tones, celestial accents, and elegant typography that reflects spiritual healing and crystal energy aesthetics",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-render-all-generated-product-images-as-static-assets-in-frontend-public-assets-generated-directory",
-      "title": "Render all generated product images as static assets in frontend/public/assets/generated directory",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-integrate-any-unique-sections-features-or-content-from-the-external-mystic-moon-website-into-the-current-site-while-maintaining-the-existing-mystical-visual-theme-with-warm-earth-tones-and-celestial-accents",
-      "title": "Integrate any unique sections, features, or content from the external Mystic Moon website into the current site while maintaining the existing mystical visual theme with warm earth tones and celestial accents",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-if-the-external-website-contains-additional-products-services-or-business-information-not-present-in-the-current-site-integrate-them-into-the-appropriate-sections-product-catalog-services-list-or-about-section",
-      "title": "If the external website contains additional products, services, or business information not present in the current site, integrate them into the appropriate sections (product catalog, services list, or about section)",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-the-merged-website-presents-a-unified-professional-business-identity-under-the-name-mysticmoonwithishita-com-with-consistent-branding-messaging-and-user-experience-throughout",
-      "title": "Ensure the merged website presents a unified, professional business identity under the name MysticMoonWithIshita.com with consistent branding, messaging, and user experience throughout",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-existing-services-section-with-a-comprehensive-tarot-reading-services-catalog-organized-into-five-categories-mini-readings-1-question-reading-199-for-yes-no-or-short-guidance-3-card-reading-299-for-past-present-future-situation-advice-outcome-love-relationship-readings-love-guidance-reading-399-no-contact-separation-reading-499-does-he-she-love-me-499-future-of-this-connection-599-career-money-life-readings-career-guidance-reading-399-money-abundance-reading-499-life-purpose-direction-reading-699-deep-detailed-readings-full-tarot-spread-6-8-cards-999-1-month-forecast-899-3-month-forecast-1-499-and-premium-exclusive-soulmate-twin-flame-reading-1-499-personalized-voice-note-reading-1-999-emergency-same-day-reading-300-extra",
-      "title": "Replace the existing services section with a comprehensive tarot reading services catalog organized into five categories: Mini Readings (1 Question Reading ₹199 for yes/no or short guidance, 3 Card Reading ₹299 for past-present-future/situation-advice-outcome), Love & Relationship Readings (Love Guidance Reading ₹399, No Contact/Separation Reading ₹499, Does He/She Love Me ₹499, Future of This Connection ₹599), Career/Money/Life Readings (Career Guidance Reading ₹399, Money & Abundance Reading ₹499, Life Purpose/Direction Reading ₹699), Deep & Detailed Readings (Full Tarot Spread 6-8 cards ₹999, 1 Month Forecast ₹899, 3 Month Forecast ₹1,499), and Premium/Exclusive (Soulmate/Twin Flame Reading ₹1,499, Personalized Voice Note Reading ₹1,999, Emergency Same-Day Reading +₹300 extra)",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-an-important-notes-section-that-displays-four-key-policies-delivery-within-24-48-hours-with-hourglass-icon-voice-written-format-options-as-per-package-with-headphone-and-document-icons-no-health-legal-pregnancy-predictions-with-x-icon-and-100-confidential-intuitive-reading-with-lock-icon",
-      "title": "Add an Important Notes section that displays four key policies: Delivery within 24-48 hours (with hourglass icon), Voice/Written format options as per package (with headphone and document icons), No health, legal, pregnancy predictions (with X icon), and 100% confidential & intuitive reading (with lock icon)",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-current-website-logo-branding-with-the-mystic-moon-with-ishita-logo-featuring-a-blue-crescent-moon-with-crystals-leaves-and-stars-positioning-it-prominently-in-the-website-header",
-      "title": "Replace the current website logo/branding with the Mystic Moon with Ishita logo featuring a blue crescent moon with crystals, leaves, and stars, positioning it prominently in the website header",
-      "reqIds": [
-        "REQ-14"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-render-the-mystic-moon-with-ishita-logo-and-all-service-category-decorative-illustrations-hand-holding-pentacle-with-clouds-design-as-static-assets-in-the-frontend-public-assets-generated-directory",
-      "title": "Render the Mystic Moon with Ishita logo and all service category decorative illustrations (hand holding pentacle with clouds design) as static assets in the frontend/public/assets/generated directory",
-      "reqIds": [
-        "REQ-15"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-redesign-the-services-section-to-display-each-tarot-reading-service-category-in-a-dedicated-visual-card-format-with-decorative-hand-holding-pentacle-with-clouds-illustration-at-the-top-and-bottom-of-each-category-section",
-      "title": "Redesign the Services section to display each tarot reading service category in a dedicated visual card format with decorative hand-holding-pentacle-with-clouds illustration at the top and bottom of each category section",
-      "reqIds": [
-        "REQ-16"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-mini-readings-category-card-to-display-a-sparkle-emoji-icon-and-list-two-services-1-question-reading-199-yes-no-or-short-guidance-and-3-card-reading-299-past-present-future-situation-advice-outcome",
-      "title": "Update the Mini Readings category card to display a sparkle emoji (🌟) icon and list two services: '1 Question Reading – ₹199 (Yes/No or short guidance)' and '3 Card Reading – ₹299 (Past-Present-Future / Situation-Advice-Outcome)'",
-      "reqIds": [
-        "REQ-17"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-love-relationship-readings-category-card-to-display-a-heart-with-sparkle-emoji-icon-and-list-four-services-love-guidance-reading-399-no-contact-separation-reading-499-does-he-she-love-me-499-and-future-of-this-connection-599",
-      "title": "Update the Love & Relationship Readings category card to display a heart with sparkle emoji (💖) icon and list four services: 'Love Guidance Reading – ₹399', 'No Contact / Separation Reading – ₹499', 'Does He/She Love Me? – ₹499', and 'Future of This Connection – ₹599'",
-      "reqIds": [
-        "REQ-18"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-career-money-life-category-card-to-display-a-briefcase-emoji-icon-and-list-three-services-career-guidance-reading-399-money-abundance-reading-499-and-life-purpose-direction-reading-699",
-      "title": "Update the Career/Money/Life category card to display a briefcase emoji (💼) icon and list three services: 'Career Guidance Reading – ₹399', 'Money & Abundance Reading – ₹499', and 'Life Purpose / Direction Reading – ₹699'",
-      "reqIds": [
-        "REQ-19"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-deep-detailed-readings-category-card-to-display-a-crescent-moon-emoji-icon-and-list-three-services-full-tarot-spread-6-8-cards-999-1-month-forecast-899-and-3-month-forecast-1-499",
-      "title": "Update the Deep & Detailed Readings category card to display a crescent moon emoji (🌙) icon and list three services: 'Full Tarot Spread (6-8 cards) – ₹999', '1 Month Forecast – ₹899', and '3 Month Forecast – ₹1,499'",
-      "reqIds": [
-        "REQ-20"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-premium-exclusive-category-card-to-display-a-fire-emoji-icon-and-list-three-services-soulmate-twin-flame-reading-1-499-personalized-voice-note-reading-1-999-and-emergency-same-day-reading-300-extra",
-      "title": "Update the Premium/Exclusive category card to display a fire emoji (🔥) icon and list three services: 'Soulmate / Twin Flame Reading – ₹1,499', 'Personalized Voice Note Reading – ₹1,999', and 'Emergency Same-Day Reading – + ₹300 extra'",
-      "reqIds": [
-        "REQ-21"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-important-notes-section-to-display-a-pushpin-emoji-icon-as-the-section-header-and-list-four-policies-with-their-respective-emojis-delivery-within-24-48-hours-voice-written-as-per-package-no-health-legal-pregnancy-predictions-and-100-confidential-intuitive-reading",
-      "title": "Update the Important Notes section to display a pushpin emoji (📌) icon as the section header and list four policies with their respective emojis: '⏳ Delivery within 24-48 hours', '🎧 Voice / 📄 Written (as per package)', '❌ No health, legal, pregnancy predictions', and '🔒 100% confidential & intuitive reading'",
-      "reqIds": [
-        "REQ-22"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-new-dedicated-services-gallery-section-on-the-website-that-displays-all-tarot-reading-service-category-images-in-a-visually-organized-layout",
-      "title": "Create a new dedicated Services Gallery section on the website that displays all tarot reading service category images in a visually organized layout",
-      "reqIds": [
-        "REQ-23"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-display-service-category-images-with-proper-visual-hierarchy-showing-category-icons-titles-service-descriptions-and-pricing-in-indian-rupees-matching-the-format-from-the-uploaded-screenshots",
-      "title": "Display service category images with proper visual hierarchy showing category icons, titles, service descriptions, and pricing in Indian Rupees matching the format from the uploaded screenshots",
-      "reqIds": [
-        "REQ-24"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-schedule-your-reading-call-to-action-button-at-the-bottom-of-the-services-gallery-section-matching-the-purple-button-style-shown-in-the-uploaded-images",
-      "title": "Add the 'Schedule Your Reading' call-to-action button at the bottom of the Services Gallery section matching the purple button style shown in the uploaded images",
-      "reqIds": [
-        "REQ-26"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-render-all-28-uploaded-tarot-service-category-screenshots-as-static-assets-in-the-frontend-public-assets-generated-directory",
-      "title": "Render all 28 uploaded tarot service category screenshots as static assets in the frontend/public/assets/generated directory",
-      "reqIds": [
-        "REQ-27"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-servicegalleryimages-data-array-in-frontend-src-data-servicegalleryimages-ts-to-reference-the-8-new-uploaded-screenshot-filenames-instead-of-the-current-service-category-image-paths",
-      "title": "Update the serviceGalleryImages data array in frontend/src/data/serviceGalleryImages.ts to reference the 8 new uploaded screenshot filenames instead of the current service category image paths",
-      "reqIds": [
-        "REQ-29"
       ],
       "version": 1
     }
@@ -229,105 +26,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add Instagram link @MysticMoonWithIshita",
+      "summary": "Update service section to match specified format",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Create about section highlighting 4 years healing experience and tarot reading expertise with strong intuition",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Add 35 customer reviews from January onwards for sessions and crystal purchases",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Create product gallery with all types of crystals and crystal bracelets with professional images",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Set product pricing starting at ₹900 (base ₹500 + ₹400)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Merge existing website with mysticmoonwithishita-2kv.caffeine.xyz to create unified business website",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Analyze the content and features from https://mysticmoonwithishita-2kv.caffeine.xyz/ and identify components, sections, or functionality that are not present in the current Mystic Moon with Ishita website",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Add booking form that collects name, contact, birth date/time, and specific questions for tarot readings",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "Add tarot reading services catalog with Mini Readings (₹199-₹299), Love & Relationship readings (₹399-₹599), Career/Money/Life readings (₹399-₹699), Deep Readings (₹899-₹1,499), and Premium services (₹1,499-₹1,999)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Add Important Notes section covering 24-48 hour delivery, voice/written format options, no health/legal/pregnancy predictions, and 100% confidentiality guarantee",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Add Mystic Moon logo to website",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-12",
-      "summary": "Add provided images in specified format to website",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-15",
-      "summary": "Integrate the decorative hand-holding-pentacle-with-clouds illustration at the top and bottom of each service category section as shown in the uploaded images",
-      "reqIds": [
-        "REQ-25"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-16",
-      "summary": "Replace the existing service gallery images in the ServicesGallery component with the 8 uploaded Instagram screenshots in the following order: Screenshot_20260223-202001_Instagram-2.jpg (Career/Money/Life section header), Screenshot_20260223-202059_Instagram-2.jpg (Love & Relationship services), Screenshot_20260223-202107_Instagram-2.jpg (Future of This Connection and Deep & Detailed header), Screenshot_20260223-202112_Instagram-2.jpg (1 Month Forecast and 3 Month Forecast with Schedule Your Reading button), Screenshot_20260223-202008_Instagram-2.jpg (Money & Abundance Reading and Life Purpose/Direction Reading), Screenshot_20260223-202048_Instagram-2.jpg (Personalized Voice Note Reading and Emergency Same-Day Reading with Love & Relationship header), Screenshot_20260223-202025_Instagram-2.jpg (Mini Readings with 1 Question Reading and 3 Card Reading), Screenshot_20260223-202043_Instagram-2.jpg (Premium/Exclusive with Soulmate/Twin Flame Reading and Personalized Voice Note Reading)",
-      "reqIds": [
-        "REQ-28"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-18",
-      "summary": "Render all 8 uploaded Instagram screenshot images as static assets in the frontend/public/assets/generated directory with appropriate filenames that maintain clarity about their content (e.g., career-money-life-header.jpg, love-relationship-services.jpg, etc.)",
-      "reqIds": [
-        "REQ-30"
-      ],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Mystic Moon with Ishita",
+  "projectName": "Update Services section layout to match reference format",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

@@ -1,11 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Replace existing service gallery images with 8 uploaded Instagram screenshots showing tarot reading service categories.
+**Goal:** Redesign the Services section to display tarot reading services in a clean card-based layout matching the reference format.
 
 **Planned changes:**
-- Replace all current service gallery images with the 8 uploaded Instagram screenshots in the specified order
-- Update the serviceGalleryImages data array to reference the new screenshot filenames
-- Save all 8 screenshots as static assets in the frontend/public/assets/generated directory with descriptive filenames
+- Redesign service cards with circular icons/badges, serif font titles, descriptions, prominent pricing (₹199, ₹299, etc.), and "per session" labels
+- Implement rounded corners, subtle borders, and ample padding for each service card
+- Use elegant serif fonts (Cinzel or Cormorant Garamond) for service titles
+- Group services by category with section headers (e.g., "Mini Readings", "Premium / In-Depth Readings")
+- Apply visual hierarchy and spacing matching the reference screenshots
 
-**User-visible outcome:** The Services Gallery section displays the tarot reading service categories using the Instagram screenshots in the exact order specified, maintaining responsive layout and mystical theme.
+**User-visible outcome:** Users will see tarot reading services displayed in an elegant, easy-to-scan card layout with clear pricing, organized by service categories, matching the professional style shown in the reference images.

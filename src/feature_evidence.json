@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-servicegalleryimages-data-array-in-frontend-src-data-servicegalleryimages-ts-to-reference-the-8-new-uploaded-screenshot-filenames-instead-of-the-current-service-category-image-paths",
-      "featureTitle": "Update the serviceGalleryImages data array in frontend/src/data/serviceGalleryImages.ts to reference the 8 new uploaded screenshot filenames instead of the current service category image paths",
+      "featureId": "feature-redesign-the-services-section-to-display-tarot-reading-service-cards-in-a-clean-card-based-layout-matching-the-reference-images-each-service-card-must-include-a-circular-icon-or-badge-mini-readings-icon-the-service-title-in-a-serif-font-e-g-1-question-reading-a-brief-description-below-the-title-the-price-prominently-displayed-199-299-etc-and-per-session-label-cards-should-have-rounded-corners-subtle-borders-and-ample-padding",
+      "featureTitle": "Redesign the Services section to display tarot reading service cards in a clean, card-based layout matching the reference images. Each service card must include: a circular icon or badge (Mini Readings icon), the service title in a serif font (e.g., '1 Question Reading'), a brief description below the title, the price prominently displayed (₹199, ₹299, etc.), and 'per session' label. Cards should have rounded corners, subtle borders, and ample padding.",
       "files": [
-        "frontend/src/data/serviceGalleryImages.ts"
+        "frontend/src/components/Services.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,7 +15,25 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-29"
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-group-services-by-category-with-section-headers-display-mini-readings-as-a-section-with-its-own-badge-icon-followed-by-individual-service-cards-1-question-reading-3-card-reading-etc-add-similar-sections-for-premium-in-depth-readings-and-other-service-categories-if-applicable-each-section-header-should-match-the-style-from-the-reference-images",
+      "featureTitle": "Group services by category with section headers. Display 'Mini Readings' as a section with its own badge/icon, followed by individual service cards (1 Question Reading, 3 Card Reading, etc.). Add similar sections for 'Premium / In-Depth Readings' and other service categories if applicable. Each section header should match the style from the reference images.",
+      "files": [
+        "frontend/src/components/Services.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

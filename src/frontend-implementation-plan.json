@@ -1,91 +1,39 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace service gallery images with uploaded Instagram screenshots",
+  "title": "Update Services section layout to match reference format",
   "requirements": [
     {
-      "id": "REQ-28",
-      "summary": "Replace existing service gallery images in ServicesGallery component with 8 uploaded Instagram screenshots in specified order",
+      "id": "REQ-1",
+      "summary": "Redesign Services section to display tarot reading service cards in a clean, card-based layout matching the reference images with circular icons, serif fonts, prices, and 'per session' labels",
       "acceptanceCriteria": [
-        "All 8 uploaded Instagram screenshots are displayed in the Services Gallery section",
-        "Images appear in the exact order specified matching the tarot service categories",
-        "Each image maintains its original quality and aspect ratio",
-        "The gallery layout remains responsive and visually consistent with the mystical theme"
+        "Services are displayed in a vertical stack or responsive grid of cards",
+        "Each card shows the service icon/badge, title, description, price, and 'per session' text",
+        "Typography uses elegant serif fonts (Cinzel or Cormorant Garamond) for titles",
+        "Cards have rounded borders and consistent spacing between elements",
+        "Layout matches the visual hierarchy shown in the uploaded reference screenshots"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/ServicesGallery.tsx",
+          "path": "frontend/src/components/Services.tsx",
           "operation": "modify",
-          "description": "Verify that the component correctly imports and renders the updated serviceGalleryImages array. Ensure the responsive grid layout and hover effects remain intact while displaying the 8 new Instagram screenshot images in the specified order."
+          "description": "Redesign the Services component to display each tarot service in individual card format with rounded borders, ample padding, and subtle borders. Each card must display: a circular icon/badge (Mini Readings badge from reference), service title using Cinzel or Cormorant Garamond serif font, brief description below title, price prominently displayed (₹199, ₹299, etc.), and 'per session' label beneath the price. Implement responsive grid or vertical stack layout. Remove the existing pentacle SVG decoration and replace with the card-based layout. Fetch services using the existing getTarotServiceCatalog query from useQueries hook. Style cards with rounded corners (rounded-2xl), consistent padding, and maintain the mystical theme colors from the global CSS variables."
         }
       ]
     },
     {
-      "id": "REQ-29",
-      "summary": "Update serviceGalleryImages data array to reference the 8 new uploaded screenshot filenames",
+      "id": "REQ-2",
+      "summary": "Group services by category with section headers displaying 'Mini Readings', 'Premium / In-Depth Readings' and other categories with matching typography from reference images",
       "acceptanceCriteria": [
-        "The serviceGalleryImages array contains exactly 8 entries",
-        "Each entry maps to the correct uploaded screenshot filename",
-        "The order matches the sequence: Career/Money/Life section, Love & Relationship, Future/Deep sections, Forecasts with CTA, Money/Life Purpose, Premium services, Mini Readings, Premium/Exclusive details",
-        "All image paths correctly point to the generated assets directory"
+        "Services are organized under clear category headers (e.g., 'Mini Readings', 'Premium / In-Depth Readings')",
+        "Category headers use matching typography and styling from the reference",
+        "Each category section is visually separated with appropriate spacing"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/data/serviceGalleryImages.ts",
+          "path": "frontend/src/components/Services.tsx",
           "operation": "modify",
-          "description": "Replace the entire serviceGalleryImages array to contain exactly 8 entries mapping to the uploaded Instagram screenshots in this order: 1) Screenshot_20260223-202001_Instagram-2.jpg (Career/Money/Life section header), 2) Screenshot_20260223-202059_Instagram-2.jpg (Love & Relationship services), 3) Screenshot_20260223-202107_Instagram-2.jpg (Future of This Connection and Deep & Detailed header), 4) Screenshot_20260223-202112_Instagram-2.jpg (1 Month Forecast and 3 Month Forecast with Schedule Your Reading button), 5) Screenshot_20260223-202008_Instagram-2.jpg (Money & Abundance Reading and Life Purpose/Direction Reading), 6) Screenshot_20260223-202048_Instagram-2.jpg (Personalized Voice Note Reading and Emergency Same-Day Reading with Love & Relationship header), 7) Screenshot_20260223-202025_Instagram-2.jpg (Mini Readings with 1 Question Reading and 3 Card Reading), 8) Screenshot_20260223-202043_Instagram-2.jpg (Premium/Exclusive with Soulmate/Twin Flame Reading and Personalized Voice Note Reading). All image paths must use the format '/assets/Screenshot_20260223-HHMMSS_Instagram-2.jpg' pointing to the public assets directory."
-        }
-      ]
-    },
-    {
-      "id": "REQ-30",
-      "summary": "Render all 8 uploaded Instagram screenshot images as static assets in the frontend/public/assets directory",
-      "acceptanceCriteria": [
-        "All 8 screenshots are saved in frontend/public/assets/",
-        "Filenames are descriptive and indicate the service category or section they represent",
-        "Images maintain their original quality and format",
-        "File paths are correctly referenced in the serviceGalleryImages data"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202001_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202001_Instagram-2.jpg showing the Career/Money/Life section header to frontend/public/assets/. This image displays the Tarot Reading Services title with the Career/Money/Life category header and Career Guidance Reading card."
-        },
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202059_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202059_Instagram-2.jpg showing Love & Relationship services to frontend/public/assets/. This image displays the Love & Relationship category icon with Love Guidance Reading, No Contact/Separation Reading, and Does He/She Love Me cards."
-        },
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202107_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202107_Instagram-2.jpg showing Future of This Connection and Deep & Detailed sections to frontend/public/assets/. This image displays the Future of This Connection card (₹599) and the Deep & Detailed category header with Full Tarot Spread card."
-        },
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202112_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202112_Instagram-2.jpg showing forecast services with CTA button to frontend/public/assets/. This image displays the 1 Month Forecast card (₹899) and 3 Month Forecast card (₹1,499) with the purple 'Schedule Your Reading' call-to-action button at the bottom."
-        },
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202008_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202008_Instagram-2.jpg showing Money & Abundance and Life Purpose readings to frontend/public/assets/. This image displays the Money & Abundance Reading card (₹499) and Life Purpose/Direction Reading card (₹699) with the Mini Readings category icon visible below."
-        },
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202048_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202048_Instagram-2.jpg showing premium voice note and emergency services to frontend/public/assets/. This image displays the Personalized Voice Note Reading card (₹1,999), Emergency Same-Day Reading card (+₹300 EXTRA), and the Love & Relationship category icon at the bottom."
-        },
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202025_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202025_Instagram-2.jpg showing Mini Readings offerings to frontend/public/assets/. This image displays the Mini Readings category icon with 1 Question Reading card (₹199) and 3 Card Reading card (₹299), plus the Premium/Exclusive category icon at the bottom."
-        },
-        {
-          "path": "frontend/public/assets/Screenshot_20260223-202043_Instagram-2.jpg",
-          "operation": "create",
-          "description": "Copy the uploaded Instagram screenshot Screenshot_20260223-202043_Instagram-2.jpg showing Premium/Exclusive services to frontend/public/assets/. This image displays the Premium/Exclusive category icon with Soulmate/Twin Flame Reading card (₹1,499) and Personalized Voice Note Reading card (₹1,999)."
+          "description": "Add category section headers above each service group. Display 'Mini Readings' header with the circular Mini Readings badge/icon from the reference screenshots, followed by the mini reading service cards. Add similar section headers for 'Premium / In-Depth Readings' (matching premiumExclusive category), 'Love & Relationship' (loveRelationship category), 'Career, Money & Life' (careerMoneyLife category), and 'Deep & Detailed Readings' (deepDetailed category). Style section headers with serif fonts matching the reference images. Use the catalog structure returned by getTarotServiceCatalog (miniReadings, premiumExclusive, loveRelationship, careerMoneyLife, deepDetailed arrays) to organize services by category. Add appropriate vertical spacing between category sections to create clear visual separation."
         }
       ]
     }
