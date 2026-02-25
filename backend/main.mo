@@ -1,15 +1,16 @@
-import Map "mo:core/Map";
-import Array "mo:core/Array";
-import Iter "mo:core/Iter";
-import Runtime "mo:core/Runtime";
-import Text "mo:core/Text";
-import Nat "mo:core/Nat";
-import Order "mo:core/Order";
 import List "mo:core/List";
+import Text "mo:core/Text";
 import Time "mo:core/Time";
+import Map "mo:core/Map";
+import Iter "mo:core/Iter";
+import Nat "mo:core/Nat";
+import Array "mo:core/Array";
+import Runtime "mo:core/Runtime";
+import Order "mo:core/Order";
 import Principal "mo:core/Principal";
 import AccessControl "authorization/access-control";
 import MixinAuthorization "authorization/MixinAuthorization";
+import MixinStorage "blob-storage/Mixin";
 
 actor {
   type ProductId = Text;
@@ -18,12 +19,16 @@ actor {
   // Access control state
   let accessControlState = AccessControl.initState();
   include MixinAuthorization(accessControlState);
+  include MixinStorage();
 
   type UserProfile = { name : Text };
 
   let userProfiles = Map.empty<Principal, UserProfile>();
 
   public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can get profiles");
+    };
     userProfiles.get(caller);
   };
 
@@ -321,7 +326,6 @@ actor {
 
   let appointments = List.empty<Appointment>();
 
-  // Any user including guests can create an appointment (booking a service)
   public shared ({ caller }) func createAppointment(
     fullName : Text,
     dateOfBirth : Text,
@@ -351,5 +355,35 @@ actor {
       Runtime.trap("Unauthorized: Only admins can view all appointments");
     };
     appointments.toArray();
+  };
+
+  // NEWSLETTER SIGN UP
+  type NewsletterSignupRecord = {
+    name : Text;
+    email : Text;
+    timestamp : Int;
+  };
+
+  let newsletterRecords = List.empty<NewsletterSignupRecord>();
+
+  // Any user including guests can sign up for the newsletter
+  public shared ({ caller }) func signupNewsletter(name : Text, email : Text) : async Text {
+    let record : NewsletterSignupRecord = {
+      name;
+      email;
+      timestamp = Time.now();
+    };
+    newsletterRecords.add(record);
+
+    // Hardcoded for now, could be randomized or managed with inventory logic in the future
+    "MOON10";
+  };
+
+  // Only admins can view newsletter signups (contains personal data)
+  public query ({ caller }) func getNewsletterSignUps() : async [NewsletterSignupRecord] {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Admins only can view newsletter signups");
+    };
+    newsletterRecords.toArray();
   };
 };

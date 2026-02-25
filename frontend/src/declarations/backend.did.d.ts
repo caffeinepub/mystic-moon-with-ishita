@@ -21,6 +21,11 @@ export interface Appointment {
   'problemDescription' : string,
   'phone' : string,
 }
+export interface NewsletterSignupRecord {
+  'name' : string,
+  'email' : string,
+  'timestamp' : bigint,
+}
 export interface Product {
   'id' : ProductId,
   'name' : string,
@@ -52,7 +57,33 @@ export interface UserProfile { 'name' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
   { 'guest' : null };
+export interface _CaffeineStorageCreateCertificateResult {
+  'method' : string,
+  'blob_hash' : string,
+}
+export interface _CaffeineStorageRefillInformation {
+  'proposed_top_up_amount' : [] | [bigint],
+}
+export interface _CaffeineStorageRefillResult {
+  'success' : [] | [boolean],
+  'topped_up_amount' : [] | [bigint],
+}
 export interface _SERVICE {
+  '_caffeineStorageBlobIsLive' : ActorMethod<[Uint8Array], boolean>,
+  '_caffeineStorageBlobsToDelete' : ActorMethod<[], Array<Uint8Array>>,
+  '_caffeineStorageConfirmBlobDeletion' : ActorMethod<
+    [Array<Uint8Array>],
+    undefined
+  >,
+  '_caffeineStorageCreateCertificate' : ActorMethod<
+    [string],
+    _CaffeineStorageCreateCertificateResult
+  >,
+  '_caffeineStorageRefillCashier' : ActorMethod<
+    [[] | [_CaffeineStorageRefillInformation]],
+    _CaffeineStorageRefillResult
+  >,
+  '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'addProduct' : ActorMethod<
     [ProductId, string, string, string, ProductType, boolean],
@@ -74,6 +105,7 @@ export interface _SERVICE {
   'getAppointments' : ActorMethod<[], Array<Appointment>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getNewsletterSignUps' : ActorMethod<[], Array<NewsletterSignupRecord>>,
   'getProduct' : ActorMethod<[ProductId], Product>,
   'getProductsByCategory' : ActorMethod<[ProductType], Array<Product>>,
   'getProductsByType' : ActorMethod<[ProductType], Array<Product>>,
@@ -96,6 +128,7 @@ export interface _SERVICE {
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'signupNewsletter' : ActorMethod<[string, string], string>,
   'updateProduct' : ActorMethod<
     [ProductId, string, string, string, ProductType, bigint, boolean],
     undefined

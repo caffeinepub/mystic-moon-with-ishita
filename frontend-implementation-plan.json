@@ -1,38 +1,211 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add 19 crystal products to shop section and fix QR code in payment",
+  "title": "Add Trust & Social Proof and Engagement & Retention Features",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add 38 crystal product entries (19 crystals × 2 forms) to static products data with generated images",
+      "summary": "Add customer reviews and star ratings section on product cards and/or detail view with reviewer name, rating, date, and review text sourced from extended reviews data",
       "acceptanceCriteria": [
-        "All 19 crystals appear in the ProductCatalog section as separate raw and bracelet product cards (38 total cards)",
-        "Each product card shows the crystal name, type badge (raw/bracelet), metaphysical property description, and price starting from ₹600",
-        "Filtering by 'crystal' tab shows all raw forms; filtering by 'bracelet' tab shows all bracelet forms",
-        "Product images render without broken-image errors"
+        "Each product card or product detail view shows its associated reviews with star ratings",
+        "Reviews display reviewer name, date, star rating, and review text",
+        "Average star rating is shown per product",
+        "If no reviews exist for a product, a friendly placeholder is shown"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/data/products.ts",
+          "path": "frontend/src/data/reviews.ts",
           "operation": "modify",
-          "description": "Add 38 new product entries (19 crystals in both raw and bracelet forms) to the products array. Each raw crystal must have: id format '<crystal-name>-raw', name '<Crystal Name> (Raw)', description mentioning the metaphysical property from the BuildRequest (e.g., 'The Master Healer for Clear Quartz'), productType 'crystal', price 600 (base price before markup per constraints), isTrending false, and imageUrl pointing to 'frontend/public/assets/generated/<crystal-name>-raw.dim_800x800.png'. Each bracelet must have: id format '<crystal-name>-bracelet', name '<Crystal Name> Bracelet', same metaphysical property description, productType 'bracelet', price 800 (base price before markup per constraints), isTrending false, and imageUrl pointing to 'frontend/public/assets/generated/<crystal-name>-bracelet.dim_800x800.png'. All 19 crystals from the BuildRequest must be included: Clear Quartz, Amethyst, Rose Quartz, Black Tourmaline, Green Aventurine, Labradorite, Selenite, Fluorite, Aquamarine, Malachite, Black Obsidian, Carnelian, Moonstone, Lapis Lazuli, Pyrite, Tiger's Eye, Moldavite, Blue Lace Agate, Garden Quartz. Use the exact generated image filenames from imageRequirements (e.g., clear-quartz-raw.dim_800x800.png, amethyst-bracelet.dim_800x800.png). Do not modify existing product entries."
+          "description": "Extend the Review interface to include a productId field (string) linking reviews to specific products. Add at least 10-15 product-specific reviews covering various products from the catalog with realistic star ratings (3-5 stars), reviewer names, dates, and review text focused on crystal properties and customer experiences."
+        },
+        {
+          "path": "frontend/src/components/ProductReviews.tsx",
+          "operation": "create",
+          "description": "Create a new ProductReviews component that accepts a productId prop, filters reviews from the extended reviews data file by productId, displays an average star rating summary at the top, and renders individual reviews in a card layout showing reviewer name, star rating (using star icons), date, and review text. If no reviews exist for the product, display a friendly placeholder message like 'No reviews yet for this crystal'."
+        },
+        {
+          "path": "frontend/src/components/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Import and render the ProductReviews component below the product description and pricing section. Pass the product.id as the productId prop. Ensure the reviews section is collapsed by default on the card view with a 'Show Reviews' toggle button to expand/collapse the reviews list, keeping the card compact when reviews are hidden."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Replace broken QR code image in payment section with correct generated QR code",
+      "summary": "Add a 'Customers Also Bought' related products section below product cards, derived by matching product type from the existing products array",
       "acceptanceCriteria": [
-        "The QR code image renders without error in the payment step of the appointment booking flow",
-        "The displayed QR code matches the uploaded image (shows Ishita Singh, UPI ID 9305831180@pthdfc)",
-        "No broken image icon appears in the payment section"
+        "A 'Customers Also Bought' section is visible with at least 2–3 related product suggestions",
+        "Related products are filtered by the same product type (e.g., Crystals, Bracelets)",
+        "Each suggestion shows product image, name, and price",
+        "Clicking a suggestion scrolls to or highlights that product in the catalog"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Appointment.tsx",
+          "path": "frontend/src/components/RelatedProducts.tsx",
+          "operation": "create",
+          "description": "Create a new RelatedProducts component that accepts currentProductId and productType props. Filter the products array from frontend/src/data/products.ts to find products with matching productType excluding the current product. Display up to 3 related products in a horizontal scrollable row with product image, name, and price. Each product card is clickable and triggers smooth scroll to the corresponding product in the main catalog using the product ID as an anchor. Include a section heading 'Customers Also Bought' styled consistently with the blue-crystal-moon design system."
+        },
+        {
+          "path": "frontend/src/components/ProductCard.tsx",
           "operation": "modify",
-          "description": "Update the QR code image src in the payment step to reference the correct generated QR code at 'frontend/public/assets/generated/qr-code.dim_600x800.png'. Locate the img element displaying the QR code within the payment confirmation UI (likely inside a conditional render for currentStep === 'payment' or similar) and replace its src attribute value with '/assets/generated/qr-code.dim_600x800.png'. Ensure the alt text remains descriptive (e.g., 'UPI Payment QR Code'). Do not modify any other payment logic, form validation, or appointment submission flow."
+          "description": "Import and render the RelatedProducts component at the bottom of the product card, below the ProductReviews component. Pass product.id as currentProductId and product.productType as productType props. Ensure the related products section is visually separated with appropriate spacing and border styling."
+        },
+        {
+          "path": "frontend/src/components/ProductCatalog.tsx",
+          "operation": "modify",
+          "description": "Add id attributes to each ProductCard wrapper div using the product.id so that smooth scrolling from related product clicks can target the correct product card in the catalog. Ensure the scroll behavior accounts for the sticky header offset."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add an Instagram-style customer unboxing photo gallery section with masonry/grid layout, hover overlays, and Instagram link",
+      "acceptanceCriteria": [
+        "A gallery section titled 'Our Happy Customers' is visible on the page",
+        "Gallery shows at least 6 image tiles in a grid/masonry layout",
+        "Images have a hover overlay effect with a heart or sparkle icon",
+        "A 'Follow us on Instagram' link is present below the gallery",
+        "Section is responsive on mobile and desktop"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CustomerGallery.tsx",
+          "operation": "create",
+          "description": "Create a new CustomerGallery component that displays a section titled 'Our Happy Customers' with a grid layout (3 columns on desktop, 2 on tablet, 1 on mobile) showing the 6 generated unboxing images from frontend/public/assets/generated/unboxing-1.dim_600x600.png through unboxing-6.dim_600x600.png. Each image tile has a hover overlay effect showing a heart or sparkle icon using the existing sparkle utility classes from the design system. Below the gallery grid, include a centered 'Follow us on Instagram' link button styled with the moon gradient classes that opens the Instagram page in a new tab. Use responsive Tailwind grid classes and ensure proper aspect ratios for the images."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import the CustomerGallery component and render it in the main page layout between the Reviews section and the ImportantNotes section. This placement creates a natural flow from product testimonials to visual social proof before the policy information."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a 'Crystal of the Day' section that displays a daily recommended crystal rotated by date with description and shop button",
+      "acceptanceCriteria": [
+        "A 'Crystal of the Day' section is visible on the homepage",
+        "The featured crystal changes daily based on the current date",
+        "Section shows crystal image, name, and a short intention/description",
+        "A 'Shop Now' CTA button is present and scrolls to the product in the catalog",
+        "Section is styled consistently with the existing blue-crystal-moon design system"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CrystalOfTheDay.tsx",
+          "operation": "create",
+          "description": "Create a new CrystalOfTheDay component that calculates the current date and uses it as a seed to deterministically select one crystal from the products array (filter by productType === 'crystal'). Display the selected crystal in a featured card layout with the crystal image, name, a short spiritual intention description (derived from or added to the product description), and a 'Shop Now' CTA button that smooth-scrolls to the product in the catalog using the product ID anchor. Use gradient backgrounds and moon-themed styling from the design system. Include the section heading 'Crystal of the Day' with a sparkle icon."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import the CrystalOfTheDay component and render it near the top of the page layout, immediately after the Hero section and before the Services section. This placement gives prominent visibility to the daily featured crystal as part of the initial user experience."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a 'Find Your Perfect Crystal' quiz feature with 3–5 questions covering zodiac, mood, and intention, with crystal recommendations at the end",
+      "acceptanceCriteria": [
+        "A 'Find Your Perfect Crystal' quiz entry point (button or section) is visible on the page",
+        "Quiz presents at least 3 questions covering zodiac, mood, and intention",
+        "After completion, 1–2 recommended crystals are shown with image, name, and price",
+        "A 'Shop This Crystal' button is shown that scrolls to the product in the catalog",
+        "Quiz can be retaken (reset button shown after results)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CrystalQuiz.tsx",
+          "operation": "create",
+          "description": "Create a new CrystalQuiz component that manages quiz state using React useState. Display a prominent entry point button labeled 'Find Your Perfect Crystal' that opens a modal or expanded section. The quiz presents 3-5 questions: (1) zodiac sign (dropdown with 12 signs), (2) current mood (options: peaceful, energized, stressed, loving, focused), (3) intention (options: healing, love, protection, abundance, clarity). Use a multi-step form with next/back navigation. After completion, calculate 1-2 crystal recommendations by mapping answers to product properties (use a simple scoring algorithm based on crystal metaphysical properties). Display results with crystal images, names, prices, and 'Shop This Crystal' buttons that scroll to the products in the catalog. Include a 'Retake Quiz' button to reset and restart. Style using the blue-crystal-moon design system with gradient backgrounds and sparkle animations."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import the CrystalQuiz component and render it in the page layout after the CrystalOfTheDay section and before the Services section. This placement positions the interactive quiz prominently in the upper portion of the page where users are likely to engage with it early in their browsing experience."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add a loyalty points system UI with points tracker for wishlist, quiz, and engagement actions, persisted in localStorage",
+      "acceptanceCriteria": [
+        "A 'Moonlight Points' counter is visible in the header or as a floating widget",
+        "Points are awarded for wishlist additions, quiz completions, and page engagement",
+        "Points are persisted in localStorage across page refreshes",
+        "A message shows how many points are needed to unlock a reward/discount",
+        "The points UI is styled consistently with the site's design system"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useLoyaltyPoints.ts",
+          "operation": "create",
+          "description": "Create a custom hook useLoyaltyPoints that manages a loyalty points state persisted in localStorage under the key 'moonlightPoints'. Initialize with 0 points if not present. Export functions to award points (with configurable amounts: +5 for wishlist add, +10 for quiz completion, +2 for product card view). Include a function to retrieve the current points balance and calculate progress toward the next reward tier (e.g., 50 points = 5% discount, 100 points = 10% discount). Return the points balance, award functions, and reward tier information."
+        },
+        {
+          "path": "frontend/src/components/LoyaltyPointsBadge.tsx",
+          "operation": "create",
+          "description": "Create a LoyaltyPointsBadge component that uses the useLoyaltyPoints hook to display the current points balance. Render a badge showing 'You have X Moonlight Points' with a moon or star icon. Include a tooltip or small text showing how many points are needed for the next reward (e.g., '15 more points until 5% off!'). Style the badge with gradient backgrounds and sparkle effects from the design system. Make it compact and unobtrusive."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Import the LoyaltyPointsBadge component and render it in the header navigation area next to the wishlist icon button. Ensure proper spacing and alignment so both the wishlist icon and the points badge are visible without crowding the header. Maintain responsive behavior on mobile by potentially stacking or hiding the badge on smaller screens."
+        },
+        {
+          "path": "frontend/src/components/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Import and use the useLoyaltyPoints hook. When a user adds a product to the wishlist (via the wishlist toggle button), call the award function to grant 5 Moonlight Points. Ensure this only triggers once per product add action to prevent duplicate point awards."
+        },
+        {
+          "path": "frontend/src/components/CrystalQuiz.tsx",
+          "operation": "modify",
+          "description": "Import and use the useLoyaltyPoints hook. When the quiz is completed and results are shown, call the award function to grant 10 Moonlight Points. Track quiz completion in localStorage to prevent awarding points for repeated completions of the same quiz session."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add a newsletter signup section or modal offering a discount code for first-time subscribers, collecting name and email, and storing submissions in the backend",
+      "acceptanceCriteria": [
+        "A newsletter signup form is visible either as a section or timed pop-up",
+        "Form collects name and email address",
+        "On valid submission, a success message with a discount code (e.g., MOON10) is shown",
+        "Submitted emails are stored in the backend",
+        "The form validates that the email field is not empty and has a valid format",
+        "The pop-up (if used) does not appear again after the user has already subscribed (tracked via localStorage)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/NewsletterSignup.tsx",
+          "operation": "create",
+          "description": "Create a NewsletterSignup component that renders either as a banner section or a timed modal (controlled by a show prop). Include form fields for name (text input) and email (email input) with validation ensuring both are non-empty and email has valid format. On submission, call the signupNewsletter mutation from useQueries with the provided name and email. On success, display a success message showing the discount code 'MOON10' and store a 'newsletterSubscribed' flag in localStorage to prevent repeated prompts. On error, display a user-friendly error message. Style the form with gradient backgrounds and moon-themed accents from the design system. Include a close button if rendered as a modal."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import the NewsletterSignup component and render it in two places: (1) as a banner section above the Footer component for persistent visibility, and (2) conditionally as a timed modal that appears after 15 seconds of page load if the user has not already subscribed (check localStorage 'newsletterSubscribed' flag). Use React useState and useEffect to manage the modal visibility timer. Ensure the modal has a backdrop overlay and can be dismissed by clicking outside or a close button."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a useMutation hook for the signupNewsletter mutation that calls actor.signupNewsletter(name, email). Return the mutation function and loading/error/success states. Ensure the mutation is only enabled when the actor is available. On success, invalidate any relevant queries if needed."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Wire generated customer unboxing/product gallery images into the CustomerGallery component as static assets",
+      "acceptanceCriteria": [
+        "6 generated gallery images are placed in frontend/public/assets/generated/",
+        "Images are rendered in the gallery grid section",
+        "Images have a consistent warm, mystical aesthetic"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CustomerGallery.tsx",
+          "operation": "modify",
+          "description": "Ensure the CustomerGallery component references the exact generated image filenames with their full workspace paths: frontend/public/assets/generated/unboxing-1.dim_600x600.png, frontend/public/assets/generated/unboxing-2.dim_600x600.png, frontend/public/assets/generated/unboxing-3.dim_600x600.png, frontend/public/assets/generated/unboxing-4.dim_600x600.png, frontend/public/assets/generated/unboxing-5.dim_600x600.png, and frontend/public/assets/generated/unboxing-6.dim_600x600.png. Use these paths in img src attributes with proper alt text describing each unboxing scene (e.g., 'Customer unboxing crystal gift set with rose quartz and amethyst')."
         }
       ]
     }

@@ -1,100 +1,188 @@
 {
   "kind": "build_request",
-  "title": "Add 19 crystal products to shop section and fix QR code in payment",
-  "projectName": "Crystal Healing Shop",
+  "title": "Add Trust & Social Proof and Engagement & Retention Features",
+  "projectName": "Mystic Moon Crystal Shop",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add 19 crystal products to the static products data file (frontend/src/data/products.ts). Each crystal must have two entries: one for the raw form and one for the bracelet form. All 19 crystals are: Clear Quartz (The Master Healer), Amethyst (Spirituality & Protection), Rose Quartz (Love & Compassion), Black Tourmaline (Grounding & Protection), Green Aventurine (Luck & Prosperity), Labradorite (Transformation & Magic), Selenite (Cleansing & Clarity), Fluorite (Focus & Clarity), Aquamarine (Calm & Communication), Malachite (Transformation & Heart Chakra), Black Obsidian (Negativity Shield), Carnelian (Creativity & Motivation), Moonstone (Intuition & Feminine Energy), Lapis Lazuli (Wisdom & Truth), Pyrite (Wealth & Energy), Tiger's Eye (Courage & Confidence), Moldavite (Transformation), Blue Lace Agate (Calmness), Garden Quartz (Grounding & Manifestation). Each product's base price must be ₹600 (raw forms) and ₹800 (bracelet forms) before any markup. The description for each must mention the crystal's metaphysical property (e.g., 'The Master Healer'). Product type must be 'crystal' for raw forms and 'bracelet' for bracelet forms. Image paths must reference the corresponding generated product images from frontend/public/assets/generated/.",
+      "text": "Add a customer reviews and star ratings section on each product card and/or a dedicated product detail view. Display reviewer name, star rating (1–5), date, and review text. Source review data from the existing static reviews data file (frontend/src/data/reviews.ts) and extend it to support product-level reviews linked by product ID.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-6"
         ],
         "quotes": [
-          "Make these crystals as product photography for e commercial website display them in raw and bracelet forms each starting from 600 rupees",
-          "Display them in my crystal shop section"
+          "Customer reviews and ratings on each product"
         ]
       },
       "acceptanceCriteria": [
-        "All 19 crystals appear in the ProductCatalog section as separate raw and bracelet product cards (38 total cards)",
-        "Each product card shows the crystal name, type badge (raw/bracelet), metaphysical property description, and price starting from ₹600",
-        "Filtering by 'crystal' tab shows all raw forms; filtering by 'bracelet' tab shows all bracelet forms",
-        "Product images render without broken-image errors"
+        "Each product card or product detail view shows its associated reviews with star ratings",
+        "Reviews display reviewer name, date, star rating, and review text",
+        "Average star rating is shown per product",
+        "If no reviews exist for a product, a friendly placeholder is shown"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Replace the broken QR code image in the payment section (Appointment.tsx) with the newly generated correct QR code image saved at frontend/public/assets/generated/qr-code.png. Update the img src to point to this path. The QR code displayed must match the uploaded image exactly (Ishita Singh, UPI ID: 9305831180@pthdfc, Kotak Mahindra bank).",
+      "text": "Add a 'Customers Also Bought' or 'You May Also Like' related products section below each product card or in a dedicated section on the page. Derive related products based on matching product type from the existing static products array in frontend/src/data/products.ts.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-6"
         ],
         "quotes": [
-          "correct my qr code picture use this original qr code in payment section",
-          "the qr code is showing error"
+          "Customers also bought or related product suggestions"
         ]
       },
       "acceptanceCriteria": [
-        "The QR code image renders without error in the payment step of the appointment booking flow",
-        "The displayed QR code matches the uploaded image (shows Ishita Singh, UPI ID 9305831180@pthdfc)",
-        "No broken image icon appears in the payment section"
+        "A 'Customers Also Bought' section is visible with at least 2–3 related product suggestions",
+        "Related products are filtered by the same product type (e.g., Crystals, Bracelets)",
+        "Each suggestion shows product image, name, and price",
+        "Clicking a suggestion scrolls to or highlights that product in the catalog"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add an Instagram-style photo gallery section showcasing customer unboxing/product photos. Use a masonry or grid layout with square image tiles. Display static placeholder unboxing images (generated assets) with a heading like 'Our Happy Customers' and a link to the Instagram page. Add a subtle overlay with a heart/star icon on hover.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Instagram-style photo gallery of customer unboxings"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A gallery section titled 'Our Happy Customers' is visible on the page",
+        "Gallery shows at least 6 image tiles in a grid/masonry layout",
+        "Images have a hover overlay effect with a heart or sparkle icon",
+        "A 'Follow us on Instagram' link is present below the gallery",
+        "Section is responsive on mobile and desktop"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a 'Crystal of the Day' section that displays a daily recommended crystal. Rotate through the existing product list using the current date as a seed so the same crystal shows all day. Display the crystal's name, image, a short spiritual description/intention, and a 'Shop Now' button that scrolls to that crystal in the catalog.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Daily crystal recommendation (Crystal of the Day)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Crystal of the Day' section is visible on the homepage",
+        "The featured crystal changes daily based on the current date",
+        "Section shows crystal image, name, and a short intention/description",
+        "A 'Shop Now' CTA button is present and scrolls to the product in the catalog",
+        "Section is styled consistently with the existing blue-crystal-moon design system"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add a 'Find Your Perfect Crystal' quiz feature. The quiz should ask 3–5 questions based on the user's zodiac sign, current mood, and intention (e.g., healing, love, protection, abundance). At the end, recommend 1–2 crystals from the existing product list that best match the answers. Display results with product image, name, and a link to shop.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Quiz: Find your perfect crystal based on zodiac, mood, or intention"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Find Your Perfect Crystal' quiz entry point (button or section) is visible on the page",
+        "Quiz presents at least 3 questions covering zodiac, mood, and intention",
+        "After completion, 1–2 recommended crystals are shown with image, name, and price",
+        "A 'Shop This Crystal' button is shown that scrolls to the product in the catalog",
+        "Quiz can be retaken (reset button shown after results)"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add a loyalty points system UI. Show users a points tracker that awards points for actions like viewing products, adding to wishlist, and completing a quiz. Persist points in localStorage. Display a small 'You have X Moonlight Points' badge in the header or a dedicated rewards widget. Include a message showing how many points are needed for the next reward (e.g., a discount).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Loyalty points system for repeat purchases"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Moonlight Points' counter is visible in the header or as a floating widget",
+        "Points are awarded for wishlist additions, quiz completions, and page engagement",
+        "Points are persisted in localStorage across page refreshes",
+        "A message shows how many points are needed to unlock a reward/discount",
+        "The points UI is styled consistently with the site's design system"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add a newsletter signup section or modal offering a discount code for first-time subscribers. Include a name field and email field. On submission, show a success message with a discount code (e.g., 'MOON10'). Store submitted emails in the backend (append to a stable var list in backend/main.mo). Show the section as a banner above the footer or as a timed pop-up after 15 seconds.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Newsletter signup with a discount for first-time buyers"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A newsletter signup form is visible either as a section or timed pop-up",
+        "Form collects name and email address",
+        "On valid submission, a success message with a discount code (e.g., MOON10) is shown",
+        "Submitted emails are stored in the backend",
+        "The form validates that the email field is not empty and has a valid format",
+        "The pop-up (if used) does not appear again after the user has already subscribed (tracked via localStorage)"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Generate and use placeholder customer unboxing/product gallery images for the Instagram-style gallery section (REQ-3). Create 6 warm, mystical product lifestyle images featuring crystals, bracelets, and spiritual items in aesthetic flat-lay or hand-held compositions.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Instagram-style photo gallery of customer unboxings"
+        ]
+      },
+      "acceptanceCriteria": [
+        "6 generated gallery images are placed in frontend/public/assets/generated/",
+        "Images are rendered in the gallery grid section",
+        "Images have a consistent warm, mystical aesthetic"
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui/",
-    "Crystal product prices must start at ₹600 for raw forms and ₹800 for bracelets as base prices before markup",
-    "QR code image must be served as a static asset from frontend/public/assets/generated/, not fetched from the backend"
+    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui/",
+    "All new frontend logic must use React state or localStorage — no external APIs",
+    "Backend changes must remain within the single-actor pattern in backend/main.mo",
+    "All new sections must follow the existing blue-crystal-moon design system defined in frontend/src/index.css and tailwind.config.js"
   ],
   "nonGoals": [
-    "Adding backend persistence for the new crystal products (static data only)",
-    "Building a cart or checkout flow beyond what already exists",
-    "Changing the overall site design or color palette"
+    "Real email delivery or SMTP integration for newsletter",
+    "Real payment processing for loyalty rewards",
+    "Social media API integration (only static Instagram links)",
+    "User authentication gating for the quiz or loyalty points",
+    "External review platform integrations (e.g., Trustpilot, Google Reviews)"
   ],
   "imageRequirements": {
     "required": [
-      "Clear Quartz raw crystal chunk, white/transparent milky stone, studio product photography on dark moody background with soft lighting (clear-quartz-raw.dim_800x800.png)",
-      "Clear Quartz crystal bead stretch bracelet, white/transparent beads, studio product photography on dark moody background (clear-quartz-bracelet.dim_800x800.png)",
-      "Amethyst raw crystal cluster, deep purple stone, studio product photography on dark moody background with soft lighting (amethyst-raw.dim_800x800.png)",
-      "Amethyst purple bead stretch bracelet, studio product photography on dark moody background (amethyst-bracelet.dim_800x800.png)",
-      "Rose Quartz raw crystal chunk, pale pink stone, studio product photography on dark moody background (rose-quartz-raw.dim_800x800.png)",
-      "Rose Quartz pink bead stretch bracelet, studio product photography on dark moody background (rose-quartz-bracelet.dim_800x800.png)",
-      "Black Tourmaline raw crystal rod, jet black stone, studio product photography on dark moody background (black-tourmaline-raw.dim_800x800.png)",
-      "Black Tourmaline black bead stretch bracelet, studio product photography on dark moody background (black-tourmaline-bracelet.dim_800x800.png)",
-      "Green Aventurine raw tumbled stone, shimmering green stone, studio product photography on dark moody background (green-aventurine-raw.dim_800x800.png)",
-      "Green Aventurine green bead stretch bracelet, studio product photography on dark moody background (green-aventurine-bracelet.dim_800x800.png)",
-      "Labradorite raw slab, dark grey stone with iridescent blue-green flash, studio product photography on dark moody background (labradorite-raw.dim_800x800.png)",
-      "Labradorite grey iridescent bead stretch bracelet, studio product photography on dark moody background (labradorite-bracelet.dim_800x800.png)",
-      "Selenite raw wand, white chalky striated stick, studio product photography on dark moody background (selenite-raw.dim_800x800.png)",
-      "Selenite white bead stretch bracelet, studio product photography on dark moody background (selenite-bracelet.dim_800x800.png)",
-      "Fluorite raw crystal cube, purple-green banded stone, studio product photography on dark moody background (fluorite-raw.dim_800x800.png)",
-      "Fluorite multicolor banded bead stretch bracelet, studio product photography on dark moody background (fluorite-bracelet.dim_800x800.png)",
-      "Aquamarine raw crystal point, pale blue-green stone, studio product photography on dark moody background (aquamarine-raw.dim_800x800.png)",
-      "Aquamarine pale blue bead stretch bracelet, studio product photography on dark moody background (aquamarine-bracelet.dim_800x800.png)",
-      "Malachite raw chunk, vivid green banded stone, studio product photography on dark moody background (malachite-raw.dim_800x800.png)",
-      "Malachite vivid green banded bead stretch bracelet, studio product photography on dark moody background (malachite-bracelet.dim_800x800.png)",
-      "Black Obsidian raw volcanic glass chunk, glossy jet black stone, studio product photography on dark moody background (black-obsidian-raw.dim_800x800.png)",
-      "Black Obsidian glossy black bead stretch bracelet, studio product photography on dark moody background (black-obsidian-bracelet.dim_800x800.png)",
-      "Carnelian raw tumbled stone, warm orange-red stone, studio product photography on dark moody background (carnelian-raw.dim_800x800.png)",
-      "Carnelian orange-red bead stretch bracelet, studio product photography on dark moody background (carnelian-bracelet.dim_800x800.png)",
-      "Moonstone raw cabochon, pearlescent white stone with blue sheen, studio product photography on dark moody background (moonstone-raw.dim_800x800.png)",
-      "Moonstone pearlescent white bead stretch bracelet, studio product photography on dark moody background (moonstone-bracelet.dim_800x800.png)",
-      "Lapis Lazuli raw chunk, deep royal blue stone with gold pyrite flecks, studio product photography on dark moody background (lapis-lazuli-raw.dim_800x800.png)",
-      "Lapis Lazuli deep blue bead stretch bracelet with gold flecks, studio product photography on dark moody background (lapis-lazuli-bracelet.dim_800x800.png)",
-      "Pyrite raw cluster, shiny gold metallic cubic crystals, studio product photography on dark moody background (pyrite-raw.dim_800x800.png)",
-      "Pyrite gold metallic bead stretch bracelet, studio product photography on dark moody background (pyrite-bracelet.dim_800x800.png)",
-      "Tiger's Eye raw tumbled stone, golden-brown chatoyant stone, studio product photography on dark moody background (tigers-eye-raw.dim_800x800.png)",
-      "Tiger's Eye golden-brown chatoyant bead stretch bracelet, studio product photography on dark moody background (tigers-eye-bracelet.dim_800x800.png)",
-      "Moldavite raw fragment, dark forest green glassy tektite, studio product photography on dark moody background (moldavite-raw.dim_800x800.png)",
-      "Moldavite dark green glassy bead stretch bracelet, studio product photography on dark moody background (moldavite-bracelet.dim_800x800.png)",
-      "Blue Lace Agate raw slice, pale blue banded translucent stone, studio product photography on dark moody background (blue-lace-agate-raw.dim_800x800.png)",
-      "Blue Lace Agate pale blue banded bead stretch bracelet, studio product photography on dark moody background (blue-lace-agate-bracelet.dim_800x800.png)",
-      "Garden Quartz raw point, clear quartz with green garden inclusions inside, studio product photography on dark moody background (garden-quartz-raw.dim_800x800.png)",
-      "Garden Quartz clear bead stretch bracelet with green inclusions, studio product photography on dark moody background (garden-quartz-bracelet.dim_800x800.png)",
-      "UPI QR code screenshot showing Ishita Singh name, UPI ID 9305831180@pthdfc, Kotak Mahindra bank, blue background, clean high-contrast black and white QR code (qr-code.dim_600x800.png)"
+      "Mystical crystal flat-lay lifestyle photo with rose quartz, amethyst, and dried flowers on a dark velvet surface (unboxing-1.dim_600x600.png)",
+      "Close-up of a person holding a crystal bracelet with soft bokeh spiritual background (unboxing-2.dim_600x600.png)",
+      "Crystal unboxing scene showing tissue paper, a wooden box, and multiple crystal tumbles (unboxing-3.dim_600x600.png)",
+      "Aesthetic flat-lay of a yantra, crystal pendulum, and incense on a golden cloth (unboxing-4.dim_600x600.png)",
+      "Hands cradling a glowing labradorite crystal with moonlight-inspired lighting (unboxing-5.dim_600x600.png)",
+      "Top-down view of an unboxed crystal gift set with decorative packaging and a thank-you card (unboxing-6.dim_600x600.png)"
     ],
     "edits": []
   }

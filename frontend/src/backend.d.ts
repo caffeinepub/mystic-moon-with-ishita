@@ -7,6 +7,20 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
+export interface Product {
+    id: ProductId;
+    name: string;
+    description: string;
+    productType: ProductType;
+    imageUrl: string;
+    price: bigint;
+    isTrending: boolean;
+}
+export interface NewsletterSignupRecord {
+    name: string;
+    email: string;
+    timestamp: bigint;
+}
 export interface TarotService {
     id: bigint;
     isUrgent: boolean;
@@ -27,15 +41,6 @@ export interface Appointment {
     selectedService: string;
     problemDescription: string;
     phone: string;
-}
-export interface Product {
-    id: ProductId;
-    name: string;
-    description: string;
-    productType: ProductType;
-    imageUrl: string;
-    price: bigint;
-    isTrending: boolean;
 }
 export interface UserProfile {
     name: string;
@@ -69,6 +74,7 @@ export interface backendInterface {
     getAppointments(): Promise<Array<Appointment>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
+    getNewsletterSignUps(): Promise<Array<NewsletterSignupRecord>>;
     getProduct(id: ProductId): Promise<Product>;
     getProductsByCategory(category: ProductType): Promise<Array<Product>>;
     getProductsByType(productType: ProductType): Promise<Array<Product>>;
@@ -85,6 +91,7 @@ export interface backendInterface {
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    signupNewsletter(name: string, email: string): Promise<string>;
     updateProduct(id: ProductId, name: string, description: string, imageUrl: string, productType: ProductType, price: bigint, isTrending: boolean): Promise<void>;
     updateTarotService(id: bigint, name: string, description: string, price: bigint, category: ServiceCategory, isVoiceNote: boolean, isUrgent: boolean): Promise<void>;
 }

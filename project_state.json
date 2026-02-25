@@ -1,30 +1,73 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Crystal shop and healing services website with appointment booking, QR code payment, and a crystal shop section featuring 19 crystals in raw and bracelet forms starting from ₹600.",
-  "architectural_notes": [
-    "Crystal shop section displays products in two forms: raw and bracelet, with pricing starting from ₹600",
-    "Payment section uses a QR code image provided by the user - must use exact original image, not a placeholder"
-  ],
-  "known_issues": [
-    "QR code image in payment section is showing an error / broken image in Version 14"
-  ],
-  "isFixRequest": true,
-  "imageRequirements": "## Required Images\n- Clear Quartz raw crystal chunk, white/transparent milky stone, studio product photography on dark moody background with soft lighting (clear-quartz-raw.dim_800x800.png)\n- Clear Quartz crystal bead stretch bracelet, white/transparent beads, studio product photography on dark moody background (clear-quartz-bracelet.dim_800x800.png)\n- Amethyst raw crystal cluster, deep purple stone, studio product photography on dark moody background with soft lighting (amethyst-raw.dim_800x800.png)\n- Amethyst purple bead stretch bracelet, studio product photography on dark moody background (amethyst-bracelet.dim_800x800.png)\n- Rose Quartz raw crystal chunk, pale pink stone, studio product photography on dark moody background (rose-quartz-raw.dim_800x800.png)\n- Rose Quartz pink bead stretch bracelet, studio product photography on dark moody background (rose-quartz-bracelet.dim_800x800.png)\n- Black Tourmaline raw crystal rod, jet black stone, studio product photography on dark moody background (black-tourmaline-raw.dim_800x800.png)\n- Black Tourmaline black bead stretch bracelet, studio product photography on dark moody background (black-tourmaline-bracelet.dim_800x800.png)\n- Green Aventurine raw tumbled stone, shimmering green stone, studio product photography on dark moody background (green-aventurine-raw.dim_800x800.png)\n- Green Aventurine green bead stretch bracelet, studio product photography on dark moody background (green-aventurine-bracelet.dim_800x800.png)\n- Labradorite raw slab, dark grey stone with iridescent blue-green flash, studio product photography on dark moody background (labradorite-raw.dim_800x800.png)\n- Labradorite grey iridescent bead stretch bracelet, studio product photography on dark moody background (labradorite-bracelet.dim_800x800.png)\n- Selenite raw wand, white chalky striated stick, studio product photography on dark moody background (selenite-raw.dim_800x800.png)\n- Selenite white bead stretch bracelet, studio product photography on dark moody background (selenite-bracelet.dim_800x800.png)\n- Fluorite raw crystal cube, purple-green banded stone, studio product photography on dark moody background (fluorite-raw.dim_800x800.png)\n- Fluorite multicolor banded bead stretch bracelet, studio product photography on dark moody background (fluorite-bracelet.dim_800x800.png)\n- Aquamarine raw crystal point, pale blue-green stone, studio product photography on dark moody background (aquamarine-raw.dim_800x800.png)\n- Aquamarine pale blue bead stretch bracelet, studio product photography on dark moody background (aquamarine-bracelet.dim_800x800.png)\n- Malachite raw chunk, vivid green banded stone, studio product photography on dark moody background (malachite-raw.dim_800x800.png)\n- Malachite vivid green banded bead stretch bracelet, studio product photography on dark moody background (malachite-bracelet.dim_800x800.png)\n- Black Obsidian raw volcanic glass chunk, glossy jet black stone, studio product photography on dark moody background (black-obsidian-raw.dim_800x800.png)\n- Black Obsidian glossy black bead stretch bracelet, studio product photography on dark moody background (black-obsidian-bracelet.dim_800x800.png)\n- Carnelian raw tumbled stone, warm orange-red stone, studio product photography on dark moody background (carnelian-raw.dim_800x800.png)\n- Carnelian orange-red bead stretch bracelet, studio product photography on dark moody background (carnelian-bracelet.dim_800x800.png)\n- Moonstone raw cabochon, pearlescent white stone with blue sheen, studio product photography on dark moody background (moonstone-raw.dim_800x800.png)\n- Moonstone pearlescent white bead stretch bracelet, studio product photography on dark moody background (moonstone-bracelet.dim_800x800.png)\n- Lapis Lazuli raw chunk, deep royal blue stone with gold pyrite flecks, studio product photography on dark moody background (lapis-lazuli-raw.dim_800x800.png)\n- Lapis Lazuli deep blue bead stretch bracelet with gold flecks, studio product photography on dark moody background (lapis-lazuli-bracelet.dim_800x800.png)\n- Pyrite raw cluster, shiny gold metallic cubic crystals, studio product photography on dark moody background (pyrite-raw.dim_800x800.png)\n- Pyrite gold metallic bead stretch bracelet, studio product photography on dark moody background (pyrite-bracelet.dim_800x800.png)\n- Tiger's Eye raw tumbled stone, golden-brown chatoyant stone, studio product photography on dark moody background (tigers-eye-raw.dim_800x800.png)\n- Tiger's Eye golden-brown chatoyant bead stretch bracelet, studio product photography on dark moody background (tigers-eye-bracelet.dim_800x800.png)\n- Moldavite raw fragment, dark forest green glassy tektite, studio product photography on dark moody background (moldavite-raw.dim_800x800.png)\n- Moldavite dark green glassy bead stretch bracelet, studio product photography on dark moody background (moldavite-bracelet.dim_800x800.png)\n- Blue Lace Agate raw slice, pale blue banded translucent stone, studio product photography on dark moody background (blue-lace-agate-raw.dim_800x800.png)\n- Blue Lace Agate pale blue banded bead stretch bracelet, studio product photography on dark moody background (blue-lace-agate-bracelet.dim_800x800.png)\n- Garden Quartz raw point, clear quartz with green garden inclusions inside, studio product photography on dark moody background (garden-quartz-raw.dim_800x800.png)\n- Garden Quartz clear bead stretch bracelet with green inclusions, studio product photography on dark moody background (garden-quartz-bracelet.dim_800x800.png)\n- UPI QR code screenshot showing Ishita Singh name, UPI ID 9305831180@pthdfc, Kotak Mahindra bank, blue background, clean high-contrast black and white QR code (qr-code.dim_600x800.png)",
+  "summary": "Crystal and spiritual products e-commerce website with Holi countdown timer and discount banner. Now adding Trust & Social Proof and Engagement & Retention features.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Mystical crystal flat-lay lifestyle photo with rose quartz, amethyst, and dried flowers on a dark velvet surface (unboxing-1.dim_600x600.png)\n- Close-up of a person holding a crystal bracelet with soft bokeh spiritual background (unboxing-2.dim_600x600.png)\n- Crystal unboxing scene showing tissue paper, a wooden box, and multiple crystal tumbles (unboxing-3.dim_600x600.png)\n- Aesthetic flat-lay of a yantra, crystal pendulum, and incense on a golden cloth (unboxing-4.dim_600x600.png)\n- Hands cradling a glowing labradorite crystal with moonlight-inspired lighting (unboxing-5.dim_600x600.png)\n- Top-down view of an unboxed crystal gift set with decorative packaging and a thank-you card (unboxing-6.dim_600x600.png)",
   "existing_features": [
     {
-      "id": "feature-add-19-crystal-products-to-the-static-products-data-file-frontend-src-data-products-ts-each-crystal-must-have-two-entries-one-for-the-raw-form-and-one-for-the-bracelet-form-all-19-crystals-are-clear-quartz-the-master-healer-amethyst-spirituality-protection-rose-quartz-love-compassion-black-tourmaline-grounding-protection-green-aventurine-luck-prosperity-labradorite-transformation-magic-selenite-cleansing-clarity-fluorite-focus-clarity-aquamarine-calm-communication-malachite-transformation-heart-chakra-black-obsidian-negativity-shield-carnelian-creativity-motivation-moonstone-intuition-feminine-energy-lapis-lazuli-wisdom-truth-pyrite-wealth-energy-tiger-s-eye-courage-confidence-moldavite-transformation-blue-lace-agate-calmness-garden-quartz-grounding-manifestation-each-product-s-base-price-must-be-600-raw-forms-and-800-bracelet-forms-before-any-markup-the-description-for-each-must-mention-the-crystal-s-metaphysical-property-e-g-the-master-healer-product-type-must-be-crystal-for-raw-forms-and-bracelet-for-bracelet-forms-image-paths-must-reference-the-corresponding-generated-product-images-from-frontend-public-assets-generated",
-      "title": "Add 19 crystal products to the static products data file (frontend/src/data/products.ts). Each crystal must have two entries: one for the raw form and one for the bracelet form. All 19 crystals are: Clear Quartz (The Master Healer), Amethyst (Spirituality & Protection), Rose Quartz (Love & Compassion), Black Tourmaline (Grounding & Protection), Green Aventurine (Luck & Prosperity), Labradorite (Transformation & Magic), Selenite (Cleansing & Clarity), Fluorite (Focus & Clarity), Aquamarine (Calm & Communication), Malachite (Transformation & Heart Chakra), Black Obsidian (Negativity Shield), Carnelian (Creativity & Motivation), Moonstone (Intuition & Feminine Energy), Lapis Lazuli (Wisdom & Truth), Pyrite (Wealth & Energy), Tiger's Eye (Courage & Confidence), Moldavite (Transformation), Blue Lace Agate (Calmness), Garden Quartz (Grounding & Manifestation). Each product's base price must be ₹600 (raw forms) and ₹800 (bracelet forms) before any markup. The description for each must mention the crystal's metaphysical property (e.g., 'The Master Healer'). Product type must be 'crystal' for raw forms and 'bracelet' for bracelet forms. Image paths must reference the corresponding generated product images from frontend/public/assets/generated/.",
+      "id": "feature-add-a-customer-reviews-and-star-ratings-section-on-each-product-card-and-or-a-dedicated-product-detail-view-display-reviewer-name-star-rating-1-5-date-and-review-text-source-review-data-from-the-existing-static-reviews-data-file-frontend-src-data-reviews-ts-and-extend-it-to-support-product-level-reviews-linked-by-product-id",
+      "title": "Add a customer reviews and star ratings section on each product card and/or a dedicated product detail view. Display reviewer name, star rating (1–5), date, and review text. Source review data from the existing static reviews data file (frontend/src/data/reviews.ts) and extend it to support product-level reviews linked by product ID.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-replace-the-broken-qr-code-image-in-the-payment-section-appointment-tsx-with-the-newly-generated-correct-qr-code-image-saved-at-frontend-public-assets-generated-qr-code-png-update-the-img-src-to-point-to-this-path-the-qr-code-displayed-must-match-the-uploaded-image-exactly-ishita-singh-upi-id-9305831180-pthdfc-kotak-mahindra-bank",
-      "title": "Replace the broken QR code image in the payment section (Appointment.tsx) with the newly generated correct QR code image saved at frontend/public/assets/generated/qr-code.png. Update the img src to point to this path. The QR code displayed must match the uploaded image exactly (Ishita Singh, UPI ID: 9305831180@pthdfc, Kotak Mahindra bank).",
+      "id": "feature-add-a-customers-also-bought-or-you-may-also-like-related-products-section-below-each-product-card-or-in-a-dedicated-section-on-the-page-derive-related-products-based-on-matching-product-type-from-the-existing-static-products-array-in-frontend-src-data-products-ts",
+      "title": "Add a 'Customers Also Bought' or 'You May Also Like' related products section below each product card or in a dedicated section on the page. Derive related products based on matching product type from the existing static products array in frontend/src/data/products.ts.",
       "reqIds": [
         "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-instagram-style-photo-gallery-section-showcasing-customer-unboxing-product-photos-use-a-masonry-or-grid-layout-with-square-image-tiles-display-static-placeholder-unboxing-images-generated-assets-with-a-heading-like-our-happy-customers-and-a-link-to-the-instagram-page-add-a-subtle-overlay-with-a-heart-star-icon-on-hover",
+      "title": "Add an Instagram-style photo gallery section showcasing customer unboxing/product photos. Use a masonry or grid layout with square image tiles. Display static placeholder unboxing images (generated assets) with a heading like 'Our Happy Customers' and a link to the Instagram page. Add a subtle overlay with a heart/star icon on hover.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-crystal-of-the-day-section-that-displays-a-daily-recommended-crystal-rotate-through-the-existing-product-list-using-the-current-date-as-a-seed-so-the-same-crystal-shows-all-day-display-the-crystal-s-name-image-a-short-spiritual-description-intention-and-a-shop-now-button-that-scrolls-to-that-crystal-in-the-catalog",
+      "title": "Add a 'Crystal of the Day' section that displays a daily recommended crystal. Rotate through the existing product list using the current date as a seed so the same crystal shows all day. Display the crystal's name, image, a short spiritual description/intention, and a 'Shop Now' button that scrolls to that crystal in the catalog.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-find-your-perfect-crystal-quiz-feature-the-quiz-should-ask-3-5-questions-based-on-the-user-s-zodiac-sign-current-mood-and-intention-e-g-healing-love-protection-abundance-at-the-end-recommend-1-2-crystals-from-the-existing-product-list-that-best-match-the-answers-display-results-with-product-image-name-and-a-link-to-shop",
+      "title": "Add a 'Find Your Perfect Crystal' quiz feature. The quiz should ask 3–5 questions based on the user's zodiac sign, current mood, and intention (e.g., healing, love, protection, abundance). At the end, recommend 1–2 crystals from the existing product list that best match the answers. Display results with product image, name, and a link to shop.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-loyalty-points-system-ui-show-users-a-points-tracker-that-awards-points-for-actions-like-viewing-products-adding-to-wishlist-and-completing-a-quiz-persist-points-in-localstorage-display-a-small-you-have-x-moonlight-points-badge-in-the-header-or-a-dedicated-rewards-widget-include-a-message-showing-how-many-points-are-needed-for-the-next-reward-e-g-a-discount",
+      "title": "Add a loyalty points system UI. Show users a points tracker that awards points for actions like viewing products, adding to wishlist, and completing a quiz. Persist points in localStorage. Display a small 'You have X Moonlight Points' badge in the header or a dedicated rewards widget. Include a message showing how many points are needed for the next reward (e.g., a discount).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-newsletter-signup-section-or-modal-offering-a-discount-code-for-first-time-subscribers-include-a-name-field-and-email-field-on-submission-show-a-success-message-with-a-discount-code-e-g-moon10-store-submitted-emails-in-the-backend-append-to-a-stable-var-list-in-backend-main-mo-show-the-section-as-a-banner-above-the-footer-or-as-a-timed-pop-up-after-15-seconds",
+      "title": "Add a newsletter signup section or modal offering a discount code for first-time subscribers. Include a name field and email field. On submission, show a success message with a discount code (e.g., 'MOON10'). Store submitted emails in the backend (append to a stable var list in backend/main.mo). Show the section as a banner above the footer or as a timed pop-up after 15 seconds.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-use-placeholder-customer-unboxing-product-gallery-images-for-the-instagram-style-gallery-section-req-3-create-6-warm-mystical-product-lifestyle-images-featuring-crystals-bracelets-and-spiritual-items-in-aesthetic-flat-lay-or-hand-held-compositions",
+      "title": "Generate and use placeholder customer unboxing/product gallery images for the Instagram-style gallery section (REQ-3). Create 6 warm, mystical product lifestyle images featuring crystals, bracelets, and spiritual items in aesthetic flat-lay or hand-held compositions.",
+      "reqIds": [
+        "REQ-8"
       ],
       "version": 1
     }
@@ -32,19 +75,49 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add crystal shop section with 19 crystals (Clear Quartz, Amethyst, Rose Quartz, Black Tourmaline, Green Aventurine, Labradorite, Selenite, Fluorite, Aquamarine, Malachite, Black Obsidian, Carnelian, Moonstone, Lapis Lazuli, Pyrite, Tiger's Eye, Moldavite, Blue Lace Agate, Garden Quartz) displayed in raw and bracelet forms, each starting from ₹600",
+      "summary": "Customer reviews and ratings on each product",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Fix QR code image in payment section - replace broken/error QR code with the correct original QR code image provided by user",
+      "summary": "Customers also bought / related product suggestions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Instagram-style photo gallery of customer unboxings",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Daily crystal recommendation (Crystal of the Day)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Quiz: Find your perfect crystal based on zodiac, mood, or intention",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Loyalty points system for repeat purchases",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Newsletter signup with discount for first-time buyers",
       "reqIds": [],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Crystal Shop & Healing Services Website",
+  "projectName": "Crystal & Spiritual Products Store",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

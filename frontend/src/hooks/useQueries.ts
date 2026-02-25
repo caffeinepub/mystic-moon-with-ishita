@@ -276,3 +276,14 @@ export function useGetAppointments() {
     enabled: !!actor && !isFetching,
   });
 }
+
+export function useSignupNewsletter() {
+  const { actor } = useActor();
+
+  return useMutation({
+    mutationFn: async (params: { name: string; email: string }) => {
+      if (!actor) throw new Error('Actor not initialized');
+      return actor.signupNewsletter(params.name, params.email);
+    },
+  });
+}
