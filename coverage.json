@@ -1,161 +1,34 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-24T22:01:36.464Z",
+  "generatedAt": "2026-02-25T09:07:05.917Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 8,
-    "implemented": 8,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Add a customer reviews and star ratings section on each product card and/or a dedicated product detail view. Display reviewer name, star rating (1–5), date, and review text. Source review data from the existing static reviews data file (frontend/src/data/reviews.ts) and extend it to support product-level reviews linked by product ID.",
+        "summary": "Add a website rating display in the upper-right corner of the Header component, positioned alongside the existing wishlist button. The rating should visually show '100 / 100 stars' using a star icon and numeric label (e.g., '★ 100' or '100★' with a label like 'Rating'). Style it consistently with the existing header elements (blue-crystal-moon palette).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/reviews.ts",
-          "frontend/src/components/ProductReviews.tsx",
-          "frontend/src/components/ProductCard.tsx"
+          "frontend/src/components/Header.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/data/reviews.ts",
-          "frontend/src/components/ProductReviews.tsx",
-          "frontend/src/components/ProductCard.tsx"
-        ]
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Add a 'Customers Also Bought' or 'You May Also Like' related products section below each product card or in a dedicated section on the page. Derive related products based on matching product type from the existing static products array in frontend/src/data/products.ts.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/RelatedProducts.tsx",
-          "frontend/src/components/ProductCard.tsx",
-          "frontend/src/components/ProductCatalog.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/RelatedProducts.tsx",
-          "frontend/src/components/ProductCard.tsx",
-          "frontend/src/components/ProductCatalog.tsx"
-        ]
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Add an Instagram-style photo gallery section showcasing customer unboxing/product photos. Use a masonry or grid layout with square image tiles. Display static placeholder unboxing images (generated assets) with a heading like 'Our Happy Customers' and a link to the Instagram page. Add a subtle overlay with a heart/star icon on hover.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/CustomerGallery.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/CustomerGallery.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Add a 'Crystal of the Day' section that displays a daily recommended crystal. Rotate through the existing product list using the current date as a seed so the same crystal shows all day. Display the crystal's name, image, a short spiritual description/intention, and a 'Shop Now' button that scrolls to that crystal in the catalog.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/CrystalOfTheDay.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/CrystalOfTheDay.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Add a 'Find Your Perfect Crystal' quiz feature. The quiz should ask 3–5 questions based on the user's zodiac sign, current mood, and intention (e.g., healing, love, protection, abundance). At the end, recommend 1–2 crystals from the existing product list that best match the answers. Display results with product image, name, and a link to shop.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/CrystalQuiz.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/CrystalQuiz.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Add a loyalty points system UI. Show users a points tracker that awards points for actions like viewing products, adding to wishlist, and completing a quiz. Persist points in localStorage. Display a small 'You have X Moonlight Points' badge in the header or a dedicated rewards widget. Include a message showing how many points are needed for the next reward (e.g., a discount).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/hooks/useLoyaltyPoints.ts",
-          "frontend/src/components/LoyaltyPointsBadge.tsx",
-          "frontend/src/components/Header.tsx",
-          "frontend/src/components/ProductCard.tsx",
-          "frontend/src/components/CrystalQuiz.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/hooks/useLoyaltyPoints.ts",
-          "frontend/src/components/LoyaltyPointsBadge.tsx",
-          "frontend/src/components/Header.tsx",
-          "frontend/src/components/ProductCard.tsx",
-          "frontend/src/components/CrystalQuiz.tsx"
-        ]
-      },
-      {
-        "id": "REQ-7",
-        "summary": "Add a newsletter signup section or modal offering a discount code for first-time subscribers. Include a name field and email field. On submission, show a success message with a discount code (e.g., 'MOON10'). Store submitted emails in the backend (append to a stable var list in backend/main.mo). Show the section as a banner above the footer or as a timed pop-up after 15 seconds.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/NewsletterSignup.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/hooks/useQueries.ts"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/NewsletterSignup.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/hooks/useQueries.ts"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Generate and use placeholder customer unboxing/product gallery images for the Instagram-style gallery section (REQ-3). Create 6 warm, mystical product lifestyle images featuring crystals, bracelets, and spiritual items in aesthetic flat-lay or hand-held compositions.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/CustomerGallery.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/CustomerGallery.tsx"
+          "frontend/src/components/Header.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/unboxing-1.dim_600x600.png",
-    "frontend/public/assets/generated/unboxing-2.dim_600x600.png",
-    "frontend/public/assets/generated/unboxing-3.dim_600x600.png",
-    "frontend/public/assets/generated/unboxing-4.dim_600x600.png",
-    "frontend/public/assets/generated/unboxing-5.dim_600x600.png",
-    "frontend/public/assets/generated/unboxing-6.dim_600x600.png",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/components/CrystalOfTheDay.tsx",
-    "frontend/src/components/CrystalQuiz.tsx",
-    "frontend/src/components/CustomerGallery.tsx",
     "frontend/src/components/Header.tsx",
-    "frontend/src/components/LoyaltyPointsBadge.tsx",
-    "frontend/src/components/NewsletterSignup.tsx",
-    "frontend/src/components/ProductCard.tsx",
-    "frontend/src/components/ProductCatalog.tsx",
-    "frontend/src/components/ProductReviews.tsx",
-    "frontend/src/components/RelatedProducts.tsx",
-    "frontend/src/data/reviews.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useLoyaltyPoints.ts",
-    "frontend/src/hooks/useQueries.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, Star } from 'lucide-react';
 import { useWishlist } from '../hooks/useWishlist';
 import HoliBanner from './HoliBanner';
 import LoyaltyPointsBadge from './LoyaltyPointsBadge';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface HeaderProps {
   onOpenWishlist?: () => void;
@@ -100,8 +101,53 @@ export default function Header({ onOpenWishlist }: HeaderProps) {
             </div>
           </button>
 
-          {/* Right side: Loyalty badge + Wishlist */}
+          {/* Right side: Rating + Loyalty badge + Wishlist */}
           <div className="flex items-center gap-2">
+            {/* Website Rating Badge */}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div
+                    className="flex items-center gap-1 px-2 py-1 rounded-full cursor-default select-none"
+                    style={{
+                      background: 'linear-gradient(135deg, oklch(96% 0.04 80), oklch(98% 0.02 60))',
+                      border: '1px solid oklch(82% 0.12 80 / 0.5)',
+                    }}
+                    aria-label="Website rating: 100 out of 100 stars"
+                  >
+                    <Star
+                      size={13}
+                      className="shrink-0"
+                      style={{ fill: 'oklch(78% 0.18 75)', color: 'oklch(78% 0.18 75)' }}
+                    />
+                    <span
+                      className="text-[11px] font-bold leading-none hidden sm:inline"
+                      style={{ color: 'oklch(45% 0.1 75)' }}
+                    >
+                      100
+                    </span>
+                    <span
+                      className="text-[10px] leading-none hidden sm:inline"
+                      style={{ color: 'oklch(55% 0.08 75)' }}
+                    >
+                      /100
+                    </span>
+                    {/* Mobile: just star + 100 compact */}
+                    <span
+                      className="text-[11px] font-bold leading-none sm:hidden"
+                      style={{ color: 'oklch(45% 0.1 75)' }}
+                    >
+                      100★
+                    </span>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="text-xs">
+                  <p className="font-semibold">⭐ Website Rating: 100 / 100</p>
+                  <p className="text-muted-foreground">Loved by our customers!</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
             <LoyaltyPointsBadge />
 
             {/* Wishlist button */}

@@ -1,189 +1,43 @@
 {
   "kind": "build_request",
-  "title": "Add Trust & Social Proof and Engagement & Retention Features",
-  "projectName": "Mystic Moon Crystal Shop",
+  "title": "Add 100-Star Website Rating Display in Upper-Right Corner Near Wishlist",
+  "projectName": "Crystal & Tarot Shop",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a customer reviews and star ratings section on each product card and/or a dedicated product detail view. Display reviewer name, star rating (1–5), date, and review text. Source review data from the existing static reviews data file (frontend/src/data/reviews.ts) and extend it to support product-level reviews linked by product ID.",
+      "text": "Add a website rating display in the upper-right corner of the Header component, positioned alongside the existing wishlist button. The rating should visually show '100 / 100 stars' using a star icon and numeric label (e.g., '★ 100' or '100★' with a label like 'Rating'). Style it consistently with the existing header elements (blue-crystal-moon palette).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-latest"
         ],
         "quotes": [
-          "Customer reviews and ratings on each product"
+          "Make website rating as 100 star from 0 star in the upright corner with wishlist"
         ]
       },
       "acceptanceCriteria": [
-        "Each product card or product detail view shows its associated reviews with star ratings",
-        "Reviews display reviewer name, date, star rating, and review text",
-        "Average star rating is shown per product",
-        "If no reviews exist for a product, a friendly placeholder is shown"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Add a 'Customers Also Bought' or 'You May Also Like' related products section below each product card or in a dedicated section on the page. Derive related products based on matching product type from the existing static products array in frontend/src/data/products.ts.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Customers also bought or related product suggestions"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A 'Customers Also Bought' section is visible with at least 2–3 related product suggestions",
-        "Related products are filtered by the same product type (e.g., Crystals, Bracelets)",
-        "Each suggestion shows product image, name, and price",
-        "Clicking a suggestion scrolls to or highlights that product in the catalog"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Add an Instagram-style photo gallery section showcasing customer unboxing/product photos. Use a masonry or grid layout with square image tiles. Display static placeholder unboxing images (generated assets) with a heading like 'Our Happy Customers' and a link to the Instagram page. Add a subtle overlay with a heart/star icon on hover.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Instagram-style photo gallery of customer unboxings"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A gallery section titled 'Our Happy Customers' is visible on the page",
-        "Gallery shows at least 6 image tiles in a grid/masonry layout",
-        "Images have a hover overlay effect with a heart or sparkle icon",
-        "A 'Follow us on Instagram' link is present below the gallery",
-        "Section is responsive on mobile and desktop"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Add a 'Crystal of the Day' section that displays a daily recommended crystal. Rotate through the existing product list using the current date as a seed so the same crystal shows all day. Display the crystal's name, image, a short spiritual description/intention, and a 'Shop Now' button that scrolls to that crystal in the catalog.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Daily crystal recommendation (Crystal of the Day)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A 'Crystal of the Day' section is visible on the homepage",
-        "The featured crystal changes daily based on the current date",
-        "Section shows crystal image, name, and a short intention/description",
-        "A 'Shop Now' CTA button is present and scrolls to the product in the catalog",
-        "Section is styled consistently with the existing blue-crystal-moon design system"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Add a 'Find Your Perfect Crystal' quiz feature. The quiz should ask 3–5 questions based on the user's zodiac sign, current mood, and intention (e.g., healing, love, protection, abundance). At the end, recommend 1–2 crystals from the existing product list that best match the answers. Display results with product image, name, and a link to shop.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Quiz: Find your perfect crystal based on zodiac, mood, or intention"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A 'Find Your Perfect Crystal' quiz entry point (button or section) is visible on the page",
-        "Quiz presents at least 3 questions covering zodiac, mood, and intention",
-        "After completion, 1–2 recommended crystals are shown with image, name, and price",
-        "A 'Shop This Crystal' button is shown that scrolls to the product in the catalog",
-        "Quiz can be retaken (reset button shown after results)"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Add a loyalty points system UI. Show users a points tracker that awards points for actions like viewing products, adding to wishlist, and completing a quiz. Persist points in localStorage. Display a small 'You have X Moonlight Points' badge in the header or a dedicated rewards widget. Include a message showing how many points are needed for the next reward (e.g., a discount).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Loyalty points system for repeat purchases"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A 'Moonlight Points' counter is visible in the header or as a floating widget",
-        "Points are awarded for wishlist additions, quiz completions, and page engagement",
-        "Points are persisted in localStorage across page refreshes",
-        "A message shows how many points are needed to unlock a reward/discount",
-        "The points UI is styled consistently with the site's design system"
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Add a newsletter signup section or modal offering a discount code for first-time subscribers. Include a name field and email field. On submission, show a success message with a discount code (e.g., 'MOON10'). Store submitted emails in the backend (append to a stable var list in backend/main.mo). Show the section as a banner above the footer or as a timed pop-up after 15 seconds.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Newsletter signup with a discount for first-time buyers"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A newsletter signup form is visible either as a section or timed pop-up",
-        "Form collects name and email address",
-        "On valid submission, a success message with a discount code (e.g., MOON10) is shown",
-        "Submitted emails are stored in the backend",
-        "The form validates that the email field is not empty and has a valid format",
-        "The pop-up (if used) does not appear again after the user has already subscribed (tracked via localStorage)"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Generate and use placeholder customer unboxing/product gallery images for the Instagram-style gallery section (REQ-3). Create 6 warm, mystical product lifestyle images featuring crystals, bracelets, and spiritual items in aesthetic flat-lay or hand-held compositions.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Instagram-style photo gallery of customer unboxings"
-        ]
-      },
-      "acceptanceCriteria": [
-        "6 generated gallery images are placed in frontend/public/assets/generated/",
-        "Images are rendered in the gallery grid section",
-        "Images have a consistent warm, mystical aesthetic"
+        "A star rating widget is visible in the upper-right corner of the header on all screen sizes.",
+        "The rating displays 100 out of 100 stars (or a compact representation such as '★ 100/100' or '100 ★').",
+        "The rating widget is positioned near the wishlist button without overlapping it.",
+        "The component uses the existing brand color palette and font styles from the project.",
+        "The rating is visible on both mobile and desktop layouts."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui/",
-    "All new frontend logic must use React state or localStorage — no external APIs",
-    "Backend changes must remain within the single-actor pattern in backend/main.mo",
-    "All new sections must follow the existing blue-crystal-moon design system defined in frontend/src/index.css and tailwind.config.js"
+    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui.",
+    "The rating value (100) is static and does not need to be fetched from the backend.",
+    "The existing wishlist button and loyalty points badge in the Header must remain fully functional and visually intact."
   ],
   "nonGoals": [
-    "Real email delivery or SMTP integration for newsletter",
-    "Real payment processing for loyalty rewards",
-    "Social media API integration (only static Instagram links)",
-    "User authentication gating for the quiz or loyalty points",
-    "External review platform integrations (e.g., Trustpilot, Google Reviews)"
+    "Dynamic or user-submitted ratings — this is a static display only.",
+    "Backend changes to store or serve rating data.",
+    "Changing the position or behavior of the wishlist panel or loyalty points badge.",
+    "Adding a rating submission form or review flow."
   ],
   "imageRequirements": {
-    "required": [
-      "Mystical crystal flat-lay lifestyle photo with rose quartz, amethyst, and dried flowers on a dark velvet surface (unboxing-1.dim_600x600.png)",
-      "Close-up of a person holding a crystal bracelet with soft bokeh spiritual background (unboxing-2.dim_600x600.png)",
-      "Crystal unboxing scene showing tissue paper, a wooden box, and multiple crystal tumbles (unboxing-3.dim_600x600.png)",
-      "Aesthetic flat-lay of a yantra, crystal pendulum, and incense on a golden cloth (unboxing-4.dim_600x600.png)",
-      "Hands cradling a glowing labradorite crystal with moonlight-inspired lighting (unboxing-5.dim_600x600.png)",
-      "Top-down view of an unboxed crystal gift set with decorative packaging and a thank-you card (unboxing-6.dim_600x600.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-customer-reviews-and-star-ratings-section-on-each-product-card-and-or-a-dedicated-product-detail-view-display-reviewer-name-star-rating-1-5-date-and-review-text-source-review-data-from-the-existing-static-reviews-data-file-frontend-src-data-reviews-ts-and-extend-it-to-support-product-level-reviews-linked-by-product-id",
-      "featureTitle": "Add a customer reviews and star ratings section on each product card and/or a dedicated product detail view. Display reviewer name, star rating (1–5), date, and review text. Source review data from the existing static reviews data file (frontend/src/data/reviews.ts) and extend it to support product-level reviews linked by product ID.",
+      "featureId": "feature-add-a-website-rating-display-in-the-upper-right-corner-of-the-header-component-positioned-alongside-the-existing-wishlist-button-the-rating-should-visually-show-100-100-stars-using-a-star-icon-and-numeric-label-e-g-100-or-100-with-a-label-like-rating-style-it-consistently-with-the-existing-header-elements-blue-crystal-moon-palette",
+      "featureTitle": "Add a website rating display in the upper-right corner of the Header component, positioned alongside the existing wishlist button. The rating should visually show '100 / 100 stars' using a star icon and numeric label (e.g., '★ 100' or '100★' with a label like 'Rating'). Style it consistently with the existing header elements (blue-crystal-moon palette).",
       "files": [
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/components/ProductReviews.tsx",
-        "frontend/src/data/reviews.ts"
+        "frontend/src/components/Header.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -20,157 +18,6 @@
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-customers-also-bought-or-you-may-also-like-related-products-section-below-each-product-card-or-in-a-dedicated-section-on-the-page-derive-related-products-based-on-matching-product-type-from-the-existing-static-products-array-in-frontend-src-data-products-ts",
-      "featureTitle": "Add a 'Customers Also Bought' or 'You May Also Like' related products section below each product card or in a dedicated section on the page. Derive related products based on matching product type from the existing static products array in frontend/src/data/products.ts.",
-      "files": [
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/components/ProductCatalog.tsx",
-        "frontend/src/components/RelatedProducts.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-an-instagram-style-photo-gallery-section-showcasing-customer-unboxing-product-photos-use-a-masonry-or-grid-layout-with-square-image-tiles-display-static-placeholder-unboxing-images-generated-assets-with-a-heading-like-our-happy-customers-and-a-link-to-the-instagram-page-add-a-subtle-overlay-with-a-heart-star-icon-on-hover",
-      "featureTitle": "Add an Instagram-style photo gallery section showcasing customer unboxing/product photos. Use a masonry or grid layout with square image tiles. Display static placeholder unboxing images (generated assets) with a heading like 'Our Happy Customers' and a link to the Instagram page. Add a subtle overlay with a heart/star icon on hover.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/CustomerGallery.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-crystal-of-the-day-section-that-displays-a-daily-recommended-crystal-rotate-through-the-existing-product-list-using-the-current-date-as-a-seed-so-the-same-crystal-shows-all-day-display-the-crystal-s-name-image-a-short-spiritual-description-intention-and-a-shop-now-button-that-scrolls-to-that-crystal-in-the-catalog",
-      "featureTitle": "Add a 'Crystal of the Day' section that displays a daily recommended crystal. Rotate through the existing product list using the current date as a seed so the same crystal shows all day. Display the crystal's name, image, a short spiritual description/intention, and a 'Shop Now' button that scrolls to that crystal in the catalog.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/CrystalOfTheDay.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-find-your-perfect-crystal-quiz-feature-the-quiz-should-ask-3-5-questions-based-on-the-user-s-zodiac-sign-current-mood-and-intention-e-g-healing-love-protection-abundance-at-the-end-recommend-1-2-crystals-from-the-existing-product-list-that-best-match-the-answers-display-results-with-product-image-name-and-a-link-to-shop",
-      "featureTitle": "Add a 'Find Your Perfect Crystal' quiz feature. The quiz should ask 3–5 questions based on the user's zodiac sign, current mood, and intention (e.g., healing, love, protection, abundance). At the end, recommend 1–2 crystals from the existing product list that best match the answers. Display results with product image, name, and a link to shop.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/CrystalQuiz.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-loyalty-points-system-ui-show-users-a-points-tracker-that-awards-points-for-actions-like-viewing-products-adding-to-wishlist-and-completing-a-quiz-persist-points-in-localstorage-display-a-small-you-have-x-moonlight-points-badge-in-the-header-or-a-dedicated-rewards-widget-include-a-message-showing-how-many-points-are-needed-for-the-next-reward-e-g-a-discount",
-      "featureTitle": "Add a loyalty points system UI. Show users a points tracker that awards points for actions like viewing products, adding to wishlist, and completing a quiz. Persist points in localStorage. Display a small 'You have X Moonlight Points' badge in the header or a dedicated rewards widget. Include a message showing how many points are needed for the next reward (e.g., a discount).",
-      "files": [
-        "frontend/src/components/CrystalQuiz.tsx",
-        "frontend/src/components/Header.tsx",
-        "frontend/src/components/LoyaltyPointsBadge.tsx",
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/hooks/useLoyaltyPoints.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-newsletter-signup-section-or-modal-offering-a-discount-code-for-first-time-subscribers-include-a-name-field-and-email-field-on-submission-show-a-success-message-with-a-discount-code-e-g-moon10-store-submitted-emails-in-the-backend-append-to-a-stable-var-list-in-backend-main-mo-show-the-section-as-a-banner-above-the-footer-or-as-a-timed-pop-up-after-15-seconds",
-      "featureTitle": "Add a newsletter signup section or modal offering a discount code for first-time subscribers. Include a name field and email field. On submission, show a success message with a discount code (e.g., 'MOON10'). Store submitted emails in the backend (append to a stable var list in backend/main.mo). Show the section as a banner above the footer or as a timed pop-up after 15 seconds.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/NewsletterSignup.tsx",
-        "frontend/src/hooks/useQueries.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-generate-and-use-placeholder-customer-unboxing-product-gallery-images-for-the-instagram-style-gallery-section-req-3-create-6-warm-mystical-product-lifestyle-images-featuring-crystals-bracelets-and-spiritual-items-in-aesthetic-flat-lay-or-hand-held-compositions",
-      "featureTitle": "Generate and use placeholder customer unboxing/product gallery images for the Instagram-style gallery section (REQ-3). Create 6 warm, mystical product lifestyle images featuring crystals, bracelets, and spiritual items in aesthetic flat-lay or hand-held compositions.",
-      "files": [
-        "frontend/src/components/CustomerGallery.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
       ],
       "confidence": "high"
     }

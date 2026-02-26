@@ -1,73 +1,16 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Crystal and spiritual products e-commerce website with Holi countdown timer and discount banner. Now adding Trust & Social Proof and Engagement & Retention features.",
+  "summary": "E-commerce/crystal website project with trust & social proof features, engagement & retention features, and a wishlist. Now adding a website rating display (100 stars out of 0) in the upper-right corner near the wishlist.",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Mystical crystal flat-lay lifestyle photo with rose quartz, amethyst, and dried flowers on a dark velvet surface (unboxing-1.dim_600x600.png)\n- Close-up of a person holding a crystal bracelet with soft bokeh spiritual background (unboxing-2.dim_600x600.png)\n- Crystal unboxing scene showing tissue paper, a wooden box, and multiple crystal tumbles (unboxing-3.dim_600x600.png)\n- Aesthetic flat-lay of a yantra, crystal pendulum, and incense on a golden cloth (unboxing-4.dim_600x600.png)\n- Hands cradling a glowing labradorite crystal with moonlight-inspired lighting (unboxing-5.dim_600x600.png)\n- Top-down view of an unboxed crystal gift set with decorative packaging and a thank-you card (unboxing-6.dim_600x600.png)",
   "existing_features": [
     {
-      "id": "feature-add-a-customer-reviews-and-star-ratings-section-on-each-product-card-and-or-a-dedicated-product-detail-view-display-reviewer-name-star-rating-1-5-date-and-review-text-source-review-data-from-the-existing-static-reviews-data-file-frontend-src-data-reviews-ts-and-extend-it-to-support-product-level-reviews-linked-by-product-id",
-      "title": "Add a customer reviews and star ratings section on each product card and/or a dedicated product detail view. Display reviewer name, star rating (1–5), date, and review text. Source review data from the existing static reviews data file (frontend/src/data/reviews.ts) and extend it to support product-level reviews linked by product ID.",
+      "id": "feature-add-a-website-rating-display-in-the-upper-right-corner-of-the-header-component-positioned-alongside-the-existing-wishlist-button-the-rating-should-visually-show-100-100-stars-using-a-star-icon-and-numeric-label-e-g-100-or-100-with-a-label-like-rating-style-it-consistently-with-the-existing-header-elements-blue-crystal-moon-palette",
+      "title": "Add a website rating display in the upper-right corner of the Header component, positioned alongside the existing wishlist button. The rating should visually show '100 / 100 stars' using a star icon and numeric label (e.g., '★ 100' or '100★' with a label like 'Rating'). Style it consistently with the existing header elements (blue-crystal-moon palette).",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-customers-also-bought-or-you-may-also-like-related-products-section-below-each-product-card-or-in-a-dedicated-section-on-the-page-derive-related-products-based-on-matching-product-type-from-the-existing-static-products-array-in-frontend-src-data-products-ts",
-      "title": "Add a 'Customers Also Bought' or 'You May Also Like' related products section below each product card or in a dedicated section on the page. Derive related products based on matching product type from the existing static products array in frontend/src/data/products.ts.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-an-instagram-style-photo-gallery-section-showcasing-customer-unboxing-product-photos-use-a-masonry-or-grid-layout-with-square-image-tiles-display-static-placeholder-unboxing-images-generated-assets-with-a-heading-like-our-happy-customers-and-a-link-to-the-instagram-page-add-a-subtle-overlay-with-a-heart-star-icon-on-hover",
-      "title": "Add an Instagram-style photo gallery section showcasing customer unboxing/product photos. Use a masonry or grid layout with square image tiles. Display static placeholder unboxing images (generated assets) with a heading like 'Our Happy Customers' and a link to the Instagram page. Add a subtle overlay with a heart/star icon on hover.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-crystal-of-the-day-section-that-displays-a-daily-recommended-crystal-rotate-through-the-existing-product-list-using-the-current-date-as-a-seed-so-the-same-crystal-shows-all-day-display-the-crystal-s-name-image-a-short-spiritual-description-intention-and-a-shop-now-button-that-scrolls-to-that-crystal-in-the-catalog",
-      "title": "Add a 'Crystal of the Day' section that displays a daily recommended crystal. Rotate through the existing product list using the current date as a seed so the same crystal shows all day. Display the crystal's name, image, a short spiritual description/intention, and a 'Shop Now' button that scrolls to that crystal in the catalog.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-find-your-perfect-crystal-quiz-feature-the-quiz-should-ask-3-5-questions-based-on-the-user-s-zodiac-sign-current-mood-and-intention-e-g-healing-love-protection-abundance-at-the-end-recommend-1-2-crystals-from-the-existing-product-list-that-best-match-the-answers-display-results-with-product-image-name-and-a-link-to-shop",
-      "title": "Add a 'Find Your Perfect Crystal' quiz feature. The quiz should ask 3–5 questions based on the user's zodiac sign, current mood, and intention (e.g., healing, love, protection, abundance). At the end, recommend 1–2 crystals from the existing product list that best match the answers. Display results with product image, name, and a link to shop.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-loyalty-points-system-ui-show-users-a-points-tracker-that-awards-points-for-actions-like-viewing-products-adding-to-wishlist-and-completing-a-quiz-persist-points-in-localstorage-display-a-small-you-have-x-moonlight-points-badge-in-the-header-or-a-dedicated-rewards-widget-include-a-message-showing-how-many-points-are-needed-for-the-next-reward-e-g-a-discount",
-      "title": "Add a loyalty points system UI. Show users a points tracker that awards points for actions like viewing products, adding to wishlist, and completing a quiz. Persist points in localStorage. Display a small 'You have X Moonlight Points' badge in the header or a dedicated rewards widget. Include a message showing how many points are needed for the next reward (e.g., a discount).",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-newsletter-signup-section-or-modal-offering-a-discount-code-for-first-time-subscribers-include-a-name-field-and-email-field-on-submission-show-a-success-message-with-a-discount-code-e-g-moon10-store-submitted-emails-in-the-backend-append-to-a-stable-var-list-in-backend-main-mo-show-the-section-as-a-banner-above-the-footer-or-as-a-timed-pop-up-after-15-seconds",
-      "title": "Add a newsletter signup section or modal offering a discount code for first-time subscribers. Include a name field and email field. On submission, show a success message with a discount code (e.g., 'MOON10'). Store submitted emails in the backend (append to a stable var list in backend/main.mo). Show the section as a banner above the footer or as a timed pop-up after 15 seconds.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-generate-and-use-placeholder-customer-unboxing-product-gallery-images-for-the-instagram-style-gallery-section-req-3-create-6-warm-mystical-product-lifestyle-images-featuring-crystals-bracelets-and-spiritual-items-in-aesthetic-flat-lay-or-hand-held-compositions",
-      "title": "Generate and use placeholder customer unboxing/product gallery images for the Instagram-style gallery section (REQ-3). Create 6 warm, mystical product lifestyle images featuring crystals, bracelets, and spiritual items in aesthetic flat-lay or hand-held compositions.",
-      "reqIds": [
-        "REQ-8"
       ],
       "version": 1
     }
@@ -75,49 +18,13 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Customer reviews and ratings on each product",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Customers also bought / related product suggestions",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Instagram-style photo gallery of customer unboxings",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Daily crystal recommendation (Crystal of the Day)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Quiz: Find your perfect crystal based on zodiac, mood, or intention",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Loyalty points system for repeat purchases",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Newsletter signup with discount for first-time buyers",
+      "summary": "Display website rating as 100 stars (from 0) in the upper-right corner alongside the wishlist",
       "reqIds": [],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Crystal & Spiritual Products Store",
+  "projectName": "Crystal & Tarot Shop",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
